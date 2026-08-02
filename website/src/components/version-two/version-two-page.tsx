@@ -38,24 +38,24 @@ const outcomes = [
 
 const deliverables = [
   {
-    name: "Your method, built in",
+    name: "Your methods, built in",
     description:
-      "We turn the sources, rules, exceptions, and standards your experts use into the workflow itself.",
+      "The sources, rules, exceptions, and standards your experts use become part of the system.",
   },
   {
-    name: "A production workflow",
+    name: "Production workflows",
     description:
-      "AI, software, systems, handoffs, and approvals work together in one controlled process.",
+      "AI, software, systems, handoffs, and approvals work together in a controlled process.",
   },
   {
-    name: "A clear scorecard",
+    name: "Results you can measure",
     description:
-      "The same measure used for the baseline tracks performance after launch.",
+      "Clear baselines and scorecards show how performance changes after launch.",
   },
   {
-    name: "A team ready to run it",
+    name: "Teams ready to run them",
     description:
-      "Your team gets the checks, documentation, and controls needed to take over.",
+      "Your teams get the checks, documentation, and controls needed to take over.",
   },
 ] as const
 
@@ -220,7 +220,7 @@ export function VersionTwoPage({
 
           <div className="mt-16 grid gap-8 border-t border-white/55 pt-7 md:grid-cols-12 md:gap-6 lg:mt-24">
             <p className="max-w-[52ch] text-lg leading-8 text-on-ink md:col-span-7 lg:text-xl">
-              AI can speed up a task without fixing the workflow around it. We redesign one recurring workflow, put it into production with the right controls, and measure the result against today’s baseline.
+              AI can speed up a task without fixing the workflow around it. We redesign repeatable workflows, put them into production with the right controls, and measure results against agreed baselines.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row md:col-span-5 md:justify-end">
               <TrackedAnchor
@@ -300,10 +300,10 @@ export function VersionTwoPage({
             <div className="md:col-span-8">
               <p className="operational-label text-signal-strong">What you get</p>
               <h2 className="mt-6 max-w-[12ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                One workflow, ready for production.
+                Production systems for the workflows that matter.
               </h2>
               <p className="mt-7 max-w-[44ch] text-base leading-7 text-muted-foreground">
-                The work ends in production, with clear controls and a team ready to run it.
+                Layers turns repeatable, expert-heavy workflows into systems your teams can measure, run, and improve.
               </p>
             </div>
             <div className="flex min-h-56 items-center self-center bg-canvas p-4 sm:min-h-64 sm:p-6 md:col-span-4 md:min-h-80">
@@ -329,19 +329,19 @@ export function VersionTwoPage({
         <div className="section-shell py-20 sm:py-24 lg:py-32">
           <div className="grid gap-8 md:grid-cols-12 md:gap-6">
             <div className="md:col-span-8">
-              <p className="operational-label text-signal-strong">Initial practice areas</p>
+              <p className="operational-label text-signal-strong">Where we work</p>
               <h2 className="mt-6 max-w-[12ch] font-editorial text-[clamp(3rem,5.6vw,5.5rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                People and Workforce first. Professional services next.
+                For work that depends on expertise.
               </h2>
             </div>
             <p className="max-w-[42ch] self-end text-base leading-7 text-muted-foreground md:col-span-4">
-              We start with repeatable work that absorbs expert time and has a result we can measure.
+              We focus on People and Workforce operations and professional-services delivery. In both, systems, evidence, and expert judgment have to work together.
             </p>
           </div>
 
           <div className="mt-14 grid border-t border-l border-line-strong md:grid-cols-12 lg:mt-20">
             <article className="flex flex-col border-r border-b border-line-strong bg-background p-6 sm:p-8 md:col-span-7 lg:p-10">
-              <p className="operational-label text-signal-strong">Primary practice</p>
+              <p className="operational-label text-signal-strong">Practice area</p>
               <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em]">
                 People and Workforce
               </h3>
@@ -364,7 +364,7 @@ export function VersionTwoPage({
             </article>
 
             <article className="flex flex-col border-r border-b border-line-strong bg-surface-muted p-6 sm:p-8 md:col-span-5 lg:p-10">
-              <p className="operational-label text-muted-foreground">Second application</p>
+              <p className="operational-label text-muted-foreground">Practice area</p>
               <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em]">
                 Professional-services delivery
               </h3>
@@ -395,7 +395,7 @@ export function VersionTwoPage({
             <div className="md:col-span-8">
               <p className="operational-label text-signal-strong">How we work</p>
               <h2 className="mt-6 max-w-[12ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                Prove the workflow before you scale it.
+                Prove the work before you scale it.
               </h2>
               <p className="mt-7 max-w-[32ch] text-base leading-7 text-muted-foreground">
                 We test the redesigned workflow on real examples before you make a larger commitment.
