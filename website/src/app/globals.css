@@ -1,26 +1,366 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/instrument-sans";
+@import "@fontsource/instrument-serif/400.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+@import "@fontsource/ibm-plex-mono/latin-600.css";
+@import "./tokens.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-sans: "Instrument Sans Variable", "Instrument Sans", "Avenir Next", sans-serif;
+  --font-heading: "Instrument Sans Variable", "Instrument Sans", "Avenir Next", sans-serif;
+  --font-editorial: var(--font-serif);
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", ui-monospace, monospace;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-signal: var(--signal);
+  --color-signal-strong: var(--signal-strong);
+  --color-signal-soft: var(--signal-soft);
+  --color-review: var(--human);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-on-ink: var(--on-ink);
+  --color-on-ink-muted: var(--on-ink-muted);
+  --color-ink-surface: var(--ink-surface);
+  --color-ink-line: var(--ink-line);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: var(--radius-xs);
+  --radius-md: var(--radius-control);
+  --radius-lg: var(--radius-control);
+  --radius-xl: var(--radius-module);
+  --radius-2xl: var(--radius-artifact);
+  --radius-3xl: var(--radius-artifact);
+  --radius-4xl: var(--radius-artifact);
+  --radius-marketing: var(--radius-cta);
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.5;
+  --text-lead: clamp(1.125rem, 1.6vw, 1.25rem);
+  --text-lead--line-height: 1.5;
+  --text-card: 1.25rem;
+  --text-card--line-height: 1.2;
+  --text-section: clamp(2.5rem, 5.5vw, 5rem);
+  --text-section--line-height: 0.96;
+  --text-display: clamp(3.5rem, 8vw, 7rem);
+  --text-display--line-height: 0.9;
+
+  --container-content: var(--content);
+  --breakpoint-sm: 46rem;
+  --breakpoint-md: 62rem;
+  --breakpoint-lg: 74rem;
+  --ease-blueprint-out: var(--ease-out);
+  --ease-blueprint-shift: var(--ease-shift);
+  --shadow-lifted: 0 1.5rem 3.5rem -2rem rgb(18 24 22 / 34%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-pt-24 font-sans;
+  }
+
+  body {
+    @apply min-w-80 overflow-x-clip bg-background text-foreground antialiased;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--signal-strong);
+    outline-offset: 3px;
+  }
+
+  [data-theme="signal"] a:focus-visible,
+  [data-theme="signal"] button:focus-visible,
+  [data-theme="ink"] a:focus-visible,
+  [data-theme="ink"] button:focus-visible {
+    outline-color: var(--on-ink);
+  }
+
+  ::selection {
+    background: var(--signal-soft);
+    color: var(--ink);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .casefile-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    shape-rendering: geometricPrecision;
+  }
+
+  .casefile-svg * {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .cf-frame,
+  .cf-rule,
+  .cf-rule-soft,
+  .cf-rule-signal,
+  .cf-rule-human,
+  .cf-rule-error,
+  .cf-rule-dashed,
+  .cf-on-signal-frame,
+  .cf-on-signal-rule,
+  .cf-on-signal-rule-soft,
+  .cf-on-signal-rule-dashed {
+    fill: none;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-width: 1;
+  }
+
+  .cf-frame,
+  .cf-rule { stroke: var(--ink); }
+  .cf-rule-soft { stroke: color-mix(in oklab, var(--ink) 28%, transparent); }
+  .cf-rule-signal { stroke: var(--signal-strong); }
+  .cf-rule-human { stroke: var(--human); stroke-width: 2; stroke-linecap: round; }
+  .cf-rule-error { stroke: var(--error); }
+  .cf-rule-dashed { stroke: var(--ink-soft); stroke-dasharray: 5 5; }
+  .cf-on-signal-frame,
+  .cf-on-signal-rule { stroke: color-mix(in oklab, var(--on-ink) 82%, transparent); }
+  .cf-on-signal-rule-soft { stroke: color-mix(in oklab, var(--on-ink) 30%, transparent); }
+  .cf-on-signal-rule-dashed {
+    stroke: color-mix(in oklab, var(--on-ink) 70%, transparent);
+    stroke-dasharray: 5 5;
+  }
+
+  .cf-surface { fill: var(--surface); stroke: var(--ink); }
+  .cf-surface-muted { fill: var(--surface-muted); stroke: var(--ink); }
+  .cf-surface-signal { fill: var(--signal-soft); stroke: var(--signal-strong); }
+  .cf-on-signal-surface {
+    fill: color-mix(in oklab, var(--on-ink) 9%, transparent);
+    stroke: color-mix(in oklab, var(--on-ink) 68%, transparent);
+  }
+  .cf-paper { fill: var(--surface); stroke: var(--ink); }
+  .cf-exception-surface { fill: var(--surface); stroke: var(--error); }
+  .cf-signal-fill { fill: var(--signal-strong); }
+  .cf-human-fill { fill: var(--human); }
+  .cf-dot-on-signal { fill: var(--on-ink); }
+
+  .cf-label-ink,
+  .cf-label-muted,
+  .cf-label-error,
+  .cf-label-on-signal,
+  .cf-label-on-signal-muted {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  .cf-label-ink { fill: var(--ink); }
+  .cf-label-muted { fill: var(--text-muted); }
+  .cf-label-error { fill: var(--error); }
+  .cf-label-on-signal { fill: var(--on-ink); }
+  .cf-label-on-signal-muted { fill: color-mix(in oklab, var(--on-ink) 88%, transparent); }
+  .cf-body-ink,
+  .cf-body-on-signal {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+  .cf-body-ink { fill: var(--ink); }
+  .cf-body-on-signal { fill: var(--on-ink); }
+
+  .operational-label {
+    @apply font-mono text-[0.6875rem] leading-[1.2] font-medium tracking-[0.13em] uppercase;
+  }
+
+  .section-shell {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-12;
+  }
+
+  .section-anchor {
+    scroll-margin-top: 4.5rem;
+  }
+
+  .colorflow-static-fallback {
+    background-position: center;
+    background-size: cover;
+  }
+
+  .system-object-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    shape-rendering: geometricPrecision;
+  }
+
+  .system-object-svg * {
+    vector-effect: non-scaling-stroke;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-width: 1;
+  }
+
+  .so-frame,
+  .so-line,
+  .so-line-soft {
+    fill: none;
+  }
+
+  .so-frame,
+  .so-line {
+    stroke: var(--ink);
+  }
+
+  .so-line-soft {
+    stroke: color-mix(in oklab, var(--ink) 28%, transparent);
+  }
+
+  .so-surface,
+  .so-surface-muted,
+  .so-signal,
+  .so-review {
+    stroke: var(--ink);
+  }
+
+  .so-surface {
+    fill: var(--surface);
+  }
+
+  .so-surface-muted {
+    fill: var(--surface-muted);
+  }
+
+  .so-signal {
+    fill: var(--signal-soft);
+    stroke: var(--signal-strong);
+  }
+
+  .so-review {
+    fill: var(--human);
+  }
+
+  .text-action-arrow {
+    transition: transform var(--duration-state) var(--ease-shift);
+  }
+
+  .group:hover .text-action-arrow {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes blueprint-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .hero-enter {
+    animation: blueprint-enter var(--duration-enter) var(--ease-out) both;
+  }
+
+  .hero-enter-delayed {
+    animation: blueprint-enter var(--duration-enter) var(--ease-out) 100ms both;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 61.999rem), (prefers-reduced-motion: reduce) {
+  .colorflow-static-fallback {
+    background-image: url("/images/hero-operational-still-life-2x.webp");
+  }
+}
+
+@media (max-width: 45.999rem) {
+  .casefile-svg text {
+    display: none;
+  }
 }

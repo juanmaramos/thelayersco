@@ -24,6 +24,11 @@
 .DS_Store
 *.pem
 
+# local visual QA assets; commercial license pending
+/public/images/layers-glass-fold.webp
+/public/images/rotating-glass-rings-poster.avif
+/public/images/rotating-glass-rings.mp4
+
 # debug
 npm-debug.log*
 yarn-debug.log*

@@ -1,0 +1,2 @@
+/* Production consumes the repository's one canonical token-value file. */
+@import "../../../design-system/handover/tokens.css";
