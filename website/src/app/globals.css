@@ -249,6 +249,13 @@
   }
 
   .colorflow-static-fallback {
+    background:
+      radial-gradient(
+        circle at 86% 14%,
+        color-mix(in oklab, var(--signal) 72%, transparent) 0,
+        transparent 34%
+      ),
+      linear-gradient(135deg, var(--signal-strong), var(--chart-5));
     background-position: center;
     background-size: cover;
   }
@@ -350,12 +357,6 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-@media (max-width: 61.999rem), (prefers-reduced-motion: reduce) {
-  .colorflow-static-fallback {
-    background-image: url("/images/hero-operational-still-life-2x.webp");
   }
 }
 

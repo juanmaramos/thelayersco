@@ -71,4 +71,4 @@ export const siteConfig = {
 } as const
 
 export const siteDescription =
-  "Layers redesigns one document-, data-, and judgment-heavy workflow, builds the governed production system, and measures the result against the baseline."
+  "Layers redesigns recurring workflows, puts them into production with the right controls, and measures the result against today’s baseline."

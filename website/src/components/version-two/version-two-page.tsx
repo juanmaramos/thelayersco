@@ -20,96 +20,96 @@ import { cn } from "@/lib/utils"
 const outcomes = [
   {
     name: "Faster cycle time",
-    description: "From intake to approved output.",
+    description: "Move work from intake to approval sooner.",
   },
   {
     name: "More expert capacity",
-    description: "Less preparation and repeat handling.",
+    description: "Give experts less prep and repeat work.",
   },
   {
     name: "Higher throughput",
-    description: "More approved work with the same team.",
+    description: "Handle more work with the same team.",
   },
   {
-    name: "Stronger unit economics",
-    description: "Lower unit cost or improved delivery margin.",
+    name: "Better delivery economics",
+    description: "Reduce unit cost or protect delivery margin.",
   },
 ] as const
 
 const deliverables = [
   {
-    name: "Operating method, codified",
+    name: "Your method, built in",
     description:
-      "Your sources, terminology, rules, exceptions, and quality bar made executable.",
+      "We turn the sources, rules, exceptions, and standards your experts use into the workflow itself.",
   },
   {
-    name: "Governed production workflow",
+    name: "A production workflow",
     description:
-      "AI, deterministic software, systems, handoffs, and approvals working as one controlled flow.",
+      "AI, software, systems, handoffs, and approvals work together in one controlled process.",
   },
   {
-    name: "Measured results",
+    name: "A clear scorecard",
     description:
-      "A baseline and scorecard for the operating outcome that matters.",
+      "The same measure used for the baseline tracks performance after launch.",
   },
   {
-    name: "Ownership and handover",
+    name: "A team ready to run it",
     description:
-      "Evaluation, documentation, controls, and a clear operating owner.",
+      "Your team gets the checks, documentation, and controls needed to take over.",
   },
 ] as const
 
 const peopleWorkflows = [
-  "Employee-service and HR operations",
-  "Workforce, job, role, and skills data",
-  "Policy, rewards, talent, and workforce-analysis preparation",
-  "HCM-adjacent workflows crossing existing systems",
+  "HR service requests and employee operations",
+  "Job, role, skills, and workforce data",
+  "Policy, rewards, talent, and workforce analysis",
+  "Work that spans HCM and surrounding tools",
 ] as const
 
 const professionalServicesWorkflows = [
-  "Methodology execution, document, and evidence analysis",
-  "Research, deliverable production, recurring reporting, review, and approval",
+  "Document and evidence analysis",
+  "Research, reporting, deliverable production, and review",
 ] as const
 
 const engagementSteps = [
   {
     number: "01",
-    title: "Baseline and validate",
+    title: "Baseline and test",
     description:
-      "Measure the current workflow and test the redesigned flow on representative work before a larger production commitment.",
-    decision: "Is the result measurable and the quality threshold credible?",
+      "Measure how the workflow performs today, then test the redesign on real examples.",
+    decision: "Does it improve the result without lowering quality?",
   },
   {
     number: "02",
-    title: "Implement the production workflow",
+    title: "Build for production",
     description:
-      "Implement the operating context, software, integrations, controls, and human review.",
-    decision: "Can the workflow run safely in its target environment?",
+      "Connect the right software and systems, then add controls and human review.",
+    decision: "Can it run safely where your team works?",
   },
   {
     number: "03",
-    title: "Measure, correct, and expand only when justified",
+    title: "Measure and decide what comes next",
     description:
-      "Track the agreed result, correct failure modes, and transfer ownership to the operating team.",
-    decision: "Should the business expand, change, or stop?",
+      "Track the agreed result, fix what fails, and hand the workflow to the operating team.",
+    decision: "Expand it, change it, or stop?",
   },
 ] as const
 
 const portabilityPaths = [
   {
-    title: "Use the client-approved environment",
+    title: "Run it in your environment",
     description:
-      "Deploy into the client-approved environment where possible and connect only the systems the bounded workflow requires.",
+      "Where possible, we deploy in your approved environment and connect only the systems this workflow needs.",
   },
   {
-    title: "Keep the workflow portable",
+    title: "Avoid model lock-in",
     description:
-      "Keep the operating method, deterministic rules, evaluations, and human controls independent from one model or interface.",
+      "The method, rules, checks, and human controls stay independent of any one model or interface.",
   },
   {
-    title: "Keep control visible",
+    title: "Keep decisions visible",
     description:
-      "Deterministic rules, source evidence, exceptions, human approvals, and evaluation stay part of the production workflow.",
+      "Source evidence, exceptions, approvals, and the person making the call remain part of the workflow.",
   },
 ] as const
 
@@ -117,27 +117,27 @@ const faqItems = [
   {
     question: "What is a good first workflow?",
     answer:
-      "Choose recurring work with a clear owner, representative data, repeated preparation or review, and an output that can be checked. It should carry a measurable burden in time, capacity, quality, or cost.",
+      "Start with recurring work that has a clear owner, enough examples to test, and an output people can judge. The pain should show up in time, cost, capacity, or quality.",
   },
   {
     question: "Do we need to replace our existing platforms?",
     answer:
-      "No. We prefer to deploy into the client-approved environment and connect the systems the bounded workflow requires. The implementation route is validated before a larger production commitment.",
+      "Usually not. We aim to work inside your approved environment and connect only the systems the workflow needs. We confirm that route before production.",
   },
   {
     question: "What remains under human control?",
     answer:
-      "People approve material employment, legal, regulated, financial, and commercial decisions. AI can prepare evidence, analyze, draft, and route; accountable people retain the consequential judgment.",
+      "People keep control of consequential employment, legal, regulated, financial, and commercial decisions. AI can gather evidence, analyze, draft, and route work; the people responsible make the call.",
   },
   {
     question: "How do you prove the result?",
     answer:
-      "Before implementation, we agree the unit of work, one operating measure, the quality threshold, and the evidence source. The same scorecard measures the workflow after release.",
+      "We agree what counts as one unit of work, how we will measure it, and what quality must hold. The same scorecard compares production with the baseline.",
   },
   {
-    question: "What happens before a production commitment?",
+    question: "What happens before production?",
     answer:
-      "We establish the baseline and validate the target workflow on representative material. Production follows only when the result, quality, deployment route, and operating owner are credible.",
+      "We first measure today’s workflow and test the redesign on real examples. We move to production only when the result, quality, technical route, and owner are clear.",
   },
 ] as const
 
@@ -220,7 +220,7 @@ export function VersionTwoPage({
 
           <div className="mt-16 grid gap-8 border-t border-white/55 pt-7 md:grid-cols-12 md:gap-6 lg:mt-24">
             <p className="max-w-[52ch] text-lg leading-8 text-on-ink md:col-span-7 lg:text-xl">
-              Adding AI to a fragmented workflow does not repair the process underneath it. We redesign one document-, data-, and judgment-heavy workflow, build the governed production system, and measure the result against the baseline.
+              AI can speed up a task without fixing the workflow around it. We redesign one recurring workflow, put it into production with the right controls, and measure the result against today’s baseline.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row md:col-span-5 md:justify-end">
               <TrackedAnchor
@@ -267,7 +267,7 @@ export function VersionTwoPage({
               </h2>
             </div>
             <p className="max-w-[42ch] self-end text-lg leading-8 text-muted-foreground md:col-span-5">
-              Important work crosses documents, spreadsheets, email, core systems, preparation, review, and approval. The operating result depends on the whole bounded flow.
+              Work gets stuck between documents, spreadsheets, email, core systems, and rounds of review. Fixing one task leaves the rest of the workflow untouched.
             </p>
           </div>
 
@@ -275,19 +275,19 @@ export function VersionTwoPage({
             <li className="flex min-h-56 flex-col justify-between border-r border-b border-line-strong p-6 lg:p-8">
               <span className="font-mono text-xs text-signal-strong">01</span>
               <p className="max-w-[30ch] text-base leading-7 font-medium">
-                A point AI feature may accelerate one task while the surrounding handoffs stay unchanged.
+                AI may speed up one task while the same handoffs and delays remain.
               </p>
             </li>
             <li className="flex min-h-56 flex-col justify-between border-r border-b border-line-strong p-6 lg:p-8">
               <span className="font-mono text-xs text-signal-strong">02</span>
               <p className="max-w-[30ch] text-base leading-7 font-medium">
-                Data, quality, exceptions, and accountability remain fragmented across the process.
+                Data, exceptions, quality checks, and ownership stay scattered across the process.
               </p>
             </li>
             <li className="flex min-h-56 flex-col justify-between border-r border-b border-line-strong bg-canvas p-6 lg:p-8">
               <span className="font-mono text-xs text-signal-strong">03</span>
               <p className="max-w-[30ch] text-base leading-7 font-semibold">
-                Layers redesigns the full bounded flow before implementing AI and software.
+                Layers redesigns the workflow first, then applies AI and software where they help.
               </p>
             </li>
           </ol>
@@ -300,10 +300,10 @@ export function VersionTwoPage({
             <div className="md:col-span-8">
               <p className="operational-label text-signal-strong">What you get</p>
               <h2 className="mt-6 max-w-[12ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                Working systems for valuable workflows.
+                One workflow, ready for production.
               </h2>
               <p className="mt-7 max-w-[44ch] text-base leading-7 text-muted-foreground">
-                Not a strategy deck, prompt library, generic chatbot, or open-ended transformation programme.
+                The work ends in production, with clear controls and a team ready to run it.
               </p>
             </div>
             <div className="flex min-h-56 items-center self-center bg-canvas p-4 sm:min-h-64 sm:p-6 md:col-span-4 md:min-h-80">
@@ -331,11 +331,11 @@ export function VersionTwoPage({
             <div className="md:col-span-8">
               <p className="operational-label text-signal-strong">Initial practice areas</p>
               <h2 className="mt-6 max-w-[12ch] font-editorial text-[clamp(3rem,5.6vw,5.5rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                One operating model. Two initial applications.
+                People and Workforce first. Professional services next.
               </h2>
             </div>
             <p className="max-w-[42ch] self-end text-base leading-7 text-muted-foreground md:col-span-4">
-              We begin where workflows are repeated, expert-heavy, measurable, and feasible for one accountable implementation team.
+              We start with repeatable work that absorbs expert time and has a result we can measure.
             </p>
           </div>
 
@@ -346,7 +346,7 @@ export function VersionTwoPage({
                 People and Workforce
               </h3>
               <p className="mt-5 max-w-[58ch] text-base leading-7 text-muted-foreground">
-                Recurring operations that cross HCM platforms, documents, spreadsheets, shared mailboxes, policies, data preparation, and expert review.
+                People and Workforce work rarely lives in one system. It moves between HCM platforms, spreadsheets, shared inboxes, policies, and expert review.
               </p>
               <ul className="mt-8 border-t border-line">
                 {peopleWorkflows.map((workflow) => (
@@ -369,7 +369,7 @@ export function VersionTwoPage({
                 Professional-services delivery
               </h3>
               <p className="mt-5 max-w-[48ch] text-base leading-7 text-muted-foreground">
-                Repeatable delivery methods where experts spend too much time assembling evidence, preparing outputs, and coordinating review.
+                We focus on repeatable delivery work where experts spend too much time gathering evidence, preparing outputs, and chasing reviews.
               </p>
               <ul className="mt-8 border-t border-line">
                 {professionalServicesWorkflows.map((workflow) => (
@@ -395,10 +395,10 @@ export function VersionTwoPage({
             <div className="md:col-span-8">
               <p className="operational-label text-signal-strong">How we work</p>
               <h2 className="mt-6 max-w-[12ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                From manual work to production in three decisions.
+                Prove the workflow before you scale it.
               </h2>
               <p className="mt-7 max-w-[32ch] text-base leading-7 text-muted-foreground">
-                Representative validation comes before a larger production commitment.
+                We test the redesigned workflow on real examples before you make a larger commitment.
               </p>
             </div>
             <div className="flex min-h-56 items-center self-center bg-canvas p-4 sm:p-6 md:col-span-4 md:ml-auto md:min-h-72 md:w-full">
@@ -430,13 +430,13 @@ export function VersionTwoPage({
           <div className="md:col-span-6 md:pr-10">
             <p className="operational-label text-on-ink">Portable by design</p>
             <h2 className="mt-6 max-w-[11ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-              Build the workflow once. Run it where your people already work.
+              Build once. Run it where your people work.
             </h2>
             <p className="mt-7 max-w-[48ch] text-base leading-7 text-on-ink">
-              Deploy into the client-approved environment where possible. Keep the workflow method, deterministic rules, evaluations, and human controls independent from one model or interface.
+              Where possible, we deploy in your approved environment. The method, rules, checks, and human controls stay independent of any one model or interface.
             </p>
             <p className="mt-7 max-w-[44ch] border-l-2 border-white/70 pl-4 text-sm leading-6 font-semibold text-on-ink">
-              Portability reduces implementation risk after the business result and production path are clear.
+              Once the result is clear, portability lowers the risk of putting the workflow into production.
             </p>
           </div>
 
@@ -454,9 +454,9 @@ export function VersionTwoPage({
       <section className="section-anchor" id="faq">
         <div className="section-shell grid gap-12 py-20 sm:py-24 md:grid-cols-12 md:gap-6 lg:py-32">
           <div className="md:col-span-5 md:pr-10">
-            <p className="operational-label text-signal-strong">Before a call</p>
+            <p className="operational-label text-signal-strong">Before we talk</p>
             <h2 className="mt-6 max-w-[10ch] font-editorial text-[clamp(3rem,5.6vw,5.5rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-              The essential questions, answered.
+              Straight answers before we start.
             </h2>
           </div>
 
@@ -488,11 +488,11 @@ export function VersionTwoPage({
                 Bring us a workflow worth improving.
               </h2>
               <p className="mt-7 max-w-[42ch] text-base leading-7 text-on-ink-muted">
-                Bring us one recurring workflow with a clear owner, representative data, current volume, and a measurable burden in time, cost, capacity, quality, or delay.
+                Tell us where the work repeats, who owns it, and what it costs in time, capacity, quality, or delay. A few real examples help.
               </p>
             </div>
             <p className="border-t border-ink-line pt-6 font-mono text-[0.6875rem] leading-5 tracking-[0.05em] text-on-ink-muted">
-              ONE WORKFLOW → ONE BASELINE → ONE PRODUCTION DECISION
+              START WITH ONE WORKFLOW. PROVE WHAT CHANGED.
             </p>
           </div>
 

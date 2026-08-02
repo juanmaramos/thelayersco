@@ -120,7 +120,7 @@ export function WorkflowForm({
 
       if (!formEndpoint) {
         setSubmitError(
-          "This preview form is not connected. No workflow context has been sent."
+          "This preview form is not connected, so nothing was sent."
         )
         trackLandingEvent("submit_failure", { reason: "not_configured" })
         return
@@ -146,7 +146,7 @@ export function WorkflowForm({
         })
       } catch {
         setSubmitError(
-          "The workflow context could not be sent. Please review the details and try again."
+          "We couldn’t send your details. Check them and try again."
         )
         trackLandingEvent("submit_failure", { reason: "request_failed" })
       } finally {
@@ -164,8 +164,9 @@ export function WorkflowForm({
         role="status"
       >
         <p className="max-w-[52ch] text-xl leading-8 font-semibold">
-          Thank you. We received the workflow context and will review whether it
-          is suitable for a focused conversation.
+          Thanks. We received your workflow. {schedulingUrl
+            ? "Choose a time and we’ll review the details before we meet."
+            : "We’ll review the details and get back to you."}
         </p>
         {schedulingUrl ? (
           <TrackedAnchor
@@ -200,7 +201,8 @@ export function WorkflowForm({
           className="border border-dashed border-line-strong bg-surface-muted p-4 text-sm leading-6 text-muted-foreground"
           id={statusId}
         >
-          Preview only: this form is not connected to a submission endpoint.
+          Preview only: this form is not connected yet, so it cannot send your
+          details.
           {contactEmail ? (
             <>
               {" "}You can instead email{" "}
@@ -234,8 +236,8 @@ export function WorkflowForm({
         <Field className="sm:col-span-2" data-invalid={Boolean(errors.workflow) || undefined}>
           <FieldLabel htmlFor={workflowId}>Workflow</FieldLabel>
           <FieldDescription id={workflowDescriptionId}>
-            What process repeats, where does expert effort collect, and what
-            output must be right?
+            Where does the work repeat, and what takes expert time? Tell us what
+            a good output looks like.
           </FieldDescription>
           <Textarea
             aria-describedby={
@@ -291,7 +293,7 @@ export function WorkflowForm({
         {isSubmitting ? (
           <>
             <Spinner data-icon="inline-start" />
-            Sending workflow…
+            Sending…
           </>
         ) : (
           <>

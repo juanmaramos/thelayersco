@@ -43,7 +43,7 @@ export function VersionTwoRoute({
       <SiteFooter
         companyName={siteConfig.companyName}
         contactEmail={siteConfig.contactEmail}
-        description="Workflow transformation and implementation for People, Workforce, and professional-services teams."
+        description="We turn manual workflows into production systems for People and Workforce teams and professional-services firms."
         privacyUrl={siteConfig.privacyUrl}
         termsUrl={siteConfig.termsUrl}
       />
