@@ -50,14 +50,18 @@ const configuredFormEndpoint = readHref(
 const configuredEstimateEndpoint = readHref(
   process.env.NEXT_PUBLIC_ESTIMATE_ENDPOINT
 )
+const configuredAnalyticsHost = readUrl(
+  process.env.NEXT_PUBLIC_UMAMI_HOST
+)
+const configuredAnalyticsWebsiteId = readValue(
+  process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID
+)
 const configuredPrivacyUrl = readHref(
   process.env.NEXT_PUBLIC_PRIVACY_URL
 )
 const configuredTermsUrl = readHref(
   process.env.NEXT_PUBLIC_TERMS_URL
 )
-const configuredAnalyticsReady =
-  readValue(process.env.NEXT_PUBLIC_ANALYTICS_READY) === "true"
 const deploymentUrl =
   readDeploymentUrl(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
   readDeploymentUrl(process.env.VERCEL_URL)
@@ -66,27 +70,35 @@ const emailDeliveryReady = Boolean(
     readValue(process.env.EMAIL_FROM) &&
     readValue(process.env.CONTACT_TO_EMAIL)
 )
+const formEndpoint =
+  configuredFormEndpoint ?? (emailDeliveryReady ? "/api/contact" : null)
+const estimateEndpoint =
+  configuredEstimateEndpoint ?? (emailDeliveryReady ? "/api/estimate" : null)
+const analyticsReady = Boolean(
+  configuredAnalyticsHost && configuredAnalyticsWebsiteId
+)
 
 export const siteConfig = {
   companyName: configuredCompanyName ?? "Layers",
   companyNameIsFallback: configuredCompanyName === null,
   publicLocation: "Working from Miami, Madrid and Dubai.",
   contactEmail: readValue(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
-  formEndpoint:
-    configuredFormEndpoint ?? (emailDeliveryReady ? "/api/contact" : null),
-  estimateEndpoint:
-    configuredEstimateEndpoint ?? (emailDeliveryReady ? "/api/estimate" : null),
+  formEndpoint,
+  estimateEndpoint,
   privacyUrl: configuredPrivacyUrl ?? "/privacy",
   termsUrl: configuredTermsUrl ?? "/terms",
   schedulingUrl: readUrl(process.env.NEXT_PUBLIC_SCHEDULING_URL),
   canonicalUrl: configuredCanonicalUrl,
-  analyticsReady: configuredAnalyticsReady,
+  analyticsHost: configuredAnalyticsHost,
+  analyticsWebsiteId: configuredAnalyticsWebsiteId,
+  analyticsReady,
   metadataBaseUrl:
     configuredCanonicalUrl ?? deploymentUrl ?? "http://localhost:3000",
   releaseReady: Boolean(
     configuredCanonicalUrl &&
-      (configuredFormEndpoint || emailDeliveryReady) &&
-      configuredAnalyticsReady
+      emailDeliveryReady &&
+      formEndpoint &&
+      estimateEndpoint
   ),
 } as const
 

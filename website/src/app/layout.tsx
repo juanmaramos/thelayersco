@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 
 import { siteConfig, siteDescription } from "@/lib/site-config"
 
@@ -35,7 +36,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full font-sans antialiased">
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {children}
+        {siteConfig.analyticsReady &&
+        siteConfig.analyticsHost &&
+        siteConfig.analyticsWebsiteId ? (
+          <Script
+            data-domains={new URL(siteConfig.metadataBaseUrl).hostname}
+            data-exclude-hash="true"
+            data-website-id={siteConfig.analyticsWebsiteId}
+            src={new URL("/script.js", siteConfig.analyticsHost).toString()}
+            strategy="afterInteractive"
+          />
+        ) : null}
+      </body>
     </html>
   )
 }
