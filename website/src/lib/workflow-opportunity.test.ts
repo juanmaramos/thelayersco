@@ -8,6 +8,7 @@ describe("calculateWorkflowOpportunity", () => {
       people: 6,
       hoursPerPersonPerWeek: 10,
       annualEmploymentCost: 100_000,
+      capacityReturnPercent: 50,
     })
 
     expect(result.annualWorkflowHours).toBe(2_760)
@@ -23,6 +24,7 @@ describe("calculateWorkflowOpportunity", () => {
       people: 1_000,
       hoursPerPersonPerWeek: 80,
       annualEmploymentCost: 2_000_000,
+      capacityReturnPercent: 50,
     })
 
     expect(result.annualWorkflowHours).toBe(920_000)
@@ -36,6 +38,7 @@ describe("calculateWorkflowOpportunity", () => {
       people: Number.NaN,
       hoursPerPersonPerWeek: Number.NaN,
       annualEmploymentCost: Number.NaN,
+      capacityReturnPercent: 50,
     })
 
     expect(result).toEqual({
@@ -46,5 +49,25 @@ describe("calculateWorkflowOpportunity", () => {
       returnedFteEquivalent: 0,
       returnedShare: 0,
     })
+  })
+
+  it("changes the result with the selected capacity assumption", () => {
+    const conservative = calculateWorkflowOpportunity({
+      people: 6,
+      hoursPerPersonPerWeek: 10,
+      annualEmploymentCost: 100_000,
+      capacityReturnPercent: 35,
+    })
+    const optimistic = calculateWorkflowOpportunity({
+      people: 6,
+      hoursPerPersonPerWeek: 10,
+      annualEmploymentCost: 100_000,
+      capacityReturnPercent: 65,
+    })
+
+    expect(conservative.returnedCapacityValue).toBeCloseTo(52_500)
+    expect(conservative.returnedShare).toBe(0.35)
+    expect(optimistic.returnedCapacityValue).toBeCloseTo(97_500)
+    expect(optimistic.returnedShare).toBe(0.65)
   })
 })

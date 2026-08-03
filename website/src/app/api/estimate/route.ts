@@ -8,8 +8,9 @@ import {
 } from "@/lib/server/email"
 import {
   calculateWorkflowOpportunity,
+  getCapacityReturnScenario,
   HOURS_PER_WORKWEEK,
-  MODELED_CAPACITY_RETURN_PERCENT,
+  isCapacityReturnPercent,
   WORKING_WEEKS_PER_YEAR,
 } from "@/lib/workflow-opportunity"
 
@@ -54,6 +55,7 @@ export async function POST(request: Request) {
   const people = readNumber(body.people)
   const hoursPerPersonPerWeek = readNumber(body.hoursPerPersonPerWeek)
   const annualEmploymentCost = readNumber(body.annualEmploymentCost)
+  const capacityReturnPercent = readNumber(body.capacityReturnPercent)
   const consent = body.consent === true
 
   if (
@@ -68,6 +70,7 @@ export async function POST(request: Request) {
     !Number.isFinite(annualEmploymentCost) ||
     annualEmploymentCost < 0 ||
     annualEmploymentCost > 1_000_000 ||
+    !isCapacityReturnPercent(capacityReturnPercent) ||
     !consent
   ) {
     return Response.json({ error: "Check the estimate and email fields." }, { status: 400 })
@@ -83,7 +86,11 @@ export async function POST(request: Request) {
     people,
     hoursPerPersonPerWeek,
     annualEmploymentCost,
+    capacityReturnPercent,
   })
+  const capacityReturnScenario = getCapacityReturnScenario(
+    capacityReturnPercent
+  )
   const currencyFormatter = new Intl.NumberFormat("en", {
     currency,
     maximumFractionDigits: 0,
@@ -108,7 +115,8 @@ export async function POST(request: Request) {
     `Current workflow value: ${currencyFormatter.format(result.currentAnnualEffortValue)}`,
     "",
     `Inputs: ${people} people × ${hoursPerPersonPerWeek} hours per person each week × ${currencyFormatter.format(annualEmploymentCost)} annual employment cost.`,
-    `Method: ${WORKING_WEEKS_PER_YEAR} working weeks and a ${MODELED_CAPACITY_RETURN_PERCENT}% modeled capacity return for a suitable recurring workflow redesigned end to end.`,
+    `Capacity assumption: ${capacityReturnScenario.label} (${capacityReturnPercent}% of repeat effort returned).`,
+    `Method: ${WORKING_WEEKS_PER_YEAR} working weeks for a suitable recurring workflow redesigned end to end.`,
     "",
     "This is a capacity estimate, not guaranteed cash or headcount savings. It excludes implementation and model costs.",
     "",
@@ -126,7 +134,8 @@ export async function POST(request: Request) {
       <tr><td>Current workflow value</td><td><strong>${escapeHtml(currencyFormatter.format(result.currentAnnualEffortValue))}</strong></td></tr>
     </table>
     <p><strong>Inputs:</strong> ${people} people × ${hoursPerPersonPerWeek} hours per person each week × ${escapeHtml(currencyFormatter.format(annualEmploymentCost))} annual employment cost.</p>
-    <p><strong>Method:</strong> ${WORKING_WEEKS_PER_YEAR} working weeks and a ${MODELED_CAPACITY_RETURN_PERCENT}% modeled capacity return for a suitable recurring workflow redesigned end to end.</p>
+    <p><strong>Capacity assumption:</strong> ${capacityReturnScenario.label} (${capacityReturnPercent}% of repeat effort returned).</p>
+    <p><strong>Method:</strong> ${WORKING_WEEKS_PER_YEAR} working weeks for a suitable recurring workflow redesigned end to end.</p>
     <p>This is a capacity estimate, not guaranteed cash or headcount savings. It excludes implementation and model costs.</p>
     <hr />
     <p style="color:#5b6474;font-size:12px">Layers is operated by ${legalEntity.legalName}. ${escapeHtml(address)}${privacyUrl ? ` · <a href="${escapeHtml(privacyUrl)}">Privacy</a>` : ""}</p>

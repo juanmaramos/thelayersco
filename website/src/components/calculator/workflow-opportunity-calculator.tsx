@@ -29,9 +29,13 @@ import {
 } from "@/components/ui/toggle-group"
 import { trackLandingEvent } from "@/lib/analytics"
 import {
+  CAPACITY_RETURN_SCENARIOS,
   calculateWorkflowOpportunity,
+  type CapacityReturnPercent,
+  DEFAULT_CAPACITY_RETURN_PERCENT,
+  getCapacityReturnScenario,
   HOURS_PER_WORKWEEK,
-  MODELED_CAPACITY_RETURN_PERCENT,
+  isCapacityReturnPercent,
   WORKING_WEEKS_PER_YEAR,
 } from "@/lib/workflow-opportunity"
 
@@ -67,6 +71,8 @@ export function WorkflowOpportunityCalculator({
   const [people, setPeople] = useState(12)
   const [hoursPerPersonPerWeek, setHoursPerPersonPerWeek] = useState(15)
   const [annualEmploymentCost, setAnnualEmploymentCost] = useState(80_000)
+  const [capacityReturnPercent, setCapacityReturnPercent] =
+    useState<CapacityReturnPercent>(DEFAULT_CAPACITY_RETURN_PERCENT)
   const [showEmailForm, setShowEmailForm] = useState(false)
   const [emailConsent, setEmailConsent] = useState(true)
   const [emailStatus, setEmailStatus] = useState<string | null>(null)
@@ -88,9 +94,11 @@ export function WorkflowOpportunityCalculator({
         people,
         hoursPerPersonPerWeek,
         annualEmploymentCost,
+        capacityReturnPercent,
       }),
-    [annualEmploymentCost, hoursPerPersonPerWeek, people]
+    [annualEmploymentCost, capacityReturnPercent, hoursPerPersonPerWeek, people]
   )
+  const selectedScenario = getCapacityReturnScenario(capacityReturnPercent)
 
   const currencyFormatter = useMemo(
     () =>
@@ -141,6 +149,18 @@ export function WorkflowOpportunityCalculator({
     [markStarted]
   )
 
+  const handleCapacityReturnChange = useCallback(
+    (values: string[]) => {
+      const nextPercent = Number(values[0])
+
+      if (isCapacityReturnPercent(nextPercent)) {
+        markStarted()
+        setCapacityReturnPercent(nextPercent)
+      }
+    },
+    [markStarted]
+  )
+
   const handleEmailReveal = useCallback(() => {
     setShowEmailForm(true)
     trackLandingEvent("cta_click", { location: "calculator_email_reveal" })
@@ -184,6 +204,7 @@ export function WorkflowOpportunityCalculator({
             people,
             hoursPerPersonPerWeek,
             annualEmploymentCost,
+            capacityReturnPercent,
           }),
         })
 
@@ -203,6 +224,7 @@ export function WorkflowOpportunityCalculator({
     },
     [
       annualEmploymentCost,
+      capacityReturnPercent,
       currency,
       emailConsent,
       emailEndpoint,
@@ -293,13 +315,43 @@ export function WorkflowOpportunityCalculator({
               Salary plus employer taxes and benefits. A blended estimate is fine.
             </FieldDescription>
           </Field>
+
+          <FieldSet>
+            <FieldLegend variant="label">Capacity return assumption</FieldLegend>
+            <ToggleGroup
+              aria-label="Capacity return assumption"
+              className="w-full"
+              onValueChange={handleCapacityReturnChange}
+              spacing={1}
+              value={[String(capacityReturnPercent)]}
+              variant="outline"
+            >
+              {CAPACITY_RETURN_SCENARIOS.map((scenario) => (
+                <ToggleGroupItem
+                  className="h-auto min-w-0 flex-1 flex-col gap-0.5 px-1.5 py-2 text-[0.6875rem] tracking-[0.04em]"
+                  key={scenario.percent}
+                  value={String(scenario.percent)}
+                >
+                  <span>{scenario.label}</span>
+                  <span className="font-mono text-[0.6875rem] tracking-normal">
+                    {scenario.percent}%
+                  </span>
+                </ToggleGroupItem>
+              ))}
+            </ToggleGroup>
+            <FieldDescription>
+              How much repeat effort the redesigned workflow could return.
+            </FieldDescription>
+          </FieldSet>
         </FieldGroup>
       </div>
 
       <div className="flex flex-col justify-between bg-signal-strong p-6 text-on-ink sm:p-9 md:col-span-7 lg:p-12">
         <div>
           <p className="operational-label text-on-ink">Working estimate</p>
-          <p className="mt-8 text-sm leading-6 text-on-ink">Estimated annual capacity value</p>
+          <p className="mt-8 text-sm leading-6 text-on-ink">
+            Estimated annual capacity value
+          </p>
           <output className="mt-2 block font-editorial text-[clamp(3.5rem,7vw,6.5rem)] leading-[0.88] tracking-[-0.055em]">
             {currencyFormatter.format(result.returnedCapacityValue)}
           </output>
@@ -327,21 +379,6 @@ export function WorkflowOpportunityCalculator({
               </dd>
             </div>
           </dl>
-
-          <div className="mt-9">
-            <div className="flex items-center justify-between gap-6 text-sm">
-              <span>Modeled share of workflow effort returned</span>
-              <span className="font-mono">
-                {wholeNumberFormatter.format(result.returnedShare * 100)}%
-              </span>
-            </div>
-            <div aria-hidden="true" className="mt-3 h-2 bg-white/25">
-              <div
-                className="h-full bg-on-ink transition-[width] duration-[var(--duration-state)]"
-                style={{ width: `${result.returnedShare * 100}%` }}
-              />
-            </div>
-          </div>
         </div>
 
         <div className="mt-14">
@@ -350,10 +387,10 @@ export function WorkflowOpportunityCalculator({
             This estimates capacity, not guaranteed cash or headcount savings. It excludes implementation and model costs.
           </p>
           <p className="mt-3 max-w-[54ch] text-xs leading-5 text-on-ink">
-            We model a {MODELED_CAPACITY_RETURN_PERCENT}% capacity return for a suitable recurring workflow redesigned end to end. The real number is validated against your work.
+            This uses the {selectedScenario.label.toLowerCase()} assumption: {capacityReturnPercent}% of repeat effort returned for a suitable workflow redesigned end to end. The real number is validated against your work.
           </p>
           <p className="mt-3 font-mono text-[0.6875rem] leading-5 tracking-[0.04em] text-on-ink uppercase">
-            Method: {people} people × {hoursPerPersonPerWeek}/{HOURS_PER_WORKWEEK} of a workweek × {currencyFormatter.format(annualEmploymentCost)} annual cost × {MODELED_CAPACITY_RETURN_PERCENT}% · Hours use {WORKING_WEEKS_PER_YEAR} working weeks
+            Method: {people} people × {hoursPerPersonPerWeek}/{HOURS_PER_WORKWEEK} of a workweek × {currencyFormatter.format(annualEmploymentCost)} annual cost × {capacityReturnPercent}% · Hours use {WORKING_WEEKS_PER_YEAR} working weeks
           </p>
           {showEmailForm ? (
             <form

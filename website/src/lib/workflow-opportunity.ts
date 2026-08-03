@@ -1,11 +1,21 @@
 export const WORKING_WEEKS_PER_YEAR = 46
 export const HOURS_PER_WORKWEEK = 40
-export const MODELED_CAPACITY_RETURN_PERCENT = 50
+export const CAPACITY_RETURN_SCENARIOS = [
+  { label: "Conservative", percent: 35 },
+  { label: "Expected", percent: 50 },
+  { label: "Optimistic", percent: 65 },
+] as const
+
+export type CapacityReturnPercent =
+  (typeof CAPACITY_RETURN_SCENARIOS)[number]["percent"]
+
+export const DEFAULT_CAPACITY_RETURN_PERCENT: CapacityReturnPercent = 50
 
 export type WorkflowOpportunityInput = {
   people: number
   hoursPerPersonPerWeek: number
   annualEmploymentCost: number
+  capacityReturnPercent: CapacityReturnPercent
 }
 
 export type WorkflowOpportunity = {
@@ -25,6 +35,22 @@ function bounded(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max)
 }
 
+export function isCapacityReturnPercent(
+  value: number
+): value is CapacityReturnPercent {
+  return CAPACITY_RETURN_SCENARIOS.some(
+    (scenario) => scenario.percent === value
+  )
+}
+
+export function getCapacityReturnScenario(percent: CapacityReturnPercent) {
+  return (
+    CAPACITY_RETURN_SCENARIOS.find(
+      (scenario) => scenario.percent === percent
+    ) ?? CAPACITY_RETURN_SCENARIOS[1]
+  )
+}
+
 export function calculateWorkflowOpportunity(
   input: WorkflowOpportunityInput
 ): WorkflowOpportunity {
@@ -38,7 +64,7 @@ export function calculateWorkflowOpportunity(
     annualEmploymentCost / (WORKING_WEEKS_PER_YEAR * HOURS_PER_WORKWEEK)
   const currentAnnualEffortValue = annualWorkflowHours * loadedHourlyCost
   const returnedShare =
-    annualWorkflowHours > 0 ? MODELED_CAPACITY_RETURN_PERCENT / 100 : 0
+    annualWorkflowHours > 0 ? input.capacityReturnPercent / 100 : 0
   const returnedHours = annualWorkflowHours * returnedShare
 
   return {
