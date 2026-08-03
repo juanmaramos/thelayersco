@@ -37,6 +37,7 @@ describe("POST /api/estimate", () => {
     const response = await POST(
       request({
         annualEmploymentCost: 100_000,
+        capacityReturnPercent: 50,
         consent: true,
         currency: "USD",
         email: "operator@example.com",
@@ -57,6 +58,7 @@ describe("POST /api/estimate", () => {
       "owner@example.com",
     ])
     expect(recipientBodies[0].text).toContain("$75,000")
+    expect(recipientBodies[0].text).toContain("Expected (50%")
     expect(recipientBodies[1].text).toContain(
       "Marketing preference accepted: yes"
     )
@@ -69,7 +71,29 @@ describe("POST /api/estimate", () => {
     const response = await POST(
       request({
         annualEmploymentCost: 100_000,
+        capacityReturnPercent: 50,
         consent: false,
+        currency: "USD",
+        email: "operator@example.com",
+        hoursPerPersonPerWeek: 10,
+        people: 6,
+        website: "",
+      })
+    )
+
+    expect(response.status).toBe(400)
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
+
+  it("rejects unsupported capacity assumptions", async () => {
+    const fetchMock = vi.fn()
+    vi.stubGlobal("fetch", fetchMock)
+
+    const response = await POST(
+      request({
+        annualEmploymentCost: 100_000,
+        capacityReturnPercent: 45,
+        consent: true,
         currency: "USD",
         email: "operator@example.com",
         hoursPerPersonPerWeek: 10,
