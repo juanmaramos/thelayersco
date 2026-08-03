@@ -1,4 +1,5 @@
 import { legalEntity } from "@/lib/legal"
+import { buildEstimateEmail } from "@/lib/server/estimate-email"
 import {
   escapeHtml,
   getEmailDeliveryConfig,
@@ -100,46 +101,46 @@ export async function POST(request: Request) {
     maximumFractionDigits: 0,
   })
   const greeting = name ? `Hi ${name},` : "Hello,"
-  const privacyUrl = process.env.NEXT_PUBLIC_CANONICAL_URL
-    ? new URL("/privacy", process.env.NEXT_PUBLIC_CANONICAL_URL).toString()
+  const canonicalUrl = process.env.NEXT_PUBLIC_CANONICAL_URL ?? null
+  const privacyUrl = canonicalUrl
+    ? new URL("/privacy", canonicalUrl).toString()
+    : null
+  const talkUrl = canonicalUrl
+    ? new URL(
+        "/?utm_source=estimate_email&utm_medium=email&utm_campaign=workflow_estimate&utm_content=primary_cta#discuss",
+        canonicalUrl
+      ).toString()
+    : null
+  const rerunUrl = canonicalUrl
+    ? new URL(
+        "/?utm_source=estimate_email&utm_medium=email&utm_campaign=workflow_estimate&utm_content=rerun_estimate#estimate",
+        canonicalUrl
+      ).toString()
     : null
   const address = legalEntity.mailingAddress.join(", ")
-  const resultText = [
-    greeting,
-    "",
-    "Here is your Layers workflow opportunity estimate.",
-    "",
-    `Estimated annual capacity value: ${currencyFormatter.format(result.returnedCapacityValue)}`,
-    `Hours returned: ${numberFormatter.format(result.returnedHours)}`,
-    `Working weeks returned: ${numberFormatter.format(result.returnedHours / HOURS_PER_WORKWEEK)}`,
-    `Current workflow value: ${currencyFormatter.format(result.currentAnnualEffortValue)}`,
-    "",
-    `Inputs: ${people} people × ${hoursPerPersonPerWeek} hours per person each week × ${currencyFormatter.format(annualEmploymentCost)} annual employment cost.`,
-    `Capacity assumption: ${capacityReturnScenario.label} (${capacityReturnPercent}% of repeat effort returned).`,
-    `Method: ${WORKING_WEEKS_PER_YEAR} working weeks for a suitable recurring workflow redesigned end to end.`,
-    "",
-    "This is a capacity estimate, not guaranteed cash or headcount savings. It excludes implementation and model costs.",
-    "",
-    `Layers is operated by ${legalEntity.legalName}.`,
+  const { html: resultHtml, text: resultText } = buildEstimateEmail({
     address,
-  ].join("\n")
-  const resultHtml = `
-    <p>${escapeHtml(greeting)}</p>
-    <p>Here is your Layers workflow opportunity estimate.</p>
-    <h1>${escapeHtml(currencyFormatter.format(result.returnedCapacityValue))}</h1>
-    <p><strong>Estimated annual capacity value</strong></p>
-    <table cellpadding="8" cellspacing="0" style="border-collapse:collapse;border:1px solid #d8dce5">
-      <tr><td>Hours returned</td><td><strong>${escapeHtml(numberFormatter.format(result.returnedHours))}</strong></td></tr>
-      <tr><td>Working weeks returned</td><td><strong>${escapeHtml(numberFormatter.format(result.returnedHours / HOURS_PER_WORKWEEK))}</strong></td></tr>
-      <tr><td>Current workflow value</td><td><strong>${escapeHtml(currencyFormatter.format(result.currentAnnualEffortValue))}</strong></td></tr>
-    </table>
-    <p><strong>Inputs:</strong> ${people} people × ${hoursPerPersonPerWeek} hours per person each week × ${escapeHtml(currencyFormatter.format(annualEmploymentCost))} annual employment cost.</p>
-    <p><strong>Capacity assumption:</strong> ${capacityReturnScenario.label} (${capacityReturnPercent}% of repeat effort returned).</p>
-    <p><strong>Method:</strong> ${WORKING_WEEKS_PER_YEAR} working weeks for a suitable recurring workflow redesigned end to end.</p>
-    <p>This is a capacity estimate, not guaranteed cash or headcount savings. It excludes implementation and model costs.</p>
-    <hr />
-    <p style="color:#5b6474;font-size:12px">Layers is operated by ${legalEntity.legalName}. ${escapeHtml(address)}${privacyUrl ? ` · <a href="${escapeHtml(privacyUrl)}">Privacy</a>` : ""}</p>
-  `
+    annualEmploymentCost: currencyFormatter.format(annualEmploymentCost),
+    capacityAssumption: `${capacityReturnScenario.label} (${capacityReturnPercent}% of repeat effort returned)`,
+    currentWorkflowValue: currencyFormatter.format(
+      result.currentAnnualEffortValue
+    ),
+    estimatedAnnualCapacityValue: currencyFormatter.format(
+      result.returnedCapacityValue
+    ),
+    greeting,
+    hoursPerPersonPerWeek,
+    hoursReturned: numberFormatter.format(result.returnedHours),
+    legalName: legalEntity.legalName,
+    people,
+    privacyUrl,
+    rerunUrl,
+    talkUrl,
+    workingWeeksPerYear: WORKING_WEEKS_PER_YEAR,
+    workingWeeksReturned: numberFormatter.format(
+      result.returnedHours / HOURS_PER_WORKWEEK
+    ),
+  })
   const consentTimestamp = new Date().toISOString()
   const internalText = [
     "Workflow estimate email requested",
@@ -158,7 +159,10 @@ export async function POST(request: Request) {
     <p><strong>Marketing preference accepted:</strong> yes</p>
     <p><strong>Recorded at:</strong> ${escapeHtml(consentTimestamp)}</p>
     <hr />
-    ${resultHtml}
+    <p><strong>Estimated annual capacity value:</strong> ${escapeHtml(currencyFormatter.format(result.returnedCapacityValue))}</p>
+    <p><strong>Hours returned:</strong> ${escapeHtml(numberFormatter.format(result.returnedHours))}</p>
+    <p><strong>Working weeks returned:</strong> ${escapeHtml(numberFormatter.format(result.returnedHours / HOURS_PER_WORKWEEK))}</p>
+    <p><strong>Current workflow value:</strong> ${escapeHtml(currencyFormatter.format(result.currentAnnualEffortValue))}</p>
   `
 
   try {

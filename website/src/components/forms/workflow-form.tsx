@@ -43,15 +43,20 @@ const initialValues: WorkflowFormValues = {
 type WorkflowFormProps = {
   contactEmail: string | null
   formEndpoint: string | null
+  initialPracticeInterest?: PracticeInterest
   schedulingUrl: string | null
 }
 
 export function WorkflowForm({
   contactEmail,
   formEndpoint,
+  initialPracticeInterest = "general",
   schedulingUrl,
 }: WorkflowFormProps) {
-  const [values, setValues] = useState(initialValues)
+  const [values, setValues] = useState<WorkflowFormValues>(() => ({
+    ...initialValues,
+    practiceInterest: initialPracticeInterest,
+  }))
   const [errors, setErrors] = useState<WorkflowFormErrors>({})
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)

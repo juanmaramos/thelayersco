@@ -3,6 +3,7 @@ import { IconArrowNarrowRight } from "@tabler/icons-react"
 
 import { WorkflowOpportunityCalculator } from "@/components/calculator/workflow-opportunity-calculator"
 import { WorkflowForm } from "@/components/forms/workflow-form"
+import { PlatformLogoStrip } from "@/components/site/platform-logo-strip"
 import { TrackedAnchor } from "@/components/site/tracked-anchor"
 import {
   Accordion,
@@ -112,21 +113,24 @@ const engagementSteps = [
   },
 ] as const
 
-const portabilityPaths = [
+const homepageBuildOptions = [
   {
-    title: "Use the systems you already approve",
+    number: "01",
+    title: "Skill",
     description:
-      "We connect only what the workflow needs and deploy in your environment where possible.",
+      "Package the methodology, templates, examples, and review points inside an approved AI workspace.",
   },
   {
-    title: "Pay for more capability only when the work needs it",
+    number: "02",
+    title: "Plugin",
     description:
-      "When the work can be separated and measured, routine steps can run on smaller or open-weight models. Harder cases move to frontier models only when the extra capability improves the result.",
+      "Connect files, systems, and actions, with deterministic checks around exact work.",
   },
   {
-    title: "Know who made the call",
+    number: "03",
+    title: "Application",
     description:
-      "Evidence, exceptions, and approvals stay visible, including the person responsible.",
+      "Add dedicated software only when shared state, queues, or permissions require it.",
   },
 ] as const
 
@@ -366,6 +370,80 @@ export function VersionTwoPage({
         </div>
       </section>
 
+      <section
+        className="section-anchor bg-signal-strong text-on-ink"
+        data-theme="signal"
+        id="build-options"
+      >
+        <div className="section-shell py-20 sm:py-24 lg:py-32">
+          <div className="grid gap-10 md:grid-cols-12 md:gap-6">
+            <div className="md:col-span-7">
+              <p className="operational-label text-on-ink">
+                Workflow Launch
+              </p>
+              <h2 className="mt-6 max-w-[11ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
+                Turn one repeatable workstream into a working AI skill or plugin.
+              </h2>
+              <p className="mt-7 max-w-[50ch] text-base leading-7 text-on-ink">
+                We map how the work runs, remove unnecessary steps, and build
+                the smallest reliable solution inside the AI environment your
+                team already uses.
+              </p>
+
+              <div className="mt-8 border-t border-white/45 pt-5">
+                <p className="font-mono text-[0.6875rem] leading-5 tracking-[0.05em] text-on-ink uppercase">
+                  Designed for your approved AI environment
+                </p>
+                <PlatformLogoStrip tone="inverse" />
+                <p className="mt-4 text-sm leading-6 text-on-ink">
+                  Or an approved internal assistant.
+                </p>
+              </div>
+            </div>
+
+            <div className="self-end border-t border-white/45 md:col-span-5">
+              {homepageBuildOptions.map((option) => (
+                <article
+                  className="grid grid-cols-[2rem_minmax(0,1fr)] gap-3 border-b border-white/35 py-5 sm:grid-cols-[2.5rem_minmax(0,1fr)] sm:py-6"
+                  key={option.number}
+                >
+                  <span className="font-mono text-xs text-on-ink">
+                    {option.number}
+                  </span>
+                  <div>
+                    <h3 className="text-xl leading-7 font-semibold tracking-[-0.025em]">
+                      {option.title}
+                    </h3>
+                    <p className="mt-2 max-w-[48ch] text-sm leading-6 text-on-ink">
+                      {option.description}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col items-start justify-between gap-6 border-t border-white/45 pt-7 sm:flex-row sm:items-center">
+            <p className="max-w-[62ch] text-base leading-7 text-on-ink">
+              A bounded workflow can reach a tested first version in 2–4 weeks
+              when the owner, inputs, and environment are ready.
+            </p>
+            <TrackedAnchor
+              className={cn(
+                buttonVariants({ size: "cta", variant: "inverse" }),
+                "shrink-0"
+              )}
+              eventName="cta_click"
+              eventProperties={{ location: "homepage_workflow_launch" }}
+              href="/workflow-launch"
+            >
+              See how Workflow Launch works
+              <IconArrowNarrowRight data-icon="inline-end" />
+            </TrackedAnchor>
+          </div>
+        </div>
+      </section>
+
       <section className="section-anchor border-y border-line bg-canvas" id="patterns">
         <div className="section-shell py-20 sm:py-24 lg:py-32">
           <div className="grid gap-8 md:grid-cols-12 md:gap-6">
@@ -489,33 +567,6 @@ export function VersionTwoPage({
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      <section
-        className="section-anchor bg-signal-strong text-on-ink"
-        data-theme="signal"
-        id="portability"
-      >
-        <div className="section-shell grid gap-14 py-20 sm:py-24 md:grid-cols-12 md:gap-6 lg:py-32">
-          <div className="md:col-span-6 md:pr-10">
-            <p className="operational-label text-on-ink">Built to stay portable</p>
-            <h2 className="mt-6 max-w-[11ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-              Your workflow should not depend on one model.
-            </h2>
-            <p className="mt-7 max-w-[48ch] text-base leading-7 text-on-ink">
-              When your approved environment supports the workflow, we deploy there. Your operating method and controls stay separate from the model or interface running them.
-            </p>
-          </div>
-
-          <div className="border-t border-white/45 md:col-span-6">
-            {portabilityPaths.map((item) => (
-              <article className="border-b border-white/35 py-7 sm:py-8" key={item.title}>
-                <h3 className="text-xl leading-7 font-semibold tracking-[-0.025em]">{item.title}</h3>
-                <p className="mt-3 max-w-[58ch] text-sm leading-6 text-on-ink">{item.description}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 

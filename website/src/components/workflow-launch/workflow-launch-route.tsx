@@ -1,18 +1,9 @@
 import { SiteFooter } from "@/components/site/site-footer"
 import { SiteHeader } from "@/components/site/site-header"
-import {
-  VersionTwoPage,
-  type VersionTwoHeroBackground,
-} from "@/components/version-two/version-two-page"
+import { WorkflowLaunchPage } from "@/components/workflow-launch/workflow-launch-page"
 import { siteConfig } from "@/lib/site-config"
 
-type VersionTwoRouteProps = {
-  heroBackground?: VersionTwoHeroBackground
-}
-
-export function VersionTwoRoute({
-  heroBackground = "colorflow",
-}: VersionTwoRouteProps) {
+export function WorkflowLaunchRoute() {
   return (
     <>
       <a
@@ -24,11 +15,9 @@ export function VersionTwoRoute({
       <SiteHeader
         companyName={siteConfig.companyName}
       />
-      <VersionTwoPage
+      <WorkflowLaunchPage
         contactEmail={siteConfig.contactEmail}
-        estimateEndpoint={siteConfig.estimateEndpoint}
         formEndpoint={siteConfig.formEndpoint}
-        heroBackground={heroBackground}
         schedulingUrl={siteConfig.schedulingUrl}
       />
       <SiteFooter
@@ -37,8 +26,8 @@ export function VersionTwoRoute({
         description="We redesign slow, manual workflows and build the systems that run them."
         location={siteConfig.publicLocation}
         navigationLinks={[
-          { label: "Workflow Launch", href: "/workflow-launch" },
-          { label: "FAQ", href: "/#faq" },
+          { label: "Home", href: "/" },
+          { label: "FAQ", href: "/workflow-launch#faq" },
         ]}
         privacyUrl={siteConfig.privacyUrl}
         termsUrl={siteConfig.termsUrl}

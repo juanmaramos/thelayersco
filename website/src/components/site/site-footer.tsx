@@ -4,6 +4,7 @@ type SiteFooterProps = {
   companyName: string
   contactEmail: string | null
   location?: string
+  navigationLinks?: ReadonlyArray<{ href: string; label: string }>
   privacyUrl: string | null
   termsUrl: string | null
   description?: string
@@ -13,11 +14,14 @@ export function SiteFooter({
   companyName,
   contactEmail,
   location,
+  navigationLinks = [],
   privacyUrl,
   termsUrl,
   description = "Workflow transformation and implementation for People, Workforce, and professional-services teams.",
 }: SiteFooterProps) {
-  const hasLinks = Boolean(contactEmail || privacyUrl || termsUrl)
+  const hasLinks = Boolean(
+    navigationLinks.length > 0 || contactEmail || privacyUrl || termsUrl
+  )
   const currentYear = new Date().getFullYear()
 
   return (
@@ -43,6 +47,16 @@ export function SiteFooter({
           {hasLinks ? (
             <nav aria-label="Footer navigation">
               <ul className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-on-ink-muted">
+                {navigationLinks.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      className="inline-flex min-h-11 items-center hover:text-on-ink"
+                      href={link.href}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
                 {contactEmail ? (
                   <li>
                     <a

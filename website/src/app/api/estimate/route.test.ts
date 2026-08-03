@@ -59,6 +59,15 @@ describe("POST /api/estimate", () => {
     ])
     expect(recipientBodies[0].text).toContain("$75,000")
     expect(recipientBodies[0].text).toContain("Expected (50%")
+    expect(recipientBodies[0].text).toContain("Talk through your estimate")
+    expect(recipientBodies[0].html).toContain(
+      "Turn the number into a workflow decision."
+    )
+    expect(recipientBodies[0].html).toContain(
+      "utm_content=primary_cta#discuss"
+    )
+    expect(recipientBodies[0].html).toContain('role="presentation"')
+    expect(recipientBodies[0].html).toContain("reply with “unsubscribe.”")
     expect(recipientBodies[1].text).toContain(
       "Marketing preference accepted: yes"
     )
