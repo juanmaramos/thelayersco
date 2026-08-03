@@ -14,6 +14,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: new URL("/workflow-launch", siteConfig.canonicalUrl).toString(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: new URL("/privacy", siteConfig.canonicalUrl).toString(),
       changeFrequency: "yearly",
       priority: 0.2,

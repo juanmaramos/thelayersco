@@ -5,11 +5,6 @@ import { SiteHeader } from "@/components/site/site-header"
 import { legalEntity } from "@/lib/legal"
 import { siteConfig } from "@/lib/site-config"
 
-const legalNavItems = [
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
-] as const
-
 type LegalPageShellProps = {
   children: ReactNode
   eyebrow: string
@@ -35,8 +30,6 @@ export function LegalPageShell({
         brandHref="/"
         companyName={siteConfig.companyName}
         ctaHref="/#discuss"
-        ctaLabel="Talk through a workflow"
-        navItems={legalNavItems}
       />
       <main id="main-content">
         <section
@@ -90,6 +83,7 @@ export function LegalPageShell({
         contactEmail={siteConfig.contactEmail}
         description="We redesign slow, manual workflows and build the systems that run them."
         location={siteConfig.publicLocation}
+        navigationLinks={[{ label: "FAQ", href: "/#faq" }]}
         privacyUrl={siteConfig.privacyUrl}
         termsUrl={siteConfig.termsUrl}
       />
