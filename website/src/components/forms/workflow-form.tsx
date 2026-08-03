@@ -298,9 +298,8 @@ export function WorkflowForm({
       ) : null}
 
       <p className="max-w-[58ch] text-xs leading-5 text-muted-foreground">
-        By sending this form, you ask {" "}
-        <span className="font-semibold text-foreground">RHAMS LLC</span> to
-        review and respond to your inquiry. See our {" "}
+        By sending this form, you authorize us to review your details and
+        respond to your inquiry. See our {" "}
         <a
           className="font-semibold text-foreground underline underline-offset-4"
           href="/privacy"

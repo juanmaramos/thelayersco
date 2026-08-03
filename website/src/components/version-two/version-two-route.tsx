@@ -45,6 +45,7 @@ export function VersionTwoRoute({
         companyName={siteConfig.companyName}
         contactEmail={siteConfig.contactEmail}
         description="We redesign slow, manual workflows and build the systems that run them."
+        location={siteConfig.publicLocation}
         privacyUrl={siteConfig.privacyUrl}
         termsUrl={siteConfig.termsUrl}
       />
