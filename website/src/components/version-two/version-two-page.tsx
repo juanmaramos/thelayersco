@@ -1,12 +1,8 @@
 import Image from "next/image"
 import { IconArrowNarrowRight } from "@tabler/icons-react"
 
+import { WorkflowOpportunityCalculator } from "@/components/calculator/workflow-opportunity-calculator"
 import { WorkflowForm } from "@/components/forms/workflow-form"
-import {
-  GovernedWorkflowObject,
-  MeasurementDecisionObject,
-} from "@/components/illustrations/editorial-system-objects"
-import { PracticeInterestLink } from "@/components/site/practice-interest-link"
 import { TrackedAnchor } from "@/components/site/tracked-anchor"
 import {
   Accordion,
@@ -19,125 +15,151 @@ import { cn } from "@/lib/utils"
 
 const outcomes = [
   {
-    name: "Faster cycle time",
-    description: "Move work from intake to approval sooner.",
+    name: "Less waiting",
+    description: "Move work through review and approval sooner.",
   },
   {
-    name: "More expert capacity",
-    description: "Give experts less prep and repeat work.",
+    name: "More time for judgment",
+    description: "Take preparation and repeat handling off experts' plates.",
   },
   {
-    name: "Higher throughput",
-    description: "Handle more work with the same team.",
+    name: "Room for more work",
+    description: "Increase output without adding more manual coordination.",
   },
   {
-    name: "Better delivery economics",
-    description: "Reduce unit cost or protect delivery margin.",
+    name: "Lower effort per case",
+    description: "Reduce the work behind each completed case or deliverable.",
   },
 ] as const
 
 const deliverables = [
   {
-    name: "Your methods, built in",
+    name: "Your method, built in",
     description:
-      "The sources, rules, exceptions, and standards your experts use become part of the system.",
+      "The system follows the rules, exceptions, and standards your experts already use.",
   },
   {
-    name: "Production workflows",
+    name: "AI and software, each with a role",
     description:
-      "AI, software, systems, handoffs, and approvals work together in a controlled process.",
+      "AI handles language and context. Software handles calculations and hard rules.",
   },
   {
-    name: "Results you can measure",
+    name: "A clear before-and-after",
     description:
-      "Clear baselines and scorecards show how performance changes after launch.",
+      "One scorecard shows how the workflow performs before and after launch.",
   },
   {
-    name: "Teams ready to run them",
+    name: "Your team, ready to run it",
     description:
-      "Your teams get the checks, documentation, and controls needed to take over.",
+      "Your team gets the checks, controls, and documentation needed to run it.",
   },
 ] as const
 
-const peopleWorkflows = [
-  "HR service requests and employee operations",
-  "Job, role, skills, and workforce data",
-  "Policy, rewards, talent, and workforce analysis",
-  "Work that spans HCM and surrounding tools",
-] as const
-
-const professionalServicesWorkflows = [
-  "Document and evidence analysis",
-  "Research, reporting, deliverable production, and review",
+const workflowPatterns = [
+  {
+    name: "Intake and case handling",
+    description:
+      "Requests arrive through email, forms, and documents. We turn them into complete cases and send each one to the right owner. Everyone can see what is still open.",
+    layout: "md:col-span-7",
+  },
+  {
+    name: "Data preparation and reconciliation",
+    description:
+      "We bring spreadsheet and system data into one place. Then we apply the business rules and send gaps back to the owner before anyone relies on the data.",
+    layout: "md:col-span-5",
+  },
+  {
+    name: "Document and evidence analysis",
+    description:
+      "We pull the relevant evidence from source material and send uncertain cases to the expert responsible.",
+    layout: "md:col-span-4",
+  },
+  {
+    name: "Deliverable production and approval",
+    description:
+      "We turn a repeatable method into a production flow for reports, assessments, proposals, or other client deliverables. Review stays part of the process.",
+    layout: "md:col-span-4",
+  },
+  {
+    name: "Reporting and monitoring",
+    description:
+      "We collect updates and calculate the measures people use. When a change needs a decision, we flag it before the next review.",
+    layout: "md:col-span-4",
+  },
 ] as const
 
 const engagementSteps = [
   {
     number: "01",
-    title: "Baseline and test",
+    title: "Measure and test",
     description:
-      "Measure how the workflow performs today, then test the redesign on real examples.",
-    decision: "Does it improve the result without lowering quality?",
+      "We record what happens today, then run the new flow on real examples.",
+    decision: "Did it improve the result without lowering quality?",
   },
   {
     number: "02",
-    title: "Build for production",
+    title: "Make it ready for production",
     description:
-      "Connect the right software and systems, then add controls and human review.",
-    decision: "Can it run safely where your team works?",
+      "We connect the systems and handle exceptions. Human review stays where the work needs it.",
+    decision: "Can your team use it safely in the real environment?",
   },
   {
     number: "03",
-    title: "Measure and decide what comes next",
+    title: "See how it holds up",
     description:
-      "Track the agreed result, fix what fails, and hand the workflow to the operating team.",
-    decision: "Expand it, change it, or stop?",
+      "Once it is running, we watch the agreed measure and fix what breaks. Your team then takes over.",
+    decision: "Is it worth expanding?",
   },
 ] as const
 
 const portabilityPaths = [
   {
-    title: "Run it in your environment",
+    title: "Use the systems you already approve",
     description:
-      "Where possible, we deploy in your approved environment and connect only the systems this workflow needs.",
+      "We connect only what the workflow needs and deploy in your environment where possible.",
   },
   {
-    title: "Avoid model lock-in",
+    title: "Pay for more capability only when the work needs it",
     description:
-      "The method, rules, checks, and human controls stay independent of any one model or interface.",
+      "When the work can be separated and measured, routine steps can run on smaller or open-weight models. Harder cases move to frontier models only when the extra capability improves the result.",
   },
   {
-    title: "Keep decisions visible",
+    title: "Know who made the call",
     description:
-      "Source evidence, exceptions, approvals, and the person making the call remain part of the workflow.",
+      "Evidence, exceptions, and approvals stay visible, including the person responsible.",
   },
 ] as const
 
 const faqItems = [
   {
+    question: "What do you mean by an AI workflow?",
+    answer:
+      "AI is one part of the workflow. It reads documents and prepares work that depends on language or context. Deterministic software handles calculations, permissions, and hard rules. People still make consequential decisions. Depending on where the team works, we may deliver it as an application or through custom Claude and Codex skills and plugins.",
+  },
+  {
     question: "What is a good first workflow?",
     answer:
-      "Start with recurring work that has a clear owner, enough examples to test, and an output people can judge. The pain should show up in time, cost, capacity, or quality.",
+      "Look for work that comes up often, has one clear owner, and produces an output people can judge. You should also be able to see the cost of the current process, whether in time, delay, rework, or capacity.",
   },
   {
     question: "Do we need to replace our existing platforms?",
     answer:
-      "Usually not. We aim to work inside your approved environment and connect only the systems the workflow needs. We confirm that route before production.",
+      "Usually not. We try to work inside your approved environment and connect only what the workflow needs. We confirm that path before production.",
   },
   {
     question: "What remains under human control?",
     answer:
-      "People keep control of consequential employment, legal, regulated, financial, and commercial decisions. AI can gather evidence, analyze, draft, and route work; the people responsible make the call.",
+      "People remain responsible for employment, legal, financial, regulated, and commercial decisions. The system can prepare evidence or draft the work, but the accountable person makes the call.",
   },
   {
     question: "How do you prove the result?",
     answer:
-      "We agree what counts as one unit of work, how we will measure it, and what quality must hold. The same scorecard compares production with the baseline.",
+      "Before we build, we agree on one unit of work and how to judge it. We use the same scorecard before and after launch.",
   },
   {
     question: "What happens before production?",
     answer:
-      "We first measure today’s workflow and test the redesign on real examples. We move to production only when the result, quality, technical route, and owner are clear.",
+      "We measure the current process and test the new one on real examples. Production starts only when the result, quality bar, deployment path, and owner are clear.",
   },
 ] as const
 
@@ -145,6 +167,7 @@ export type VersionTwoHeroBackground = "still-life" | "colorflow"
 
 type VersionTwoPageProps = {
   contactEmail: string | null
+  estimateEndpoint: string | null
   formEndpoint: string | null
   heroBackground?: VersionTwoHeroBackground
   schedulingUrl: string | null
@@ -152,6 +175,7 @@ type VersionTwoPageProps = {
 
 export function VersionTwoPage({
   contactEmail,
+  estimateEndpoint,
   formEndpoint,
   heroBackground = "still-life",
   schedulingUrl,
@@ -173,7 +197,7 @@ export function VersionTwoPage({
             />
             <iframe
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 hidden h-full w-full border-0 motion-safe:md:block"
+              className="pointer-events-none absolute inset-0 hidden h-full w-full border-0 motion-safe:block"
               height="1200"
               loading="eager"
               referrerPolicy="no-referrer"
@@ -207,20 +231,20 @@ export function VersionTwoPage({
           <div className="grid gap-10 md:grid-cols-12 md:items-end md:gap-6">
             <div className="md:col-span-9">
               <p className="operational-label text-on-ink">
-                Workflow transformation and implementation
+                AI-native workflow transformation
               </p>
               <h1 className="mt-7 max-w-[11ch] font-editorial text-[clamp(3.75rem,8vw,7.25rem)] leading-[0.88] font-normal tracking-[-0.055em]">
                 Turn manual workflows into production systems.
               </h1>
             </div>
             <p className="max-w-[26ch] pb-1 text-lg leading-8 text-on-ink md:col-span-3 md:ml-auto md:bg-ink/90 md:p-5 lg:text-xl lg:leading-9">
-              Shorter cycle time. More expert capacity. Better delivery economics.
+              Move work faster. Give experts more time for judgment.
             </p>
           </div>
 
           <div className="mt-16 grid gap-8 border-t border-white/55 pt-7 md:grid-cols-12 md:gap-6 lg:mt-24">
             <p className="max-w-[52ch] text-lg leading-8 text-on-ink md:col-span-7 lg:text-xl">
-              AI can speed up a task without fixing the workflow around it. We redesign repeatable workflows, put them into production with the right controls, and measure results against agreed baselines.
+              We redesign the workflow, build the production system, and show the difference in day-to-day work.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row md:col-span-5 md:justify-end">
               <TrackedAnchor
@@ -229,7 +253,7 @@ export function VersionTwoPage({
                 eventProperties={{ location: "hero" }}
                 href="#discuss"
               >
-                Discuss a workflow
+                Talk through a workflow
                 <IconArrowNarrowRight data-icon="inline-end" />
               </TrackedAnchor>
               <TrackedAnchor
@@ -261,34 +285,43 @@ export function VersionTwoPage({
         <div className="section-shell py-20 sm:py-24 lg:py-28">
           <div className="grid gap-8 md:grid-cols-12 md:gap-6">
             <div className="md:col-span-7">
-              <p className="operational-label text-signal-strong">The operating problem</p>
+              <p className="operational-label text-signal-strong">Close to the work</p>
               <h2 className="mt-6 max-w-[13ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                AI does not repair a broken workflow by itself.
+                The work tells us what to build.
               </h2>
             </div>
             <p className="max-w-[42ch] self-end text-lg leading-8 text-muted-foreground md:col-span-5">
-              Work gets stuck between documents, spreadsheets, email, core systems, and rounds of review. Fixing one task leaves the rest of the workflow untouched.
+              We work directly with the people who run the process. Their real cases show us where it breaks and what the new system has to handle.
             </p>
           </div>
 
           <ol className="mt-14 grid border-t border-l border-line-strong md:grid-cols-3 lg:mt-20">
             <li className="flex min-h-56 flex-col justify-between border-r border-b border-line-strong p-6 lg:p-8">
               <span className="font-mono text-xs text-signal-strong">01</span>
-              <p className="max-w-[30ch] text-base leading-7 font-medium">
-                AI may speed up one task while the same handoffs and delays remain.
-              </p>
+              <div>
+                <h3 className="text-xl font-semibold tracking-[-0.025em]">See the work as it runs</h3>
+                <p className="mt-4 max-w-[34ch] text-sm leading-6 text-muted-foreground">
+                  We follow a case from request to decision and watch where it slows down. The real process often lives in workarounds that no document captured.
+                </p>
+              </div>
             </li>
             <li className="flex min-h-56 flex-col justify-between border-r border-b border-line-strong p-6 lg:p-8">
               <span className="font-mono text-xs text-signal-strong">02</span>
-              <p className="max-w-[30ch] text-base leading-7 font-medium">
-                Data, exceptions, quality checks, and ownership stay scattered across the process.
-              </p>
+              <div>
+                <h3 className="text-xl font-semibold tracking-[-0.025em]">Build for the difficult cases</h3>
+                <p className="mt-4 max-w-[34ch] text-sm leading-6 text-muted-foreground">
+                  We use the systems and policies already in place. Exceptions are part of the test from the beginning.
+                </p>
+              </div>
             </li>
             <li className="flex min-h-56 flex-col justify-between border-r border-b border-line-strong bg-canvas p-6 lg:p-8">
               <span className="font-mono text-xs text-signal-strong">03</span>
-              <p className="max-w-[30ch] text-base leading-7 font-semibold">
-                Layers redesigns the workflow first, then applies AI and software where they help.
-              </p>
+              <div>
+                <h3 className="text-xl font-semibold tracking-[-0.025em]">Carry it into use</h3>
+                <p className="mt-4 max-w-[34ch] text-sm leading-6 text-muted-foreground">
+                  The team that learns the workflow also builds it and proves it in use. Handover includes the checks and documentation your team needs.
+                </p>
+              </div>
             </li>
           </ol>
         </div>
@@ -300,23 +333,31 @@ export function VersionTwoPage({
             <div className="md:col-span-8">
               <p className="operational-label text-signal-strong">What you get</p>
               <h2 className="mt-6 max-w-[12ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                Production systems for the workflows that matter.
+                Working systems your team can take over.
               </h2>
               <p className="mt-7 max-w-[44ch] text-base leading-7 text-muted-foreground">
-                Layers turns repeatable, expert-heavy workflows into systems your teams can measure, run, and improve.
+                The work includes everything needed to move from today&apos;s process to a system your team can own.
               </p>
             </div>
-            <div className="flex min-h-56 items-center self-center bg-canvas p-4 sm:min-h-64 sm:p-6 md:col-span-4 md:min-h-80">
-              <GovernedWorkflowObject className="mx-auto w-full max-w-80" />
+            <div className="artwork-drift relative min-h-56 self-center sm:min-h-64 md:col-span-4 md:min-h-80">
+              <Image
+                alt=""
+                aria-hidden="true"
+                className="object-contain md:translate-x-3 md:scale-110"
+                fill
+                loading="eager"
+                sizes="(min-width: 768px) 33vw, 100vw"
+                src="/images/layers-glass-fold.webp"
+              />
             </div>
           </div>
 
           <div className="mt-14 grid border-t border-l border-line-strong sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
             {deliverables.map((item, index) => (
-              <article className="flex min-h-64 flex-col justify-between border-r border-b border-line-strong p-6 lg:min-h-72 lg:p-8" key={item.name}>
+              <article className="flex min-h-64 flex-col border-r border-b border-line-strong p-6 lg:min-h-72 lg:p-8" key={item.name}>
                 <span className="font-mono text-xs text-signal-strong">{String(index + 1).padStart(2, "0")}</span>
-                <div>
-                  <h3 className="max-w-[14ch] text-xl leading-7 font-semibold tracking-[-0.025em]">{item.name}</h3>
+                <div className="mt-14">
+                  <h3 className="min-h-14 max-w-[16ch] text-xl leading-7 font-semibold tracking-[-0.025em]">{item.name}</h3>
                   <p className="mt-4 text-sm leading-6 text-muted-foreground">{item.description}</p>
                 </div>
               </article>
@@ -325,66 +366,87 @@ export function VersionTwoPage({
         </div>
       </section>
 
-      <section className="section-anchor border-y border-line bg-canvas" id="practices">
+      <section className="section-anchor border-y border-line bg-canvas" id="patterns">
         <div className="section-shell py-20 sm:py-24 lg:py-32">
           <div className="grid gap-8 md:grid-cols-12 md:gap-6">
             <div className="md:col-span-8">
-              <p className="operational-label text-signal-strong">Where we work</p>
+              <p className="operational-label text-signal-strong">Where this applies</p>
               <h2 className="mt-6 max-w-[12ch] font-editorial text-[clamp(3rem,5.6vw,5.5rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                For work that depends on expertise.
+                The same problems show up in very different work.
               </h2>
             </div>
             <p className="max-w-[42ch] self-end text-base leading-7 text-muted-foreground md:col-span-4">
-              We focus on People and Workforce operations and professional-services delivery. In both, systems, evidence, and expert judgment have to work together.
+              An intake queue and a monthly report may look unrelated. Both can break when information is missing, rules live in someone&apos;s head, or approval has no clear owner.
             </p>
           </div>
 
-          <div className="mt-14 grid border-t border-l border-line-strong md:grid-cols-12 lg:mt-20">
-            <article className="flex flex-col border-r border-b border-line-strong bg-background p-6 sm:p-8 md:col-span-7 lg:p-10">
-              <p className="operational-label text-signal-strong">Practice area</p>
-              <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em]">
-                People and Workforce
-              </h3>
-              <p className="mt-5 max-w-[58ch] text-base leading-7 text-muted-foreground">
-                People and Workforce work rarely lives in one system. It moves between HCM platforms, spreadsheets, shared inboxes, policies, and expert review.
-              </p>
-              <ul className="mt-8 border-t border-line">
-                {peopleWorkflows.map((workflow) => (
-                  <li className="grid grid-cols-[2rem_1fr] gap-3 border-b border-line py-4 text-sm leading-6" key={workflow}>
-                    <span aria-hidden="true" className="font-mono text-xs text-signal-strong">→</span>
-                    <span>{workflow}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8">
-                <PracticeInterestLink interest="people-workforce">
-                  Discuss a People and Workforce workflow
-                </PracticeInterestLink>
-              </div>
-            </article>
+          <ol className="mt-14 grid border-t border-l border-line-strong md:grid-cols-12 lg:mt-20">
+            {workflowPatterns.map((pattern, index) => (
+              <li
+                className={cn(
+                  "flex min-h-64 flex-col justify-between border-r border-b border-line-strong p-6 sm:p-8 lg:min-h-72 lg:p-10",
+                  index % 2 === 0 ? "bg-background" : "bg-surface-muted",
+                  pattern.layout
+                )}
+                key={pattern.name}
+              >
+                <span className="font-mono text-xs text-signal-strong">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="max-w-[18ch] text-2xl leading-8 font-semibold tracking-[-0.03em]">
+                    {pattern.name}
+                  </h3>
+                  <p className="mt-5 max-w-[58ch] text-sm leading-6 text-muted-foreground">
+                    {pattern.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
 
-            <article className="flex flex-col border-r border-b border-line-strong bg-surface-muted p-6 sm:p-8 md:col-span-5 lg:p-10">
-              <p className="operational-label text-muted-foreground">Practice area</p>
-              <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em]">
-                Professional-services delivery
-              </h3>
-              <p className="mt-5 max-w-[48ch] text-base leading-7 text-muted-foreground">
-                We focus on repeatable delivery work where experts spend too much time gathering evidence, preparing outputs, and chasing reviews.
+          <div className="mt-10 flex flex-col items-start justify-between gap-6 border-t border-line-strong pt-7 sm:flex-row sm:items-center">
+            <p className="max-w-[68ch] text-base leading-7 text-muted-foreground">
+              We fit the workflow to the way your business already operates.
+            </p>
+            <TrackedAnchor
+              className={cn(buttonVariants({ size: "text", variant: "link" }), "shrink-0")}
+              eventName="cta_click"
+              eventProperties={{ location: "workflow_patterns" }}
+              href="#discuss"
+            >
+              Talk through your workflow
+              <IconArrowNarrowRight className="text-action-arrow" data-icon="inline-end" />
+            </TrackedAnchor>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="section-anchor border-b border-ink-line bg-ink text-on-ink"
+        data-theme="ink"
+        id="estimate"
+      >
+        <div className="section-shell py-20 sm:py-24 lg:py-32">
+          <div className="grid gap-8 md:grid-cols-12 md:gap-6">
+            <div className="md:col-span-8">
+              <p className="operational-label text-signal">Workflow opportunity estimate</p>
+              <h2 className="mt-6 max-w-[12ch] font-editorial text-[clamp(3rem,5.6vw,5.5rem)] leading-[0.92] font-normal tracking-[-0.045em]">
+                Put a number on the opportunity.
+              </h2>
+            </div>
+            <div className="self-end md:col-span-4">
+              <p className="max-w-[42ch] text-base leading-7 text-on-ink-muted">
+                Three inputs show how much team capacity a well-suited workflow could return each year.
               </p>
-              <ul className="mt-8 border-t border-line">
-                {professionalServicesWorkflows.map((workflow) => (
-                  <li className="grid grid-cols-[2rem_1fr] gap-3 border-b border-line py-4 text-sm leading-6" key={workflow}>
-                    <span aria-hidden="true" className="font-mono text-xs text-signal-strong">→</span>
-                    <span>{workflow}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8 md:mt-auto md:pt-8">
-                <PracticeInterestLink interest="professional-services">
-                  Discuss a delivery workflow
-                </PracticeInterestLink>
-              </div>
-            </article>
+              <p className="mt-5 font-mono text-[0.6875rem] leading-5 tracking-[0.05em] text-on-ink-muted uppercase">
+                No contact details required
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-14 border border-ink-line lg:mt-20">
+            <WorkflowOpportunityCalculator emailEndpoint={estimateEndpoint} />
           </div>
         </div>
       </section>
@@ -395,14 +457,23 @@ export function VersionTwoPage({
             <div className="md:col-span-8">
               <p className="operational-label text-signal-strong">How we work</p>
               <h2 className="mt-6 max-w-[12ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                Prove the work before you scale it.
+                Prove the result before expanding the work.
               </h2>
               <p className="mt-7 max-w-[32ch] text-base leading-7 text-muted-foreground">
-                We test the redesigned workflow on real examples before you make a larger commitment.
+                We establish the baseline first, then measure what changes. The evidence tells us where further investment will pay off.
               </p>
             </div>
-            <div className="flex min-h-56 items-center self-center bg-canvas p-4 sm:p-6 md:col-span-4 md:ml-auto md:min-h-72 md:w-full">
-              <MeasurementDecisionObject className="mx-auto w-full max-w-80" />
+            <div className="artwork-drift w-full max-w-sm self-center md:col-span-4 md:ml-auto">
+              <div className="relative aspect-square w-full max-w-96">
+                <Image
+                  alt=""
+                  aria-hidden="true"
+                  className="object-contain"
+                  fill
+                  sizes="(min-width: 768px) 25vw, 100vw"
+                  src="/images/layers-gradient-cube.png"
+                />
+              </div>
             </div>
           </div>
 
@@ -428,15 +499,12 @@ export function VersionTwoPage({
       >
         <div className="section-shell grid gap-14 py-20 sm:py-24 md:grid-cols-12 md:gap-6 lg:py-32">
           <div className="md:col-span-6 md:pr-10">
-            <p className="operational-label text-on-ink">Portable by design</p>
+            <p className="operational-label text-on-ink">Built to stay portable</p>
             <h2 className="mt-6 max-w-[11ch] font-editorial text-[clamp(3rem,5.8vw,5.75rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-              Build once. Run it where your people work.
+              Your workflow should not depend on one model.
             </h2>
             <p className="mt-7 max-w-[48ch] text-base leading-7 text-on-ink">
-              Where possible, we deploy in your approved environment. The method, rules, checks, and human controls stay independent of any one model or interface.
-            </p>
-            <p className="mt-7 max-w-[44ch] border-l-2 border-white/70 pl-4 text-sm leading-6 font-semibold text-on-ink">
-              Once the result is clear, portability lowers the risk of putting the workflow into production.
+              When your approved environment supports the workflow, we deploy there. Your operating method and controls stay separate from the model or interface running them.
             </p>
           </div>
 
@@ -454,9 +522,9 @@ export function VersionTwoPage({
       <section className="section-anchor" id="faq">
         <div className="section-shell grid gap-12 py-20 sm:py-24 md:grid-cols-12 md:gap-6 lg:py-32">
           <div className="md:col-span-5 md:pr-10">
-            <p className="operational-label text-signal-strong">Before we talk</p>
+            <p className="operational-label text-signal-strong">Before we start</p>
             <h2 className="mt-6 max-w-[10ch] font-editorial text-[clamp(3rem,5.6vw,5.5rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-              Straight answers before we start.
+              Questions worth asking up front.
             </h2>
           </div>
 
@@ -483,16 +551,16 @@ export function VersionTwoPage({
         <div className="section-shell grid py-20 sm:py-24 md:grid-cols-12 lg:py-32">
           <div className="flex flex-col justify-between gap-12 border border-ink-line p-6 sm:p-9 md:col-span-5 md:border-r-0 lg:p-12">
             <div>
-              <p className="operational-label text-signal">Discuss a workflow</p>
+              <p className="operational-label text-signal">Tell us about the work</p>
               <h2 className="mt-6 max-w-[10ch] font-editorial text-[clamp(3rem,5.2vw,5rem)] leading-[0.92] font-normal tracking-[-0.045em]">
-                Bring us a workflow worth improving.
+                Show us the work you want to improve.
               </h2>
               <p className="mt-7 max-w-[42ch] text-base leading-7 text-on-ink-muted">
-                Tell us where the work repeats, who owns it, and what it costs in time, capacity, quality, or delay. A few real examples help.
+                Tell us how it runs today, who owns it, and what a better result looks like. A few real examples are enough to see where AI or software can help.
               </p>
             </div>
             <p className="border-t border-ink-line pt-6 font-mono text-[0.6875rem] leading-5 tracking-[0.05em] text-on-ink-muted">
-              START WITH ONE WORKFLOW. PROVE WHAT CHANGED.
+              START WITH THE WORK. THEN DECIDE WHAT TO BUILD.
             </p>
           </div>
 

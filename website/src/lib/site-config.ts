@@ -14,6 +14,16 @@ const readUrl = (value: string | undefined) => {
   }
 }
 
+const readHref = (value: string | undefined) => {
+  const candidate = readValue(value)
+
+  if (!candidate) {
+    return null
+  }
+
+  return candidate.startsWith("/") ? candidate : readUrl(candidate)
+}
+
 const readDeploymentUrl = (value: string | undefined) => {
   const hostname = readValue(value)
 
@@ -34,13 +44,16 @@ const configuredCompanyName = readValue(
 const configuredCanonicalUrl = readUrl(
   process.env.NEXT_PUBLIC_CANONICAL_URL
 )
-const configuredFormEndpoint = readUrl(
+const configuredFormEndpoint = readHref(
   process.env.NEXT_PUBLIC_FORM_ENDPOINT
 )
-const configuredPrivacyUrl = readUrl(
+const configuredEstimateEndpoint = readHref(
+  process.env.NEXT_PUBLIC_ESTIMATE_ENDPOINT
+)
+const configuredPrivacyUrl = readHref(
   process.env.NEXT_PUBLIC_PRIVACY_URL
 )
-const configuredTermsUrl = readUrl(
+const configuredTermsUrl = readHref(
   process.env.NEXT_PUBLIC_TERMS_URL
 )
 const configuredAnalyticsReady =
@@ -48,14 +61,22 @@ const configuredAnalyticsReady =
 const deploymentUrl =
   readDeploymentUrl(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
   readDeploymentUrl(process.env.VERCEL_URL)
+const emailDeliveryReady = Boolean(
+  readValue(process.env.RESEND_API_KEY) &&
+    readValue(process.env.EMAIL_FROM) &&
+    readValue(process.env.CONTACT_TO_EMAIL)
+)
 
 export const siteConfig = {
   companyName: configuredCompanyName ?? "Layers",
   companyNameIsFallback: configuredCompanyName === null,
   contactEmail: readValue(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
-  formEndpoint: configuredFormEndpoint,
-  privacyUrl: configuredPrivacyUrl,
-  termsUrl: configuredTermsUrl,
+  formEndpoint:
+    configuredFormEndpoint ?? (emailDeliveryReady ? "/api/contact" : null),
+  estimateEndpoint:
+    configuredEstimateEndpoint ?? (emailDeliveryReady ? "/api/estimate" : null),
+  privacyUrl: configuredPrivacyUrl ?? "/privacy",
+  termsUrl: configuredTermsUrl ?? "/terms",
   schedulingUrl: readUrl(process.env.NEXT_PUBLIC_SCHEDULING_URL),
   canonicalUrl: configuredCanonicalUrl,
   analyticsReady: configuredAnalyticsReady,
@@ -63,12 +84,10 @@ export const siteConfig = {
     configuredCanonicalUrl ?? deploymentUrl ?? "http://localhost:3000",
   releaseReady: Boolean(
     configuredCanonicalUrl &&
-      configuredFormEndpoint &&
-      configuredPrivacyUrl &&
-      configuredTermsUrl &&
+      (configuredFormEndpoint || emailDeliveryReady) &&
       configuredAnalyticsReady
   ),
 } as const
 
 export const siteDescription =
-  "Layers redesigns recurring workflows, puts them into production with the right controls, and measures the result against today’s baseline."
+  "Layers redesigns recurring business workflows and builds AI-enabled systems that teams can control and measure."

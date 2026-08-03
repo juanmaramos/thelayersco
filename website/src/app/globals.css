@@ -260,6 +260,11 @@
     background-size: cover;
   }
 
+  .artwork-drift {
+    animation: artwork-drift 8s var(--ease-shift) infinite alternate;
+    transform-origin: center;
+  }
+
   .system-object-svg {
     display: block;
     width: 100%;
@@ -334,6 +339,16 @@
   }
 }
 
+@keyframes artwork-drift {
+  from {
+    transform: translate3d(0, 0.35rem, 0) rotate(-0.6deg);
+  }
+
+  to {
+    transform: translate3d(0, -0.35rem, 0) rotate(0.6deg);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -350,6 +365,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .artwork-drift {
+    animation: none;
+  }
+
   *,
   *::before,
   *::after {
