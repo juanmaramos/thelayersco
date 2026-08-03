@@ -69,7 +69,7 @@ export function SiteHeader({
           className="flex min-h-11 items-center gap-2.5 text-[1.375rem] leading-none font-semibold tracking-[-0.035em]"
           href={brandHref}
         >
-          <LayersMark className="size-8 shrink-0" />
+          <LayersMark className="size-8 shrink-0" variant="positive" />
           <span>{companyName}</span>
         </a>
 
