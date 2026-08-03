@@ -40,7 +40,9 @@ const summary = [
   },
   {
     label: "Cookies",
-    value: "No non-essential analytics or advertising cookies are currently used",
+    value: siteConfig.analyticsReady
+      ? "Cookie-free analytics; no advertising trackers"
+      : "No non-essential analytics or advertising cookies are currently used",
   },
 ] as const
 
@@ -82,6 +84,16 @@ export default function PrivacyPage() {
           the home page is delivered through a content delivery network, which
           receives the technical request needed to return that asset.
         </p>
+        {siteConfig.analyticsReady ? (
+          <p>
+            We use privacy-focused analytics to understand aggregate page visits
+            and coarse interactions such as a calculator start or successful
+            form submission. The analytics service may process the page URL,
+            referring source, browser and device information, approximate
+            location, and the interaction name. We do not send names, email
+            addresses, calculator inputs, or form text to analytics.
+          </p>
+        ) : null}
         <p>
           Please do not submit confidential client material, sensitive personal
           information, credentials, or production data through the public forms.
@@ -112,8 +124,8 @@ export default function PrivacyPage() {
         <ul>
           <li>
             service providers that host the website, deliver email, provide
-            content delivery, or support security and operations, including
-            Vercel and Resend;
+            content delivery or analytics, or support security and operations,
+            including Vercel, Resend, and Umami when analytics is enabled;
           </li>
           <li>professional advisers acting under appropriate duties of confidentiality;</li>
           <li>authorities or other parties when required by law or necessary to protect rights and safety; or</li>
@@ -127,18 +139,25 @@ export default function PrivacyPage() {
       </LegalSection>
 
       <LegalSection id="cookies" title="5. Cookies and browser signals">
-        <p>
-          The current site does not deliberately set non-essential analytics or
-          advertising cookies. We do not track visitors across unrelated sites,
-          and other parties do not collect information through this site for
-          behavioral advertising. Because we do not perform that cross-site
-          tracking, the site does not take a separate action in response to a
-          browser “Do Not Track” signal.
-        </p>
+        {siteConfig.analyticsReady ? (
+          <p>
+            The site uses cookie-free analytics for aggregate traffic and the
+            coarse interaction events described above. It does not use those
+            analytics to identify visitors or track them across unrelated sites.
+            We do not use advertising cookies or behavioral advertising trackers.
+          </p>
+        ) : (
+          <p>
+            The current site does not deliberately set non-essential analytics or
+            advertising cookies. We do not track visitors across unrelated sites,
+            and other parties do not collect information through this site for
+            behavioral advertising.
+          </p>
+        )}
         <p>
           Hosting, security, and content-delivery providers still receive the
           technical request data needed to deliver and protect the site. If we
-          later add optional analytics, advertising technology, or non-essential
+          later add advertising technology, cross-site tracking, or non-essential
           cookies, we will update this notice and provide choices where required.
         </p>
       </LegalSection>

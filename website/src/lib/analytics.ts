@@ -10,6 +10,17 @@ export type LandingEventName =
 
 type LandingEventProperties = Record<string, string | number | boolean>
 
+declare global {
+  interface Window {
+    umami?: {
+      track: (
+        name: LandingEventName,
+        properties?: LandingEventProperties
+      ) => void
+    }
+  }
+}
+
 export function trackLandingEvent(
   name: LandingEventName,
   properties: LandingEventProperties = {}
@@ -23,4 +34,5 @@ export function trackLandingEvent(
       detail: { name, properties },
     })
   )
+  window.umami?.track(name, properties)
 }

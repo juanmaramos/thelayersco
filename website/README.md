@@ -66,11 +66,15 @@ that should receive submissions. Leave `NEXT_PUBLIC_CONTACT_EMAIL` unset when
 the address should not be printed on the public site; legal requests are routed
 through the contact form.
 
-The root route remains `noindex, nofollow` until the canonical URL, working
-email delivery, and `NEXT_PUBLIC_ANALYTICS_READY=true` are configured.
-Analytics integration should subscribe to the
-`layers:landing-event` browser event; the website emits event names and coarse
-context only, never form values or contact details.
+The root route remains `noindex, nofollow` until the canonical URL and working
+email delivery for both public forms are configured. Analytics is intentionally
+not a search-indexing dependency.
+
+Optional privacy-focused analytics use Umami. Set `NEXT_PUBLIC_UMAMI_HOST` to
+the Umami instance URL and `NEXT_PUBLIC_UMAMI_WEBSITE_ID` to the website ID.
+The website records page views and the existing coarse `layers:landing-event`
+events, never form values or contact details. Leave both values unset to disable
+analytics without blocking a release.
 
 For Vercel, connect the whole repository and set `website` as the project root.
 The app imports canonical tokens from the sibling `design-system/` directory,

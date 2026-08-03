@@ -9,7 +9,8 @@ afterEach(() => {
 describe("trackLandingEvent", () => {
   it("emits a coarse landing event without form values", () => {
     const dispatchEvent = vi.fn()
-    vi.stubGlobal("window", { dispatchEvent })
+    const track = vi.fn()
+    vi.stubGlobal("window", { dispatchEvent, umami: { track } })
 
     trackLandingEvent("cta_click", { location: "hero" })
 
@@ -22,6 +23,7 @@ describe("trackLandingEvent", () => {
       name: "cta_click",
       properties: { location: "hero" },
     })
+    expect(track).toHaveBeenCalledWith("cta_click", { location: "hero" })
   })
 
   it("does nothing during server rendering", () => {
