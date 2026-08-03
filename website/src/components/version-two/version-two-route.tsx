@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site-config"
 
 const navItems = [
   { label: "What you get", href: "#deliverable" },
-  { label: "Practices", href: "#practices" },
+  { label: "Workflows", href: "#patterns" },
   { label: "How we work", href: "#approach" },
   { label: "Portability", href: "#portability" },
   { label: "FAQ", href: "#faq" },
@@ -31,11 +31,12 @@ export function VersionTwoRoute({
       </a>
       <SiteHeader
         companyName={siteConfig.companyName}
-        ctaLabel="Discuss a workflow"
+        ctaLabel="Talk through a workflow"
         navItems={navItems}
       />
       <VersionTwoPage
         contactEmail={siteConfig.contactEmail}
+        estimateEndpoint={siteConfig.estimateEndpoint}
         formEndpoint={siteConfig.formEndpoint}
         heroBackground={heroBackground}
         schedulingUrl={siteConfig.schedulingUrl}
@@ -43,7 +44,7 @@ export function VersionTwoRoute({
       <SiteFooter
         companyName={siteConfig.companyName}
         contactEmail={siteConfig.contactEmail}
-        description="We turn manual workflows into production systems for People and Workforce teams and professional-services firms."
+        description="We redesign slow, manual workflows and build the systems that run them."
         privacyUrl={siteConfig.privacyUrl}
         termsUrl={siteConfig.termsUrl}
       />

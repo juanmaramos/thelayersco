@@ -29,4 +29,17 @@ describe("trackLandingEvent", () => {
 
     expect(() => trackLandingEvent("form_start")).not.toThrow()
   })
+
+  it("emits a calculator start without exposing its inputs", () => {
+    const dispatchEvent = vi.fn()
+    vi.stubGlobal("window", { dispatchEvent })
+
+    trackLandingEvent("calculator_start")
+
+    const event = dispatchEvent.mock.calls[0]?.[0]
+    expect(event.detail).toEqual({
+      name: "calculator_start",
+      properties: {},
+    })
+  })
 })

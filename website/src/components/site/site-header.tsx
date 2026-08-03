@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { IconMenu2 } from "@tabler/icons-react"
 
+import { LayersMark } from "@/components/site/layers-mark"
 import { TrackedAnchor } from "@/components/site/tracked-anchor"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
@@ -23,6 +24,7 @@ const defaultNavItems = [
 ]
 
 type SiteHeaderProps = {
+  brandHref?: string
   companyName: string
   navItems?: ReadonlyArray<{ label: string; href: string }>
   ctaLabel?: string
@@ -30,6 +32,7 @@ type SiteHeaderProps = {
 }
 
 export function SiteHeader({
+  brandHref = "#top",
   companyName,
   navItems = defaultNavItems,
   ctaLabel = "Discuss a workflow",
@@ -63,10 +66,11 @@ export function SiteHeader({
     >
       <div className="section-shell flex h-full items-center justify-between gap-6">
         <a
-          className="flex min-h-11 items-center text-base font-semibold tracking-[-0.02em]"
-          href="#top"
+          className="flex min-h-11 items-center gap-2.5 text-[1.375rem] leading-none font-semibold tracking-[-0.035em]"
+          href={brandHref}
         >
-          {companyName}
+          <LayersMark className="size-8 shrink-0" />
+          <span>{companyName}</span>
         </a>
 
         <div className="hidden items-center gap-7 md:flex">

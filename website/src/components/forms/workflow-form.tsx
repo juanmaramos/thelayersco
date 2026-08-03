@@ -57,6 +57,7 @@ export function WorkflowForm({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isComplete, setIsComplete] = useState(false)
   const hasStarted = useRef(false)
+  const websiteRef = useRef<HTMLInputElement>(null)
   const statusId = useId()
   const emailId = useId()
   const emailErrorId = `${emailId}-error`
@@ -133,7 +134,10 @@ export function WorkflowForm({
         const response = await fetch(formEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(normalizeWorkflowForm(values)),
+          body: JSON.stringify({
+            ...normalizeWorkflowForm(values),
+            website: websiteRef.current?.value ?? "",
+          }),
         })
 
         if (!response.ok) {
@@ -164,9 +168,9 @@ export function WorkflowForm({
         role="status"
       >
         <p className="max-w-[52ch] text-xl leading-8 font-semibold">
-          Thanks. We received your workflow. {schedulingUrl
-            ? "Choose a time and we’ll review the details before we meet."
-            : "We’ll review the details and get back to you."}
+          Thanks. We have the details. {schedulingUrl
+            ? "Choose a time. We’ll review them before we meet."
+            : "We’ll review them and get back to you."}
         </p>
         {schedulingUrl ? (
           <TrackedAnchor
@@ -194,6 +198,15 @@ export function WorkflowForm({
         name="practiceInterest"
         type="hidden"
         value={values.practiceInterest}
+      />
+      <input
+        aria-hidden="true"
+        autoComplete="off"
+        className="hidden"
+        name="website"
+        ref={websiteRef}
+        tabIndex={-1}
+        type="text"
       />
 
       {!formEndpoint ? (
@@ -236,8 +249,8 @@ export function WorkflowForm({
         <Field className="sm:col-span-2" data-invalid={Boolean(errors.workflow) || undefined}>
           <FieldLabel htmlFor={workflowId}>Workflow</FieldLabel>
           <FieldDescription id={workflowDescriptionId}>
-            Where does the work repeat, and what takes expert time? Tell us what
-            a good output looks like.
+            What keeps repeating, and where do people lose time? Tell us what a
+            good result looks like.
           </FieldDescription>
           <Textarea
             aria-describedby={
@@ -284,6 +297,19 @@ export function WorkflowForm({
         </p>
       ) : null}
 
+      <p className="max-w-[58ch] text-xs leading-5 text-muted-foreground">
+        By sending this form, you ask {" "}
+        <span className="font-semibold text-foreground">RHAMS LLC</span> to
+        review and respond to your inquiry. See our {" "}
+        <a
+          className="font-semibold text-foreground underline underline-offset-4"
+          href="/privacy"
+        >
+          Privacy Notice
+        </a>
+        .
+      </p>
+
       <Button
         className="w-full sm:w-fit"
         disabled={isSubmitting}
@@ -297,7 +323,7 @@ export function WorkflowForm({
           </>
         ) : (
           <>
-            Discuss this workflow
+            Send the details
             <IconArrowNarrowRight data-icon="inline-end" />
           </>
         )}

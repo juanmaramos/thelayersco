@@ -14,6 +14,7 @@ export function SiteFooter({
   description = "Workflow transformation and implementation for People, Workforce, and professional-services teams.",
 }: SiteFooterProps) {
   const hasLinks = Boolean(contactEmail || privacyUrl || termsUrl)
+  const currentYear = new Date().getFullYear()
 
   return (
     <footer
@@ -66,7 +67,7 @@ export function SiteFooter({
             </nav>
           ) : null}
           <p className="text-xs text-on-ink-muted">
-            © {new Date().getFullYear()} {companyName}
+            © {currentYear} - The Layers Co.
           </p>
         </div>
       </div>

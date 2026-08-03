@@ -1,5 +1,6 @@
 export type LandingEventName =
   | "cta_click"
+  | "calculator_start"
   | "practice_interest"
   | "form_start"
   | "validation_error"

@@ -47,18 +47,48 @@ npm run build
 
 ## Production configuration
 
-All open deployment values are centralized in `src/lib/site-config.ts` and
-read from the `NEXT_PUBLIC_*` variables documented in `.env.example`.
-Unconfigured footer links are omitted. An unconfigured form is visibly marked
-as a preview and never discards a submission silently.
+All deployment values are centralized in `src/lib/site-config.ts` and
+documented in `.env.example`. Privacy and Terms use the internal `/privacy` and
+`/terms` routes unless an external URL is configured. An unconfigured form is
+visibly marked as a preview and never discards a submission silently.
 
-The root route remains `noindex, nofollow` until the canonical URL, form
-endpoint, privacy URL, terms URL, and `NEXT_PUBLIC_ANALYTICS_READY=true` are all
-configured. Analytics integration should subscribe to the
+Email delivery uses server-only Vercel environment variables:
+
+- `RESEND_API_KEY` — Resend credential;
+- `EMAIL_FROM` — verified sender, for example `Layers <hello@example.com>`;
+- `CONTACT_TO_EMAIL` — private inbox for workflow inquiries and calculator lead records.
+
+Set `NEXT_PUBLIC_FORM_ENDPOINT=/api/contact` and
+`NEXT_PUBLIC_ESTIMATE_ENDPOINT=/api/estimate` in Vercel Production to enable
+the statically generated form controls. The API routes still require all three
+server-only email variables above. Set `CONTACT_TO_EMAIL` to the private inbox
+that should receive submissions. Leave `NEXT_PUBLIC_CONTACT_EMAIL` unset when
+the address should not be printed on the public site; legal requests are routed
+through the contact form.
+
+The root route remains `noindex, nofollow` until the canonical URL, working
+email delivery, and `NEXT_PUBLIC_ANALYTICS_READY=true` are configured.
+Analytics integration should subscribe to the
 `layers:landing-event` browser event; the website emits event names and coarse
 context only, never form values or contact details.
 
-For Vercel, use the repository root as the source and `website` as the project
-root. Enable source files outside the project root for the build because the
-canonical token import intentionally resolves from `design-system/`. Configure
-every production value before the final deployment review.
+For Vercel, connect the whole repository and set `website` as the project root.
+The app imports canonical tokens from the sibling `design-system/` directory,
+which is part of the same repository, so enable Vercel's monorepo setting that
+includes source files outside the app root during the build. Configure every
+production value before the final deployment review.
+
+## Release workflow
+
+Production releases always move through GitHub:
+
+1. Create a named branch from `main` and make the scoped changes there.
+2. Run lint, typecheck, tests, and the production build.
+3. Commit and push the branch, then open a pull request into `main`.
+4. Merge the pull request only after the checks pass.
+5. Let the Vercel Git integration deploy the merged `main` commit.
+6. Verify the immutable deployment, production aliases, key UI flows, API
+   validation boundaries, and runtime errors.
+
+Dashboard redeploys only rebuild an existing remote artifact. They must not be
+used to publish uncommitted local work.
