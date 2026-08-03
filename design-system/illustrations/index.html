@@ -1,0 +1,1014 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Illustration construction and quality-assurance lab for the Operational Blueprint design system."
+    />
+    <title>Illustration Lab — Operational Blueprint</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Instrument+Sans:wdth,wght@75..100,400..700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css?v=6" />
+    <link rel="stylesheet" href="./styles.css?v=3" />
+  </head>
+  <body class="illustration-lab">
+    <a class="skip-link" href="#main-content">Skip to the illustration specimens</a>
+
+    <svg class="primitive-library" aria-hidden="true">
+      <defs>
+        <symbol id="input-module" viewBox="0 0 72 36">
+          <rect class="ill-node ill-secondary" x="0.5" y="0.5" width="71" height="35" rx="9" />
+          <path class="ill-context" d="M12 14h24M12 22h40" />
+        </symbol>
+
+        <symbol id="review-node" viewBox="0 0 56 56">
+          <circle class="ill-node ill-primary" cx="28" cy="28" r="24" />
+          <circle class="ill-human" cx="28" cy="28" r="7" />
+          <path class="ill-check" d="m23 28 3 3 7-8" />
+        </symbol>
+
+        <symbol id="signal-node" viewBox="0 0 56 56">
+          <circle class="ill-node ill-primary" cx="28" cy="28" r="24" />
+          <circle class="ill-signal" cx="28" cy="28" r="6" />
+        </symbol>
+
+        <symbol id="iso-slab" viewBox="0 0 104 88">
+          <path class="ill-side" d="M4 30 52 58l48-28v28L52 86 4 58V30Z" />
+          <path class="ill-top" d="M4 30 52 2l48 28-48 28L4 30Z" />
+          <path class="ill-layer" d="m4 44 48 28 48-28" />
+        </symbol>
+
+        <symbol id="iso-output" viewBox="0 0 80 100">
+          <path class="ill-output-side" d="M4 30 40 51l36-21v48L40 99 4 78V30Z" />
+          <path class="ill-output-top" d="M4 30 40 9l36 21-36 21L4 30Z" />
+          <rect class="ill-signal" x="34" y="24" width="12" height="12" rx="3" />
+        </symbol>
+
+        <symbol id="document-stack" viewBox="0 0 72 64">
+          <rect class="ill-node ill-context" x="12.5" y="0.5" width="55" height="43" rx="5" />
+          <rect class="ill-node ill-secondary" x="6.5" y="8.5" width="55" height="43" rx="5" />
+          <rect class="ill-node ill-secondary" x="0.5" y="16.5" width="55" height="43" rx="5" />
+          <path class="ill-context" d="M12 32h20M12 40h32M12 48h24" />
+        </symbol>
+
+        <symbol id="iso-cell" viewBox="0 0 88 116">
+          <path class="ill-side" d="M4 30 44 53l40-23v60l-40 23L4 90V30Z" />
+          <path class="ill-top" d="M4 30 44 7l40 23-40 23L4 30Z" />
+        </symbol>
+
+        <symbol id="iso-dot-matrix" viewBox="0 0 56 28">
+          <g class="ill-microdots">
+            <circle cx="28" cy="2" r="1.2" /><circle cx="34" cy="5" r="1.2" /><circle cx="40" cy="8" r="1.2" /><circle cx="46" cy="11" r="1.2" /><circle cx="52" cy="14" r="1.2" />
+            <circle cx="22" cy="5" r="1.2" /><circle cx="28" cy="8" r="1.2" /><circle cx="34" cy="11" r="1.2" /><circle cx="40" cy="14" r="1.2" /><circle cx="46" cy="17" r="1.2" />
+            <circle cx="16" cy="8" r="1.2" /><circle cx="22" cy="11" r="1.2" /><circle cx="28" cy="14" r="1.2" /><circle cx="34" cy="17" r="1.2" /><circle cx="40" cy="20" r="1.2" />
+            <circle cx="10" cy="11" r="1.2" /><circle cx="16" cy="14" r="1.2" /><circle cx="22" cy="17" r="1.2" /><circle cx="28" cy="20" r="1.2" /><circle cx="34" cy="23" r="1.2" />
+            <circle cx="4" cy="14" r="1.2" /><circle cx="10" cy="17" r="1.2" /><circle cx="16" cy="20" r="1.2" /><circle cx="22" cy="23" r="1.2" /><circle cx="28" cy="26" r="1.2" />
+          </g>
+        </symbol>
+
+        <symbol id="projected-panel" viewBox="0 0 128 170">
+          <path class="ill-panel" d="M0 0l128 74v96L0 96V0Z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="lab-header">
+      <a class="lab-brand" href="../index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M6 9.5 16 4l10 5.5L16 15 6 9.5Z" />
+          <path d="m6 14 10 5.5L26 14M6 18.5 16 24l10-5.5" />
+        </svg>
+        <span>Operational Blueprint</span>
+      </a>
+      <p>Illustration lab <span>Rev / 06</span></p>
+    </header>
+
+    <main id="main-content">
+      <section class="lab-intro" aria-labelledby="lab-title">
+        <div>
+          <p class="lab-kicker">Monoline axonometric system</p>
+          <h1 id="lab-title">Exact geometry.<br />Quiet authority.</h1>
+        </div>
+        <div class="lab-intro-copy">
+          <p>
+            A controlled specimen sheet for connectors, nodes, projected blocks, decision points,
+            and measurement traces. Every visible endpoint has a reason.
+          </p>
+          <dl>
+            <div><dt>Grid</dt><dd>4 unit</dd></div>
+            <div><dt>Projection</dt><dd>30° / 150° / vertical</dd></div>
+            <div><dt>Stroke</dt><dd>1 CSS pixel</dd></div>
+            <div><dt>Companion</dt><dd>Operational ASCII</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="feature-specimen" aria-labelledby="feature-title">
+        <div class="feature-copy">
+          <p class="specimen-index">01 / System composition</p>
+          <h2 id="feature-title">One continuous, controlled workflow.</h2>
+          <p>
+            Connectors are laid down first and extended beneath filled objects. The result has no
+            floating endpoints, doubled strokes, or lines showing through the review node.
+          </p>
+          <ul class="feature-key" aria-label="Illustration legend">
+            <li><i class="key-line key-context"></i>Context</li>
+            <li><i class="key-line key-primary"></i>Verified path</li>
+            <li><i class="key-dot key-human"></i>Human review</li>
+            <li><i class="key-dot key-signal"></i>Approved output</li>
+          </ul>
+        </div>
+
+        <div class="feature-board illustration-board">
+          <svg
+            class="illustration-svg illustration-feature"
+            viewBox="0 0 640 360"
+            role="img"
+            aria-labelledby="workflow-composition-title workflow-composition-desc"
+          >
+            <title id="workflow-composition-title">Controlled workflow composition</title>
+            <desc id="workflow-composition-desc">
+              Three source modules converge into a raised workflow stage, pass through a human
+              review node, and finish in an approved output block with a measured result.
+            </desc>
+
+            <g class="ill-connectors">
+              <path class="ill-context" d="M40 70h116M40 180h116M40 290h116" />
+              <path class="ill-secondary" d="M152 70 292 164M152 180h136M152 290l140-94" />
+              <path class="ill-primary" d="M424 180H534" />
+            </g>
+
+            <g class="ill-inputs">
+              <rect class="ill-node ill-secondary" x="44" y="44" width="108" height="52" rx="12" />
+              <path class="ill-context" d="M64 62h40M64 78h68" />
+              <rect class="ill-node ill-secondary" x="44" y="154" width="108" height="52" rx="12" />
+              <path class="ill-context" d="M64 172h68M64 188h44" />
+              <rect class="ill-node ill-secondary" x="44" y="264" width="108" height="52" rx="12" />
+              <path class="ill-context" d="M64 282h44M64 298h68" />
+            </g>
+
+            <g class="ill-workflow-stage">
+              <path class="ill-side" d="m250 180 88 51 88-51v44l-88 51-88-51v-44Z" />
+              <path class="ill-top" d="m250 180 88-51 88 51-88 51-88-51Z" />
+              <path class="ill-layer" d="m250 202 88 51 88-51" />
+            </g>
+
+            <g transform="translate(440 152)">
+              <use href="#review-node" width="56" height="56" />
+            </g>
+
+            <g transform="translate(526 150)">
+              <use href="#iso-output" width="80" height="100" />
+            </g>
+
+            <g class="ill-measure">
+              <path d="M526 292h80M526 312h52" />
+              <circle class="ill-signal" cx="602" cy="312" r="4" />
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section class="specimen-section" aria-labelledby="primitives-title">
+        <div class="section-marker">
+          <p class="specimen-index">02 / Canonical compositions</p>
+          <div>
+            <h2 id="primitives-title">The grammar, under pressure.</h2>
+            <p>Five compositions test convergence, review, integration, exception handling, and measurement.</p>
+          </div>
+        </div>
+
+        <div class="specimen-list">
+          <article class="specimen specimen-wide">
+            <div class="specimen-copy">
+              <p class="specimen-number">A / Convergence</p>
+              <h3>Inputs meet a codified stage</h3>
+              <p>Three paths extend beneath one filled slab. No connector stops near an edge.</p>
+            </div>
+            <div class="illustration-board">
+              <svg class="illustration-svg" viewBox="0 0 320 208" role="img" aria-label="Three inputs converging into a raised workflow slab">
+                <g class="ill-connectors">
+                  <path class="ill-context" d="M24 44h72M24 104h72M24 164h72" />
+                  <path class="ill-secondary" d="M92 44 150 92M92 104h60M92 164l58-48" />
+                </g>
+                <g>
+                  <use href="#input-module" x="24" y="26" width="72" height="36" />
+                  <use href="#input-module" x="24" y="86" width="72" height="36" />
+                  <use href="#input-module" x="24" y="146" width="72" height="36" />
+                </g>
+                <g transform="translate(124 60)">
+                  <use href="#iso-slab" width="104" height="88" />
+                </g>
+                <g class="ill-measure">
+                  <path d="M244 88h52M244 104h32" />
+                  <circle class="ill-signal" cx="292" cy="104" r="4" />
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen">
+            <div class="specimen-copy">
+              <p class="specimen-number">B / Review</p>
+              <h3>A masked human checkpoint</h3>
+              <p>The path continues semantically, but cannot show through the filled review shell.</p>
+            </div>
+            <div class="illustration-board">
+              <svg class="illustration-svg" viewBox="0 0 320 208" role="img" aria-label="Workflow stage passing through a human review node to an output">
+                <path class="ill-primary" d="M112 104H244" />
+                <g transform="translate(24 60)">
+                  <use href="#iso-slab" width="104" height="88" />
+                </g>
+                <g transform="translate(144 76)">
+                  <use href="#review-node" width="56" height="56" />
+                </g>
+                <g transform="translate(220 54)">
+                  <use href="#iso-output" width="80" height="100" />
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen">
+            <div class="specimen-copy">
+              <p class="specimen-number">C / Integration</p>
+              <h3>Existing systems remain visible</h3>
+              <p>Shared axes and equal offsets keep the central implementation legible.</p>
+            </div>
+            <div class="illustration-board">
+              <svg class="illustration-svg" viewBox="0 0 320 208" role="img" aria-label="Central workflow block connected to four existing systems">
+                <g class="ill-context">
+                  <path d="M52 52 132 92M268 52l-80 40M52 156l80-40M268 156l-80-40" />
+                </g>
+                <g class="ill-ports">
+                  <rect class="ill-node ill-secondary" x="24" y="38" width="32" height="28" rx="7" />
+                  <rect class="ill-node ill-secondary" x="264" y="38" width="32" height="28" rx="7" />
+                  <rect class="ill-node ill-secondary" x="24" y="142" width="32" height="28" rx="7" />
+                  <rect class="ill-node ill-secondary" x="264" y="142" width="32" height="28" rx="7" />
+                </g>
+                <g class="ill-central-block">
+                  <path class="ill-output-side" d="m112 92 48 28 48-28v48l-48 28-48-28V92Z" />
+                  <path class="ill-output-top" d="m112 92 48-28 48 28-48 28-48-28Z" />
+                  <rect class="ill-signal" x="154" y="84" width="12" height="12" rx="3" />
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen">
+            <div class="specimen-copy">
+              <p class="specimen-number">D / Exception</p>
+              <h3>An exception takes a deliberate route</h3>
+              <p>The dashed branch has a named review destination rather than an ambiguous endpoint.</p>
+            </div>
+            <div class="illustration-board">
+              <svg class="illustration-svg" viewBox="0 0 320 208" role="img" aria-label="Verified path continuing through validation while an exception routes to human review">
+                <path class="ill-primary" d="M24 112H296" />
+                <path class="ill-secondary ill-dashed" d="M160 112 220 52" />
+                <g transform="translate(132 84)">
+                  <use href="#signal-node" width="56" height="56" />
+                </g>
+                <g transform="translate(192 24)">
+                  <use href="#review-node" width="56" height="56" />
+                </g>
+                <rect class="ill-node ill-primary" x="276" y="100" width="24" height="24" rx="6" />
+                <rect class="ill-signal" x="283" y="107" width="10" height="10" rx="2" />
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-wide">
+            <div class="specimen-copy">
+              <p class="specimen-number">E / Measurement</p>
+              <h3>Rows share one origin and one status column</h3>
+              <p>Line lengths vary with content, while status nodes remain locked to the same column.</p>
+            </div>
+            <div class="illustration-board">
+              <svg class="illustration-svg" viewBox="0 0 320 208" role="img" aria-label="Three aligned measurement rails with status nodes in a shared column">
+                <path class="ill-context" d="M48 44h224M48 104h224M48 164h224" />
+                <g class="ill-measure">
+                  <path d="M64 44h124M64 104h88M64 164h108" />
+                  <path class="ill-secondary" d="M64 56h68M64 116h52M64 176h84" />
+                </g>
+                <circle class="ill-secondary ill-surface-fill" cx="256" cy="44" r="7" />
+                <circle class="ill-human" cx="256" cy="104" r="7" />
+                <circle class="ill-signal" cx="256" cy="164" r="7" />
+              </svg>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="specimen-section narrative-section" aria-labelledby="narrative-title">
+        <div class="section-marker">
+          <p class="specimen-index">03 / Brand narratives</p>
+          <div>
+            <h2 id="narrative-title">Make the operating change visible.</h2>
+            <p>
+              Six commercial stories test comparison, provenance, validation, scope, engagement
+              rhythm, and consistency across the two initial practices.
+            </p>
+          </div>
+        </div>
+
+        <div class="specimen-list narrative-list">
+          <article class="specimen specimen-wide" id="before-after">
+            <div class="specimen-copy">
+              <p class="specimen-number">F / Before and after</p>
+              <h3>Fragmented work becomes one governed flow</h3>
+              <p>
+                The current state shows repeated handoffs and review. The target state keeps the
+                same inputs but gives them one controlled route to an approved output.
+              </p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 640 360"
+                role="img"
+                aria-label="A fragmented current workflow compared with a shorter governed target workflow"
+              >
+                <path class="comparison-divider" d="M320 32v296" />
+                <path class="ill-context" d="M40 48h64M352 48h64" />
+
+                <g class="ill-connectors">
+                  <path class="ill-secondary" d="M104 92h48l36 52 80 44" />
+                  <path class="ill-secondary ill-dashed" d="M104 180h56l28-36" />
+                  <path class="ill-secondary" d="M104 268h48l84-36 32-44" />
+                  <path class="ill-context" d="M152 92v176M188 144l48 88" />
+                </g>
+                <g>
+                  <use href="#input-module" x="32" y="74" width="72" height="36" />
+                  <use href="#input-module" x="32" y="162" width="72" height="36" />
+                  <use href="#input-module" x="32" y="250" width="72" height="36" />
+                  <rect class="ill-node ill-secondary" x="140" y="80" width="24" height="24" rx="6" />
+                  <rect class="ill-node ill-secondary" x="176" y="132" width="24" height="24" rx="6" />
+                  <rect class="ill-node ill-secondary" x="224" y="220" width="24" height="24" rx="6" />
+                  <g transform="translate(240 160)">
+                    <use href="#review-node" width="56" height="56" />
+                  </g>
+                  <path class="ill-measure" d="M224 276h64M240 292h48" />
+                </g>
+
+                <g class="ill-connectors">
+                  <path class="ill-secondary" d="M408 92 466 146M408 180h60M408 268l58-54" />
+                  <path class="ill-primary" d="M536 180h72" />
+                </g>
+                <g>
+                  <use href="#input-module" x="336" y="74" width="72" height="36" />
+                  <use href="#input-module" x="336" y="162" width="72" height="36" />
+                  <use href="#input-module" x="336" y="250" width="72" height="36" />
+                  <g transform="translate(440 116)">
+                    <use href="#iso-slab" width="104" height="88" />
+                  </g>
+                  <g transform="translate(520 152)">
+                    <use href="#review-node" width="56" height="56" />
+                  </g>
+                  <rect class="ill-node ill-primary" x="596" y="168" width="24" height="24" rx="6" />
+                  <rect class="ill-signal" x="603" y="175" width="10" height="10" rx="2" />
+                  <path class="ill-measure" d="M520 260h100M552 280h68" />
+                  <circle class="ill-signal" cx="616" cy="280" r="4" />
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-pair-left" id="evidence-provenance">
+            <div class="specimen-copy">
+              <p class="specimen-number">G / Provenance</p>
+              <h3>Evidence remains attached to the output</h3>
+              <p>Source fragments pass through a codified method and remain visible at review.</p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 320 208"
+                role="img"
+                aria-label="Source documents linked through evidence markers to a reviewed approved output"
+              >
+                <g class="ill-connectors">
+                  <path class="ill-context" d="M84 76h72M84 104h72M84 132h72" />
+                  <path class="ill-primary" d="M224 104h72" />
+                </g>
+                <g transform="translate(20 72)">
+                  <use href="#document-stack" width="72" height="64" />
+                </g>
+                <g class="ill-evidence">
+                  <circle class="ill-node ill-secondary" cx="112" cy="76" r="4" />
+                  <circle class="ill-node ill-secondary" cx="112" cy="104" r="4" />
+                  <circle class="ill-node ill-secondary" cx="112" cy="132" r="4" />
+                </g>
+                <g transform="translate(132 60)">
+                  <use href="#iso-slab" width="104" height="88" />
+                </g>
+                <g transform="translate(224 76)">
+                  <use href="#review-node" width="56" height="56" />
+                </g>
+                <rect class="ill-node ill-primary" x="284" y="92" width="24" height="24" rx="6" />
+                <rect class="ill-signal" x="291" y="99" width="10" height="10" rx="2" />
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-pair-right" id="quality-gate">
+            <div class="specimen-copy">
+              <p class="specimen-number">H / Quality gate</p>
+              <h3>Weak assumptions do not reach production</h3>
+              <p>One path passes, one routes to expert review, and one stops with an explicit terminal.</p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 320 208"
+                role="img"
+                aria-label="Candidate paths evaluated at a quality gate with pass review and rejected outcomes"
+              >
+                <g class="ill-connectors">
+                  <path class="ill-secondary" d="M36 56 140 104M36 104h104M36 152l104-48" />
+                  <path class="ill-primary" d="M180 104h116" />
+                  <path class="ill-secondary ill-dashed" d="M160 84 216 40" />
+                  <path class="ill-secondary ill-dashed" d="M160 124 216 168" />
+                </g>
+                <rect class="ill-node ill-secondary" x="24" y="44" width="24" height="24" rx="6" />
+                <rect class="ill-node ill-secondary" x="24" y="92" width="24" height="24" rx="6" />
+                <rect class="ill-node ill-secondary" x="24" y="140" width="24" height="24" rx="6" />
+                <g transform="translate(132 76)">
+                  <use href="#signal-node" width="56" height="56" />
+                </g>
+                <g transform="translate(188 12)">
+                  <use href="#review-node" width="56" height="56" />
+                </g>
+                <g class="ill-terminal" transform="translate(208 160)">
+                  <circle cx="8" cy="8" r="8" />
+                  <path d="m4.5 4.5 7 7m0-7-7 7" />
+                </g>
+                <rect class="ill-node ill-primary" x="284" y="92" width="24" height="24" rx="6" />
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-wide" id="bounded-scope">
+            <div class="specimen-copy">
+              <p class="specimen-number">I / Bounded scope</p>
+              <h3>Improve one workflow without replacing the stack</h3>
+              <p>
+                Existing systems remain outside the implementation boundary. Only the selected
+                workflow, controls, and approved write-back sit inside it.
+              </p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 640 360"
+                role="img"
+                aria-label="A bounded workflow connecting existing external systems without replacing them"
+              >
+                <rect class="ill-boundary" x="144" y="40" width="352" height="280" />
+                <path class="ill-context" d="M48 88h128M48 180h128M48 272h128M464 88h128M464 180h128M464 272h128" />
+                <g class="ill-connectors">
+                  <path class="ill-secondary" d="M176 88 292 156M176 180h116M176 272l116-68" />
+                  <path class="ill-primary" d="M396 180h68" />
+                </g>
+                <g>
+                  <use href="#input-module" x="40" y="70" width="72" height="36" />
+                  <use href="#input-module" x="40" y="162" width="72" height="36" />
+                  <use href="#input-module" x="40" y="254" width="72" height="36" />
+                  <rect class="ill-node ill-secondary" x="568" y="70" width="32" height="36" rx="8" />
+                  <rect class="ill-node ill-secondary" x="568" y="162" width="32" height="36" rx="8" />
+                  <rect class="ill-node ill-secondary" x="568" y="254" width="32" height="36" rx="8" />
+                </g>
+                <g transform="translate(264 132)">
+                  <use href="#iso-slab" width="104" height="88" />
+                </g>
+                <g transform="translate(368 152)">
+                  <use href="#review-node" width="56" height="56" />
+                </g>
+                <g transform="translate(440 130)">
+                  <use href="#iso-output" width="80" height="100" />
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-wide" id="engagement-model">
+            <div class="specimen-copy">
+              <p class="specimen-number">J / Engagement model</p>
+              <h3>Baseline. Validate. Implement. Improve.</h3>
+              <p>
+                Four stages rise as uncertainty reduces. Measurement returns to validation as a
+                controlled input, not as an autonomous self-improvement claim.
+              </p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 640 320"
+                role="img"
+                aria-label="Four rising workflow stages for baseline validation implementation and improvement with a measured return path"
+              >
+                <path class="ill-context" d="M72 160 208 136 344 112 504 88" />
+                <path class="ill-secondary ill-dashed" d="M544 120v112H208v-64" />
+                <g transform="translate(32 116)">
+                  <use href="#iso-slab" width="96" height="81" />
+                </g>
+                <g transform="translate(168 92)">
+                  <use href="#iso-slab" width="96" height="81" />
+                  <circle class="ill-human" cx="48" cy="30" r="6" />
+                </g>
+                <g transform="translate(304 68)">
+                  <use href="#iso-slab" width="96" height="81" />
+                </g>
+                <g transform="translate(464 44)">
+                  <use href="#iso-output" width="80" height="100" />
+                </g>
+                <g class="ill-stage-labels">
+                  <text x="32" y="228">BASELINE</text>
+                  <text x="168" y="204">VALIDATE</text>
+                  <text x="304" y="180">IMPLEMENT</text>
+                  <text x="464" y="156">IMPROVE</text>
+                </g>
+                <g class="ill-measure">
+                  <path d="M464 252h80M464 272h48" />
+                  <circle class="ill-signal" cx="540" cy="272" r="4" />
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-wide practice-specimen" id="practice-pair">
+            <div class="specimen-copy">
+              <p class="specimen-number">K / Two practices</p>
+              <h3>One operating model, applied twice</h3>
+              <p>
+                People and Workforce and professional-services delivery use the same workflow
+                grammar. Only the source material and approved output change.
+              </p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 640 360"
+                role="img"
+                aria-label="Parallel People and Workforce and professional-services workflows using the same operating model"
+              >
+                <path class="comparison-divider" d="M320 32v296" />
+                <g class="ill-stage-labels ill-stage-labels-strong">
+                  <text x="32" y="48">PEOPLE + WORKFORCE</text>
+                  <text x="352" y="48">PROFESSIONAL SERVICES</text>
+                </g>
+
+                <g class="ill-connectors">
+                  <path class="ill-secondary" d="M96 96 150 152M96 180h56M96 264l54-56" />
+                  <path class="ill-primary" d="M220 180h76" />
+                </g>
+                <g>
+                  <use href="#input-module" x="24" y="78" width="72" height="36" />
+                  <rect class="ill-node ill-secondary" x="24" y="162" width="72" height="36" rx="9" />
+                  <path class="ill-context" d="M36 174h48M36 186h28" />
+                  <use href="#input-module" x="24" y="246" width="72" height="36" />
+                  <g transform="translate(124 120)">
+                    <use href="#iso-slab" width="104" height="88" />
+                  </g>
+                  <g transform="translate(208 152)">
+                    <use href="#review-node" width="56" height="56" />
+                  </g>
+                  <rect class="ill-node ill-primary" x="284" y="168" width="24" height="24" rx="6" />
+                  <rect class="ill-signal" x="291" y="175" width="10" height="10" rx="2" />
+                </g>
+
+                <g class="ill-connectors">
+                  <path class="ill-secondary" d="M416 96 470 152M416 180h56M416 264l54-56" />
+                  <path class="ill-primary" d="M540 180h76" />
+                </g>
+                <g>
+                  <use href="#document-stack" x="344" y="68" width="72" height="64" />
+                  <rect class="ill-node ill-secondary" x="344" y="162" width="72" height="36" rx="9" />
+                  <path class="ill-context" d="M356 174h28M356 186h48" />
+                  <use href="#input-module" x="344" y="246" width="72" height="36" />
+                  <g transform="translate(444 120)">
+                    <use href="#iso-slab" width="104" height="88" />
+                  </g>
+                  <g transform="translate(528 152)">
+                    <use href="#review-node" width="56" height="56" />
+                  </g>
+                  <rect class="ill-node ill-primary" x="604" y="168" width="24" height="24" rx="6" />
+                  <rect class="ill-signal" x="611" y="175" width="10" height="10" rx="2" />
+                </g>
+              </svg>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="specimen-section vocabulary-section" aria-labelledby="vocabulary-title">
+        <div class="section-marker">
+          <p class="specimen-index">04 / Shape vocabulary</p>
+          <div>
+            <h2 id="vocabulary-title">More range. The same discipline.</h2>
+            <p>
+              Five construction families extend the system through exact repetition, modular
+              clustering, ordered depth, sparse activity, and nested control planes.
+            </p>
+          </div>
+        </div>
+
+        <div class="specimen-list vocabulary-list">
+          <article class="specimen specimen-pair-left" id="versioned-stack">
+            <div class="specimen-copy">
+              <p class="specimen-number">L / Versioned stack</p>
+              <h3>Knowledge accumulates without losing structure</h3>
+              <p>One slab is translated by one fixed depth step. The top plane remains the focus.</p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 320 208"
+                role="img"
+                aria-label="Four identical workflow slabs stacked at an exact vertical interval"
+              >
+                <use href="#iso-slab" x="108" y="92" width="104" height="88" />
+                <use href="#iso-slab" x="108" y="74" width="104" height="88" />
+                <use href="#iso-slab" x="108" y="56" width="104" height="88" />
+                <use href="#iso-slab" x="108" y="38" width="104" height="88" />
+                <use href="#iso-dot-matrix" x="134" y="48" width="52" height="26" />
+                <g class="ill-measure">
+                  <path d="M232 136h56M232 152h36" />
+                  <circle class="ill-signal" cx="284" cy="152" r="4" />
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-pair-right" id="operating-cell">
+            <div class="specimen-copy">
+              <p class="specimen-number">M / Operating cell</p>
+              <h3>Specialist capabilities form one accountable team</h3>
+              <p>Equal volumes share one field; position and one human marker establish ownership.</p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 320 208"
+                role="img"
+                aria-label="Four equal projected capability cells clustered around an accountable human owner"
+              >
+                <path class="ill-context" d="M160 28 292 104 160 180 28 104 160 28Z" />
+                <use href="#iso-cell" x="124" y="12" width="72" height="95" />
+                <use href="#iso-dot-matrix" x="144" y="28" width="32" height="16" />
+                <use href="#iso-cell" x="52" y="72" width="72" height="95" />
+                <use href="#iso-dot-matrix" x="72" y="88" width="32" height="16" />
+                <use href="#iso-cell" x="196" y="72" width="72" height="95" />
+                <use href="#iso-dot-matrix" x="216" y="88" width="32" height="16" />
+                <use href="#iso-cell" x="124" y="104" width="72" height="95" />
+                <circle class="ill-human" cx="160" cy="129" r="5" />
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-wide" id="ordered-fan">
+            <div class="specimen-copy">
+              <p class="specimen-number">N / Ordered fan</p>
+              <h3>Repeated work becomes an inspectable queue</h3>
+              <p>
+                Every panel is one primitive translated by the same 36 × −20 step. Stroke
+                hierarchy, not improvised perspective, establishes front and back.
+              </p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 640 360"
+                role="img"
+                aria-label="Seven identical projected panels arranged in a precise ordered fan"
+              >
+                <g class="ill-panel-context">
+                  <use href="#projected-panel" x="318" y="24" width="128" height="170" />
+                  <use href="#projected-panel" x="282" y="44" width="128" height="170" />
+                  <use href="#projected-panel" x="246" y="64" width="128" height="170" />
+                </g>
+                <g class="ill-panel-secondary">
+                  <use href="#projected-panel" x="210" y="84" width="128" height="170" />
+                  <use href="#projected-panel" x="174" y="104" width="128" height="170" />
+                  <use href="#projected-panel" x="138" y="124" width="128" height="170" />
+                </g>
+                <g class="ill-panel-primary">
+                  <use href="#projected-panel" x="102" y="144" width="128" height="170" />
+                </g>
+                <path class="ill-context" d="m122 178 64 37m-64-21 48 28" />
+                <rect class="ill-signal" x="126" y="221" width="10" height="10" rx="2" />
+                <g class="ill-measure">
+                  <path d="M488 154h96M488 180h68M488 206h80" />
+                  <circle class="ill-signal" cx="580" cy="206" r="4" />
+                </g>
+                <g class="ill-stage-labels ill-stage-labels-strong">
+                  <text x="102" y="338">ORDERED QUEUE</text>
+                  <text x="488" y="238">VISIBLE STATE</text>
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-pair-left" id="signal-field">
+            <div class="specimen-copy">
+              <p class="specimen-number">O / Signal field</p>
+              <h3>Activity moves; the operating model stays still</h3>
+              <p>A sparse dot field may pulse between states. The structural plane never drifts.</p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 320 208"
+                role="img"
+                aria-label="Projected operating plane with a sparse animated activity matrix"
+              >
+                <path class="ill-side" d="M36 76 160 148l124-72v24l-124 72-124-72V76Z" />
+                <path class="ill-top" d="M36 76 160 4l124 72-124 72L36 76Z" />
+                <use href="#iso-dot-matrix" x="88" y="34" width="144" height="72" />
+                <circle class="ill-signal-dot ill-pulse ill-pulse-a" cx="160" cy="55" r="3" />
+                <circle class="ill-signal-dot ill-pulse ill-pulse-b" cx="175" cy="78" r="3" />
+                <circle class="ill-signal-dot ill-pulse ill-pulse-c" cx="129" cy="85" r="3" />
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-pair-right" id="nested-control-plane">
+            <div class="specimen-copy">
+              <p class="specimen-number">P / Nested control plane</p>
+              <h3>The workflow sits inside the enterprise context</h3>
+              <p>Concentric projected boundaries separate surrounding systems from owned scope.</p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 320 208"
+                role="img"
+                aria-label="Approved workflow nested inside two concentric projected system boundaries"
+              >
+                <path class="ill-context" d="M160 16 300 96 160 176 20 96 160 16Z" />
+                <path class="ill-boundary" d="M160 44 252 96 160 148 68 96 160 44Z" />
+                <rect class="ill-node ill-secondary" x="153" y="9" width="14" height="14" rx="4" />
+                <rect class="ill-node ill-secondary" x="293" y="89" width="14" height="14" rx="4" />
+                <rect class="ill-node ill-secondary" x="153" y="169" width="14" height="14" rx="4" />
+                <rect class="ill-node ill-secondary" x="13" y="89" width="14" height="14" rx="4" />
+                <use href="#iso-output" x="120" y="54" width="80" height="100" />
+              </svg>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="specimen-section landing-section" aria-labelledby="landing-title">
+        <div class="section-marker">
+          <p class="specimen-index">05 / Landing applications</p>
+          <div>
+            <h2 id="landing-title">One claim. One visual verb.</h2>
+            <p>
+              Three page-level compositions translate the proposition, proof model, and two
+              practices without introducing generic AI imagery or invented product interfaces.
+            </p>
+          </div>
+        </div>
+
+        <div class="specimen-list landing-list">
+          <article class="specimen specimen-wide" id="judgment-core">
+            <div class="specimen-copy">
+              <p class="specimen-number">Q / Judgment core</p>
+              <h3>Keep experts at the point of judgment</h3>
+              <p>
+                Documents, structured intake, and codified preparation surround one accountable
+                human decision. Only the approved result leaves on the primary path.
+              </p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 640 360"
+                role="img"
+                aria-label="Document intake structured data and a codified workflow converging on one accountable human decision and approved output"
+              >
+                <g class="ill-connectors">
+                  <path class="ill-secondary" d="M112 180h180M320 76v76M320 236v-28" />
+                  <path class="ill-primary" d="M348 180h220" />
+                </g>
+                <use href="#document-stack" x="40" y="148" width="72" height="64" />
+                <use href="#input-module" x="284" y="40" width="72" height="36" />
+                <use href="#iso-slab" x="268" y="236" width="104" height="88" />
+                <use href="#review-node" x="292" y="152" width="56" height="56" />
+                <use href="#iso-output" x="496" y="130" width="80" height="100" />
+                <g class="ill-measure">
+                  <path d="M480 272h96M504 292h72" />
+                  <circle class="ill-signal" cx="572" cy="292" r="4" />
+                </g>
+                <g class="ill-stage-labels ill-stage-labels-strong">
+                  <text x="40" y="236">SOURCE MATERIAL</text>
+                  <text x="260" y="340">CODIFIED PREPARATION</text>
+                  <text x="284" y="128">STRUCTURED INTAKE</text>
+                  <text x="284" y="228">ACCOUNTABLE JUDGMENT</text>
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-wide" id="evidence-spine">
+            <div class="specimen-copy">
+              <p class="specimen-number">R / Evidence spine</p>
+              <h3>Every decision can be traced back to its evidence</h3>
+              <p>
+                Selected fragments remain individually addressable while the evidence package
+                moves through the method, review, and approved output. Missing evidence stops
+                explicitly.
+              </p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 640 360"
+                role="img"
+                aria-label="A source package linked to indexed evidence fragments a codified method human review approved output and explicit missing-evidence terminal"
+              >
+                <g class="ill-connectors">
+                  <path class="ill-secondary" d="M160 72v176M112 180h48M160 112h52M160 180h52M160 248h52" />
+                  <path class="ill-secondary ill-dashed" d="M160 248v36" />
+                  <path class="ill-secondary" d="M284 112 400 164M284 180h116M284 248l116-52" />
+                  <path class="ill-primary" d="M480 180h128" />
+                </g>
+                <use href="#document-stack" x="40" y="148" width="72" height="64" />
+                <rect class="ill-node ill-secondary" x="152" y="64" width="16" height="16" rx="4" />
+                <circle class="ill-node ill-secondary" cx="160" cy="112" r="5" />
+                <circle class="ill-node ill-secondary" cx="160" cy="180" r="5" />
+                <circle class="ill-node ill-secondary" cx="160" cy="248" r="5" />
+                <g class="ill-terminal" transform="translate(152 280)">
+                  <circle cx="8" cy="8" r="8" />
+                  <path d="m4.5 4.5 7 7m0-7-7 7" />
+                </g>
+                <use href="#input-module" x="212" y="94" width="72" height="36" />
+                <use href="#input-module" x="212" y="162" width="72" height="36" />
+                <use href="#input-module" x="212" y="230" width="72" height="36" />
+                <use href="#iso-slab" x="376" y="136" width="104" height="88" />
+                <use href="#review-node" x="488" y="152" width="56" height="56" />
+                <use href="#iso-output" x="552" y="130" width="80" height="100" />
+                <g class="ill-stage-labels ill-stage-labels-strong">
+                  <text x="132" y="116">E01</text>
+                  <text x="132" y="184">E02</text>
+                  <text x="132" y="252">E03</text>
+                  <text x="128" y="316">MISSING</text>
+                  <text x="376" y="252">METHOD</text>
+                  <text x="488" y="232">REVIEW</text>
+                </g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="specimen specimen-wide" id="practice-diptych">
+            <div class="specimen-copy">
+              <p class="specimen-number">S / Practice diptych</p>
+              <h3>Policy to decision. Method to deliverable.</h3>
+              <p>
+                The two practices share control and review patterns, but their recognizable source
+                material and operational outputs remain specific.
+              </p>
+            </div>
+            <div class="illustration-board">
+              <svg
+                class="illustration-svg"
+                viewBox="0 0 640 360"
+                role="img"
+                aria-label="A People and Workforce policy decision workflow beside a professional-services method to deliverable workflow"
+              >
+                <path class="comparison-divider" d="M320 32v296" />
+                <g class="ill-stage-labels ill-stage-labels-strong">
+                  <text x="24" y="48">PEOPLE + WORKFORCE</text>
+                  <text x="344" y="48">PROFESSIONAL SERVICES</text>
+                </g>
+
+                <g class="ill-connectors">
+                  <path class="ill-secondary" d="M96 104 150 152M96 250l54-42" />
+                  <path class="ill-primary" d="M228 180h76" />
+                </g>
+                <use href="#document-stack" x="24" y="72" width="72" height="64" />
+                <use href="#input-module" x="24" y="232" width="72" height="36" />
+                <use href="#iso-slab" x="124" y="136" width="104" height="88" />
+                <use href="#review-node" x="208" y="152" width="56" height="56" />
+                <rect class="ill-node ill-primary" x="284" y="168" width="24" height="24" rx="6" />
+                <rect class="ill-signal" x="291" y="175" width="10" height="10" rx="2" />
+                <g class="ill-stage-labels">
+                  <text x="24" y="156">POLICY</text>
+                  <text x="24" y="292">REQUEST</text>
+                  <text x="248" y="228">DECISION</text>
+                </g>
+
+                <g class="ill-connectors">
+                  <path class="ill-secondary" d="M416 260 420 212" />
+                  <path class="ill-primary" d="M456 180h152" />
+                </g>
+                <use href="#document-stack" x="344" y="228" width="72" height="64" />
+                <use href="#iso-slab" x="352" y="142" width="104" height="88" />
+                <use href="#iso-slab" x="352" y="124" width="104" height="88" />
+                <use href="#review-node" x="464" y="152" width="56" height="56" />
+                <use href="#iso-output" x="536" y="130" width="80" height="100" />
+                <g class="ill-stage-labels">
+                  <text x="352" y="100">METHOD</text>
+                  <text x="344" y="316">EVIDENCE</text>
+                  <text x="536" y="252">DELIVERABLE</text>
+                </g>
+              </svg>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="specimen-section notation-section" aria-labelledby="notation-title">
+        <div class="section-marker">
+          <p class="specimen-index">06 / Operational ASCII</p>
+          <div>
+            <h2 id="notation-title">Machine-readable detail. Human-readable control.</h2>
+            <p>
+              Monospace notation records provenance and state without turning the interface into a
+              terminal. It supports the SVG system; it never replaces the workflow explanation.
+            </p>
+          </div>
+        </div>
+
+        <div class="notation-grid">
+          <article class="notation-specimen">
+            <div class="specimen-copy">
+              <p class="specimen-number">T / Provenance readout</p>
+              <h3>One compact trace for source, rule, exception, and output</h3>
+              <p>
+                Columns align deliberately. Blue marks an applied or approved state; ochre
+                underlines the accountable human review.
+              </p>
+            </div>
+            <div class="ascii-board">
+              <p class="ascii-label">Operational trace / illustrative</p>
+              <pre aria-hidden="true"><code>ILLUSTRATIVE_TRACE
+├─ SOURCE ........ <span class="ascii-active">EVIDENCE</span>
+├─ RULE .......... <span class="ascii-active">APPLIED</span>
+├─ EXCEPTION ..... <span class="ascii-review">REVIEW</span>
+└─ OUTPUT ........ <span class="ascii-approved">APPROVED</span></code></pre>
+              <p class="ascii-note">Static text · No scramble · Semantic equivalent required</p>
+            </div>
+          </article>
+
+          <article class="notation-specimen">
+            <div class="specimen-copy">
+              <p class="specimen-number">U / Object fallback</p>
+              <h3>The static fallback stays meaningful without WebGL</h3>
+              <p>
+                A Canvas UI ASCII object may progressively enhance an approved workflow SVG, but the
+                text or SVG fallback must communicate the same controlled route on its own. Never
+                substitute an abstract sphere, orbit field, or contour sculpture.
+              </p>
+            </div>
+            <div class="ascii-board ascii-object-board">
+              <p class="ascii-label">Codified workflow / static study</p>
+              <pre aria-hidden="true"><code>          ╱──────────────────╲
+         ╱   SOURCE PACKAGE   ╲
+         ╲────────────────────╱
+          ╲                  ╱
+           ╲────────────────╱
+                 │  │  │
+        ┌────────┴──┴──┴────────┐
+        │    CODIFIED METHOD    │
+        └───────────┬───────────┘
+                    <span class="ascii-review">● REVIEW</span>
+                    │
+              ┌─────┴─────┐
+              │ <span class="ascii-approved">APPROVED</span>  │
+              └───────────┘</code></pre>
+              <p class="ascii-note">Original SVG remains the immediate production fallback</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="preflight" aria-labelledby="preflight-title">
+        <div>
+          <p class="specimen-index">07 / Release gate</p>
+          <h2 id="preflight-title">Nothing leaves with a near miss.</h2>
+        </div>
+        <ol>
+          <li><span>01</span>No unintended open endpoints</li>
+          <li><span>02</span>No connectors visible through nodes</li>
+          <li><span>03</span>No doubled strokes or near-tangencies</li>
+          <li><span>04</span>One projection and one spacing system</li>
+          <li><span>05</span>Reviewed at smallest production size and 200%</li>
+          <li><span>06</span>Notation remains legible and has a semantic equivalent</li>
+          <li><span>07</span>Every major silhouette depicts a named artifact, route, state, or scope boundary</li>
+          <li><span>08</span>No orbital mesh, empty contour, or decorative wireframe survives review</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="lab-footer">
+      <p>Operational Blueprint / Illustration QA</p>
+      <a href="../../docs/design.md">Design system direction</a>
+    </footer>
+  </body>
+</html>

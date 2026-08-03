@@ -1,0 +1,13 @@
+.vercel
+.env*
+
+website/.git
+website/.vercel
+website/.next
+website/node_modules
+website/.env*
+website/coverage
+website/out
+website/build
+website/*.tsbuildinfo
+website/next-env.d.ts

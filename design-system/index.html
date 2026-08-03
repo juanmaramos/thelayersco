@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Live design-system preview for an AI-native workflow transformation and implementation partner."
+    />
+    <title>Operational Blueprint - Design System Preview</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2311161c'/%3E%3Cpath d='M7 10l9-5 9 5-9 5z' fill='%233975ff'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Instrument+Sans:wdth,wght@75..100,400..700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=6" />
+    <script src="./script.js?v=3" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to the design preview</a>
+    <div class="blueprint-overlay" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Operational Blueprint preview home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M6 9.5 16 4l10 5.5L16 15 6 9.5Z" />
+          <path d="m6 14 10 5.5L26 14" />
+          <path d="m6 18.5 10 5.5 10-5.5" />
+          <path d="m6 23 10 5.5L26 23" />
+        </svg>
+        <span class="brand-copy">
+          <span>Operational</span>
+          <span>Blueprint</span>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Preview sections">
+        <a href="#reference">Direction</a>
+        <a href="#foundations">Foundations</a>
+        <a href="#language">Illustrations</a>
+        <a href="#components">Components</a>
+      </nav>
+
+      <div class="header-actions">
+        <span class="draft-status"><i aria-hidden="true"></i> Direction / 04</span>
+        <button
+          class="grid-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="Show blueprint grid"
+        >
+          <svg viewBox="0 0 18 18" aria-hidden="true">
+            <path d="M1 6h16M1 12h16M6 1v16M12 1v16" />
+          </svg>
+          <span>Grid</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy reveal" style="--order: 0">
+          <p class="eyebrow"><span>Workflow transformation</span><span>Design direction / 01</span></p>
+          <h1 id="hero-title">Reduce the work <span class="text-line">around the work.</span></h1>
+          <p class="hero-lead">
+            We redesign complex business workflows and build the production systems required to
+            improve capacity, consistency, and cycle time.
+          </p>
+          <p class="focus-line">
+            Initial focus: People and Workforce operations and professional-services delivery.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary button-cta" href="#review">
+              Review the direction
+              <svg viewBox="0 0 18 18" aria-hidden="true">
+                <path d="M3 9h11M10 5l4 4-4 4" />
+              </svg>
+            </a>
+            <a class="button button-secondary button-cta" href="#language">See the visual language</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" style="--order: 1">
+          <div class="visual-meta" aria-hidden="true">
+            <span>One workflow</span>
+            <span>Human-controlled</span>
+            <span>Measured result</span>
+          </div>
+
+          <div class="hero-workflow">
+            <svg class="hero-diagram" viewBox="0 0 640 390" fill="none" aria-hidden="true">
+              <g class="diagram-context" vector-effect="non-scaling-stroke">
+                <path d="M24 195h592" />
+                <path d="M190 44v302M430 44v302" />
+              </g>
+
+              <g class="diagram-secondary" vector-effect="non-scaling-stroke">
+                <rect class="diagram-node" x="44" y="48" width="128" height="72" rx="8" />
+                <path d="M62 70h44M62 88h88M62 104h68" />
+                <rect class="diagram-node" x="44" y="159" width="128" height="72" rx="8" />
+                <path d="M62 181h88M62 199h56M62 215h76" />
+                <rect class="diagram-node" x="44" y="270" width="128" height="72" rx="8" />
+                <path d="M62 292h62M62 310h88M62 326h48" />
+                <path d="M172 84 238 176M172 195h58M172 306l66-92" />
+              </g>
+
+              <g class="module-stack" vector-effect="non-scaling-stroke">
+                <path class="module-side" d="m230 195 92 51 92-51v52l-92 51-92-51v-52Z" />
+                <path class="module-top" d="m230 195 92-51 92 51-92 51-92-51Z" />
+                <path class="module-layer" d="m230 221 92 51 92-51" />
+                <path class="module-layer" d="m230 247 92 51 92-51" />
+              </g>
+
+              <g class="diagram-secondary" vector-effect="non-scaling-stroke">
+                <path d="M414 195h44M506 195h18" />
+              </g>
+
+              <g class="review-node" vector-effect="non-scaling-stroke">
+                <circle class="review-shell" cx="482" cy="195" r="24" />
+                <circle class="human-fill" cx="482" cy="195" r="7" />
+                <path d="m477 195 3 3 7-8" />
+              </g>
+
+              <g class="diagram-pending" vector-effect="non-scaling-stroke">
+                <path d="M482 219v82" />
+                <path class="terminal-cross" d="m474 309 16-16m-16 0 16 16" />
+              </g>
+
+              <g class="output-module" vector-effect="non-scaling-stroke">
+                <path class="module-side" d="m524 166 48 27 48-27v64l-48 27-48-27v-64Z" />
+                <path class="module-top output-top" d="m524 166 48-27 48 27-48 27-48-27Z" />
+                <rect class="signal-fill" x="565" y="158" width="14" height="14" rx="3" />
+              </g>
+
+              <g class="diagram-measure" vector-effect="non-scaling-stroke">
+                <path d="M524 294h88M524 315h62" />
+                <circle class="signal-fill" cx="612" cy="315" r="4" />
+              </g>
+            </svg>
+
+            <div class="hero-trace" aria-hidden="true">
+              <p class="system-label">Operational trace / illustrative</p>
+              <pre><code>ILLUSTRATIVE_TRACE
+├─ SOURCE ........ <span class="trace-active">EVIDENCE</span>
+├─ METHOD ........ <span class="trace-active">CODIFIED</span>
+├─ EXCEPTION ..... <span class="trace-review">REVIEW</span>
+└─ OUTPUT ........ <span class="trace-approved">APPROVED</span></code></pre>
+            </div>
+          </div>
+
+          <div class="visual-caption">
+            <span>Inputs</span>
+            <span>Codified workflow</span>
+            <span>Expert review</span>
+            <span>Approved output</span>
+          </div>
+        </div>
+
+        <div class="hero-index" aria-hidden="true">
+          <span>01</span>
+          <span>/</span>
+          <span>Direction</span>
+        </div>
+      </section>
+
+      <section class="principle-rail" aria-label="Design principles">
+        <p><span>01</span> Outcome first</p>
+        <p><span>02</span> Workflow second</p>
+        <p><span>03</span> Technology third</p>
+        <p><span>04</span> Evidence throughout</p>
+      </section>
+
+      <section class="direction-reference" id="reference" aria-labelledby="reference-title">
+        <div class="reference-copy">
+          <p class="section-index">00 / Reference synthesis</p>
+          <h2 id="reference-title">Editorial restraint. <span class="text-line">Operational evidence.</span></h2>
+          <p>
+            Tempo informs the scale, whitespace, and direct sequencing. Operational Blueprint makes
+            the content specific: recognizable sources enter a codified method, exceptions remain
+            visible, an expert reviews the decision, and only an approved result leaves.
+          </p>
+          <dl class="reference-rules">
+            <div><dt>Adopt</dt><dd>Negative space, numbered lanes, thin rules, oversized direct type</dd></div>
+            <div><dt>Retain</dt><dd>Named artifacts, explicit routes, semantic blue, human-review ochre</dd></div>
+            <div><dt>Reject</dt><dd>Orbital meshes, empty contours, crypto signals, decorative motion</dd></div>
+          </dl>
+        </div>
+
+        <div class="reference-geometry" aria-hidden="true">
+          <div class="reference-stage-index">
+            <span>01 / Source</span>
+            <span>02 / Codify</span>
+            <span>03 / Review</span>
+            <span>04 / Output</span>
+          </div>
+          <svg viewBox="0 0 720 620" fill="none">
+            <g class="reference-axis" vector-effect="non-scaling-stroke">
+              <path d="M180 84v452M360 84v452M540 84v452" />
+              <path d="M44 310h632" />
+            </g>
+
+            <g class="reference-artifact" vector-effect="non-scaling-stroke">
+              <rect x="58" y="178" width="104" height="136" rx="8" />
+              <path d="M78 204h48M78 226h64M78 248h52" />
+              <rect x="74" y="196" width="104" height="136" rx="8" />
+              <path d="M94 222h56M94 244h64M94 266h42" />
+              <rect class="reference-artifact-focus" x="90" y="214" width="104" height="136" rx="8" />
+              <path d="M110 240h44M110 262h64M110 284h52" />
+            </g>
+
+            <g class="reference-route" vector-effect="non-scaling-stroke">
+              <path d="M194 282h52M414 310h46M508 310h48" />
+            </g>
+
+            <g class="reference-method" vector-effect="non-scaling-stroke">
+              <path class="reference-method-side" d="m246 282 84 46 84-46v70l-84 46-84-46v-70Z" />
+              <path class="reference-method-top" d="m246 282 84-46 84 46-84 46-84-46Z" />
+              <path class="reference-method-layer" d="m246 316 84 46 84-46" />
+              <path class="reference-method-layer" d="m246 350 84 46 84-46" />
+            </g>
+
+            <g class="reference-route" vector-effect="non-scaling-stroke">
+              <circle class="reference-review-shell" cx="484" cy="310" r="24" />
+              <circle class="reference-review" cx="484" cy="310" r="8" />
+              <path d="m479 310 3 3 8-9" />
+              <path class="reference-route-pending" d="M484 334v92" />
+              <path class="reference-terminal" d="m476 434 16-16m-16 0 16 16" />
+            </g>
+
+            <g class="reference-output-module" vector-effect="non-scaling-stroke">
+              <rect x="556" y="236" width="112" height="148" rx="10" />
+              <path d="M576 270h72M576 294h52M576 338h72M576 360h48" />
+              <rect class="reference-output" x="556" y="236" width="112" height="22" rx="6" />
+            </g>
+          </svg>
+          <div class="reference-caption">
+            <span>Documents + data</span>
+            <span>Rules + method</span>
+            <span>Expert decision</span>
+            <span>Approved result</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="spec-section foundations" id="foundations" aria-labelledby="foundations-title">
+        <div class="section-heading">
+          <p class="section-index">01 / Foundations</p>
+          <div>
+            <h2 id="foundations-title">Quiet materials. <span class="text-line">Explicit signals.</span></h2>
+            <p>
+              The system works in grayscale before color is introduced. Blue indicates an active
+              or selected path. Green confirms success. Ochre marks a human decision.
+            </p>
+          </div>
+        </div>
+
+        <div class="palette-layout">
+          <div class="palette-grid" aria-label="Color token specimens">
+            <button class="swatch swatch-ink" type="button" data-copy="#11161C">
+              <span class="swatch-color"></span>
+              <span class="swatch-name">Ink</span>
+              <code>#11161C</code>
+            </button>
+            <button class="swatch swatch-canvas" type="button" data-copy="#F3F6F8">
+              <span class="swatch-color"></span>
+              <span class="swatch-name">Canvas</span>
+              <code>#F3F6F8</code>
+            </button>
+            <button class="swatch swatch-surface" type="button" data-copy="#FCFDFE">
+              <span class="swatch-color"></span>
+              <span class="swatch-name">Surface</span>
+              <code>#FCFDFE</code>
+            </button>
+            <button class="swatch swatch-line" type="button" data-copy="#D7DEE5">
+              <span class="swatch-color"></span>
+              <span class="swatch-name">Line</span>
+              <code>#D7DEE5</code>
+            </button>
+            <button class="swatch swatch-signal" type="button" data-copy="#3975FF">
+              <span class="swatch-color"></span>
+              <span class="swatch-name">Signal</span>
+              <code>#3975FF</code>
+            </button>
+            <button class="swatch swatch-human" type="button" data-copy="#E8A35D">
+              <span class="swatch-color"></span>
+              <span class="swatch-name">Human review</span>
+              <code>#E8A35D</code>
+            </button>
+          </div>
+
+          <aside class="ratio-note">
+            <p class="system-label">Color ratio</p>
+            <div class="ratio-bar" aria-label="75 percent neutral, 20 percent ink, 5 percent signal">
+              <span class="ratio-neutral"></span>
+              <span class="ratio-ink"></span>
+              <span class="ratio-signal"></span>
+            </div>
+            <dl>
+              <div><dt>75%</dt><dd>Canvas and surface</dd></div>
+              <div><dt>20%</dt><dd>Ink and linework</dd></div>
+              <div><dt>05%</dt><dd>Signals and review</dd></div>
+            </dl>
+          </aside>
+        </div>
+
+        <p class="copy-feedback" role="status" aria-live="polite"></p>
+
+        <div class="type-specimens">
+          <article class="type-display">
+            <p class="system-label">Instrument Serif / Display</p>
+            <p class="display-sample">One workflow.<br />One measurable result.</p>
+            <p class="type-note">Weight 400 / Optical tracking -3%</p>
+          </article>
+          <article class="type-body">
+            <p class="system-label">Instrument Sans / Body</p>
+            <p class="body-sample">
+              Expensive experts should spend their time on judgment, not repeatedly preparing
+              data, moving information between systems, and rebuilding the same first draft.
+            </p>
+            <p class="type-note">16 / 24 / Maximum 68 characters</p>
+          </article>
+          <article class="type-mono">
+            <p class="system-label">IBM Plex Mono / Operational</p>
+            <div class="mono-lines">
+              <p><span>WORKFLOW</span><strong>Employee case preparation</strong></p>
+              <p><span>STATE</span><strong class="status-active">Validated</strong></p>
+              <p><span>OWNER</span><strong>HR Operations</strong></p>
+              <p><span>REVIEW</span><strong>Required</strong></p>
+            </div>
+          </article>
+        </div>
+
+        <div class="shape-specimens">
+          <div class="shape-copy">
+            <p class="system-label">Shape language</p>
+            <h3>Square frames hold the system. <span class="text-line">Rounded modules move through it.</span></h3>
+          </div>
+          <div class="radius-row" aria-label="Radius specimens">
+            <div class="radius-item radius-frame"><span>00</span><code>Frame</code></div>
+            <div class="radius-item radius-control"><span>08</span><code>Control</code></div>
+            <div class="radius-item radius-cta"><span>04</span><code>Large CTA</code></div>
+            <div class="radius-item radius-module"><span>18</span><code>Module</code></div>
+            <div class="radius-item radius-hero"><span>28</span><code>Artifact</code></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="spec-section language" id="language" aria-labelledby="language-title">
+        <div class="section-heading">
+          <p class="section-index">02 / Illustration language</p>
+          <div>
+            <h2 id="language-title">Diagrams that explain <span class="text-line">how work changes.</span></h2>
+            <p>
+              Each image carries one operational idea. The focal point is strong; context recedes;
+              accent color is evidence, not decoration.
+            </p>
+          </div>
+        </div>
+
+        <div class="capability-grid">
+          <article class="capability-card">
+            <p class="card-label"><i class="signal-square" aria-hidden="true"></i> Workflow baseline</p>
+            <div class="card-art">
+              <svg viewBox="0 0 320 208" fill="none" aria-hidden="true">
+                <g vector-effect="non-scaling-stroke">
+                  <path class="art-context" d="M30 42h64M30 104h64M30 166h64" />
+                  <rect class="art-secondary" x="30" y="25" width="64" height="34" rx="9" />
+                  <rect class="art-secondary" x="30" y="87" width="64" height="34" rx="9" />
+                  <rect class="art-secondary" x="30" y="149" width="64" height="34" rx="9" />
+                  <path class="art-context" d="m94 42 82 62M94 104h82M94 166l82-62" />
+                  <path class="art-secondary dashed" d="M176 104h72" />
+                  <circle class="art-primary" cx="260" cy="104" r="22" />
+                  <circle class="signal-fill" cx="260" cy="104" r="6" />
+                  <path class="art-measure" d="M238 148h44M248 162h24" />
+                </g>
+              </svg>
+            </div>
+            <h3>Establish how the workflow performs today</h3>
+            <p class="card-description">Map volume, effort, cycle time, quality constraints, and human decisions.</p>
+            <a class="text-link" href="#workflow-demo">Review baseline <span aria-hidden="true">-></span></a>
+          </article>
+
+          <article class="capability-card">
+            <p class="card-label"><i class="signal-square" aria-hidden="true"></i> Representative validation</p>
+            <div class="card-art">
+              <svg viewBox="0 0 320 208" fill="none" aria-hidden="true">
+                <g vector-effect="non-scaling-stroke">
+                  <path class="art-context" d="M30 38 150 96M30 71l120 33M30 104h120M30 137l120-33M30 170l120-58" />
+                  <path class="art-secondary dashed" d="M30 71l120 33M30 137l120-33" />
+                  <circle class="art-primary" cx="166" cy="104" r="25" />
+                  <circle class="art-secondary" cx="166" cy="104" r="15" />
+                  <circle class="signal-fill" cx="166" cy="104" r="6" />
+                  <path class="art-primary" d="M191 104h92" />
+                  <path class="art-secondary" d="m232 104 31-31M232 104l31 31" />
+                  <circle class="human-fill" cx="267" cy="69" r="6" />
+                  <circle class="signal-fill" cx="267" cy="139" r="6" />
+                </g>
+              </svg>
+            </div>
+            <h3>Test the critical assumptions before production</h3>
+            <p class="card-description">Use representative data, explicit quality criteria, and visible failure cases.</p>
+            <a class="text-link" href="#workflow-demo">Review validation <span aria-hidden="true">-></span></a>
+          </article>
+
+          <article class="capability-card">
+            <p class="card-label"><i class="signal-square" aria-hidden="true"></i> Production implementation</p>
+            <div class="card-art">
+              <svg viewBox="0 0 320 208" fill="none" aria-hidden="true">
+                <g vector-effect="non-scaling-stroke">
+                  <g class="tile tile-a"><path class="tile-side" d="m32 72 42 23 42-23v12L74 107 32 84V72Z" /><path class="tile-top" d="m32 72 42-23 42 23-42 23-42-23Z" /></g>
+                  <g class="tile tile-b"><path class="tile-side" d="m204 72 42 23 42-23v12l-42 23-42-23V72Z" /><path class="tile-top" d="m204 72 42-23 42 23-42 23-42-23Z" /></g>
+                  <g class="tile tile-c"><path class="tile-side" d="m32 142 42 23 42-23v12l-42 23-42-23v-12Z" /><path class="tile-top" d="m32 142 42-23 42 23-42 23-42-23Z" /></g>
+                  <g class="tile tile-d"><path class="tile-side" d="m204 142 42 23 42-23v12l-42 23-42-23v-12Z" /><path class="tile-top" d="m204 142 42-23 42 23-42 23-42-23Z" /></g>
+                  <path class="art-context" d="M116 72h34M170 72h34M116 142h34M170 142h34" />
+                  <g class="central-tile"><path class="central-side" d="m124 78 36 20 36-20v55l-36 20-36-20V78Z" /><path class="central-top" d="m124 78 36-20 36 20-36 20-36-20Z" /><rect class="signal-fill" x="154" y="72" width="12" height="12" rx="3" /></g>
+                </g>
+              </svg>
+            </div>
+            <h3>Build the workflow around existing systems</h3>
+            <p class="card-description">Combine deterministic logic, applied AI, integration, review, and audit.</p>
+            <a class="text-link" href="#workflow-demo">Review implementation <span aria-hidden="true">-></span></a>
+          </article>
+
+          <article class="capability-card">
+            <p class="card-label"><i class="signal-square" aria-hidden="true"></i> Measured improvement</p>
+            <div class="card-art">
+              <svg viewBox="0 0 320 208" fill="none" aria-hidden="true">
+                <g vector-effect="non-scaling-stroke">
+                  <path class="art-context" d="M24 104h272" />
+                  <path class="art-secondary" d="M28 104C47 28 66 28 85 104s38 76 57 0 38-76 57 0" />
+                  <path class="art-secondary dashed" d="M199 104c19 76 38 76 57 0s38-76 57 0" />
+                  <circle class="art-primary" cx="57" cy="55" r="4" />
+                  <circle class="art-primary" cx="114" cy="153" r="4" />
+                  <circle class="signal-fill" cx="171" cy="55" r="6" />
+                  <circle class="art-primary" cx="228" cy="153" r="4" />
+                  <path class="art-measure" d="M151 26h40M171 26v18" />
+                </g>
+              </svg>
+            </div>
+            <h3>Measure the result and improve the loop</h3>
+            <p class="card-description">Track active effort, cycle time, exceptions, quality, adoption, and rework.</p>
+            <a class="text-link" href="#workflow-demo">Review improvement <span aria-hidden="true">-></span></a>
+          </article>
+        </div>
+
+        <div class="line-key" aria-label="Diagram line legend">
+          <p><i class="line-solid" aria-hidden="true"></i><span>Running or verified</span></p>
+          <p><i class="line-dashed" aria-hidden="true"></i><span>Proposed or pending</span></p>
+          <p><i class="node-signal" aria-hidden="true"></i><span>Active or measured</span></p>
+          <p><i class="node-human" aria-hidden="true"></i><span>Human review</span></p>
+        </div>
+      </section>
+
+      <section class="workflow-demo" id="workflow-demo" aria-labelledby="workflow-title">
+        <div class="workflow-intro">
+          <p class="section-index">03 / Evidence pattern</p>
+          <h2 id="workflow-title">Show the work, <span class="text-line">including the exception.</span></h2>
+          <p>
+            Product proof should expose the operating chain: source, structured evidence, proposed
+            output, human review, and approved result.
+          </p>
+          <div class="proof-tags" aria-label="Evidence pattern attributes">
+            <span>Representative data</span>
+            <span>Visible confidence</span>
+            <span>Human control</span>
+            <span>Audit trail</span>
+          </div>
+        </div>
+
+        <div class="evidence-frame">
+          <div class="frame-toolbar">
+            <div>
+              <span class="window-mark" aria-hidden="true"></span>
+              <span>Case preparation / 0148</span>
+            </div>
+            <span class="frame-status"><i aria-hidden="true"></i> Review required</span>
+          </div>
+
+          <div class="evidence-layout">
+            <aside class="source-rail" aria-label="Source evidence">
+              <p class="system-label">Source evidence</p>
+              <ol>
+                <li class="source-active"><span>01</span><strong>Employee request</strong><small>Received 09:14</small></li>
+                <li><span>02</span><strong>Policy library</strong><small>3 relevant sections</small></li>
+                <li><span>03</span><strong>Worker record</strong><small>Verified</small></li>
+                <li><span>04</span><strong>Prior cases</strong><small>12 comparable</small></li>
+              </ol>
+            </aside>
+
+            <div class="decision-pane">
+              <div class="pane-heading">
+                <div>
+                  <p class="system-label">Proposed case preparation</p>
+                  <h3>Flexible-working request</h3>
+                </div>
+                <div class="confidence">
+                  <span>Confidence</span>
+                  <strong>0.82</strong>
+                </div>
+              </div>
+
+              <dl class="case-fields">
+                <div><dt>Request type</dt><dd>Change to working pattern</dd></div>
+                <div><dt>Applicable policy</dt><dd>Flexible Work / Section 4.2</dd></div>
+                <div><dt>Required evidence</dt><dd>Manager capacity assessment</dd></div>
+                <div class="field-exception"><dt>Exception</dt><dd>Effective date precedes standard notice period</dd></div>
+              </dl>
+
+              <div class="evidence-quote">
+                <p class="system-label">Linked evidence / Policy 4.2.3</p>
+                <blockquote>
+                  Requests inside the standard notice period require an explicit operational-impact
+                  review before approval.
+                </blockquote>
+              </div>
+
+              <div class="review-action">
+                <div>
+                  <span class="human-dot" aria-hidden="true"></span>
+                  <p><strong>Expert decision required</strong><small>Confirm whether an exception is justified.</small></p>
+                </div>
+                <div class="review-buttons">
+                  <button class="button button-secondary button-compact" type="button">Return for evidence</button>
+                  <button class="button button-primary button-compact" type="button">Approve preparation</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="spec-section components" id="components" aria-labelledby="components-title">
+        <div class="section-heading">
+          <p class="section-index">04 / Components</p>
+          <div>
+            <h2 id="components-title">Controls with a clear <span class="text-line">job to do.</span></h2>
+            <p>
+              Components stay quiet until they communicate priority, state, evidence, or the next
+              accountable action.
+            </p>
+          </div>
+        </div>
+
+        <div class="component-board">
+          <section class="component-group" aria-labelledby="buttons-title">
+            <div class="component-heading">
+              <h3 id="buttons-title">Actions</h3>
+              <span>4 states</span>
+            </div>
+            <div class="button-specimens">
+              <button class="button button-primary" type="button">Discuss a workflow</button>
+              <button class="button button-secondary" type="button">See example workflows</button>
+              <button class="button button-ghost" type="button">Read the method <span aria-hidden="true">-></span></button>
+              <button class="button button-secondary" type="button" disabled>Validation complete</button>
+            </div>
+          </section>
+
+          <section class="component-group" aria-labelledby="status-title">
+            <div class="component-heading">
+              <h3 id="status-title">State and control</h3>
+              <span>Shape + color + text</span>
+            </div>
+            <div class="status-specimens">
+              <span class="status-chip status-verified"><i aria-hidden="true"></i> Verified</span>
+              <span class="status-chip status-review"><i aria-hidden="true"></i> Human review</span>
+              <span class="status-chip status-pending"><i aria-hidden="true"></i> Proposed</span>
+              <span class="status-chip status-exception"><i aria-hidden="true"></i> Exception</span>
+            </div>
+          </section>
+
+          <section class="component-group form-specimen" aria-labelledby="form-title">
+            <div class="component-heading">
+              <h3 id="form-title">Workflow qualification</h3>
+              <span>Visible label</span>
+            </div>
+            <label for="workflow-name">Which workflow consumes too much expert time?</label>
+            <div class="input-row">
+              <input id="workflow-name" type="text" placeholder="Example: Employee case preparation" />
+              <button class="button button-primary" type="button">Assess the workflow</button>
+            </div>
+            <p class="field-help">Name one recurring process with a clear owner and measurable operating problem.</p>
+          </section>
+
+          <section class="component-group metric-specimen" aria-labelledby="metric-title">
+            <div class="component-heading">
+              <h3 id="metric-title">Measurement</h3>
+              <span>Baseline before claim</span>
+            </div>
+            <div class="metric-row">
+              <div><span>Current cycle</span><strong>8.4 days</strong></div>
+              <div><span>Active effort</span><strong>3.6 hours</strong></div>
+              <div><span>Review rate</span><strong>100%</strong></div>
+            </div>
+            <p class="metric-note"><i aria-hidden="true"></i> Target values remain unset until representative validation.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="practices" aria-labelledby="practices-title">
+        <div class="practices-heading">
+          <p class="section-index">05 / Practice boundary</p>
+          <h2 id="practices-title">One capability. <span class="text-line">Two places to begin.</span></h2>
+        </div>
+
+        <div class="practice-columns">
+          <article class="practice practice-primary">
+            <div class="practice-meta"><span>01</span><span>60-70% launch weight</span></div>
+            <h3>People and <span class="text-line">Workforce</span></h3>
+            <p>
+              Improve high-friction work across HR operations, workforce transformation, employee
+              services, workforce data, rewards, talent operations, and HR service delivery.
+            </p>
+            <ul>
+              <li>Employee-service intake and case preparation</li>
+              <li>Job, role, and skills transformation</li>
+              <li>Workforce-data preparation</li>
+              <li>Policy and approval workflows</li>
+            </ul>
+          </article>
+
+          <article class="practice">
+            <div class="practice-meta"><span>02</span><span>30-40% launch weight</span></div>
+            <h3>Professional-Services <span class="text-line">Delivery</span></h3>
+            <p>
+              Convert repeatable expert methodologies into governed workflows that reduce
+              preparation, coordination, first-pass production, and review effort.
+            </p>
+            <ul>
+              <li>Methodology execution</li>
+              <li>Document and evidence analysis</li>
+              <li>Client deliverable generation</li>
+              <li>Quality review and approval</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="review-section" id="review" aria-labelledby="review-title">
+        <p class="section-index">06 / Approval gate</p>
+        <div class="review-layout">
+          <div>
+            <h2 id="review-title">Pin down the system <span class="text-line">before the product.</span></h2>
+            <p>
+              This preview is deliberately opinionated. Review the foundation before application
+              screens create accidental conventions.
+            </p>
+          </div>
+          <ol class="review-list">
+            <li><span>01</span><p><strong>Overall tone</strong><small>Senior, operational, and differentiated?</small></p></li>
+            <li><span>02</span><p><strong>Typography</strong><small>Distinctive enough without becoming fashionable?</small></p></li>
+            <li><span>03</span><p><strong>Palette</strong><small>Mineral blue ownable without becoming generic?</small></p></li>
+            <li><span>04</span><p><strong>Shape</strong><small>Correct tension between frames and modules?</small></p></li>
+            <li><span>05</span><p><strong>Illustration</strong><small>Explains work rather than decorating AI?</small></p></li>
+            <li><span>06</span><p><strong>Density</strong><small>Enough whitespace for an enterprise audience?</small></p></li>
+            <li><span>07</span><p><strong>Editorial restraint</strong><small>Tempo-like scale and sequencing without abstract geometry or borrowed category identity?</small></p></li>
+            <li><span>08</span><p><strong>Notation</strong><small>One readable trace supporting a recognizable workflow rather than decorative terminal texture?</small></p></li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-mark">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M6 9.5 16 4l10 5.5L16 15 6 9.5Z" />
+          <path d="m6 14 10 5.5L26 14" />
+          <path d="m6 18.5 10 5.5 10-5.5" />
+          <path d="m6 23 10 5.5L26 23" />
+        </svg>
+        <p>Operational Blueprint<br /><span>Design preview / Direction 03</span></p>
+      </div>
+      <p class="footer-note">One workflow. One baseline. One measurable result.</p>
+      <p class="footer-date">July 2026</p>
+    </footer>
+  </body>
+</html>

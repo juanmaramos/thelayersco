@@ -1,0 +1,155 @@
+:root {
+  color-scheme: light;
+
+  /* Brand primitives */
+  --ink: #11161c;
+  --ink-soft: #293039;
+  --text-muted: #5d6874;
+  --text-faint: #87919b;
+  --canvas: #f3f6f8;
+  --surface: #fcfdfe;
+  --surface-muted: #eaf0f4;
+  --line: #d7dee5;
+  --line-strong: #9daab7;
+  --signal: #3975ff;
+  --signal-strong: #1754d1;
+  --signal-soft: #e5ecff;
+  --human: #e8a35d;
+  --error: #bf504f;
+  --success: #277c55;
+  --on-ink: #f4f7fa;
+  --on-ink-muted: #aeb8c3;
+  --ink-surface: #1a222b;
+  --ink-line: #35414d;
+
+  --chart-1: #dbe7ff;
+  --chart-2: #8faeff;
+  --chart-3: #3975ff;
+  --chart-4: #1754d1;
+  --chart-5: #0d327f;
+
+  /* shadcn semantic roles */
+  --background: var(--surface);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--on-ink);
+  --secondary: var(--surface-muted);
+  --secondary-foreground: var(--ink-soft);
+  --muted: var(--surface-muted);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--signal-soft);
+  --accent-foreground: var(--signal-strong);
+  --destructive: var(--error);
+  --destructive-foreground: var(--on-ink);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--signal-strong);
+  --sidebar: var(--canvas);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--on-ink);
+  --sidebar-accent: var(--signal-soft);
+  --sidebar-accent-foreground: var(--signal-strong);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--signal-strong);
+
+  /* Typography */
+  --font-sans: "Instrument Sans Variable", "Instrument Sans", "Avenir Next", sans-serif;
+  --font-display: var(--font-sans);
+  --font-heading: var(--font-sans);
+  --font-serif: "Instrument Serif", "Times New Roman", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", ui-monospace, monospace;
+  --font-operational: var(--font-mono);
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-body: 1rem;
+  --text-lead: clamp(1.125rem, 1.6vw, 1.25rem);
+  --text-card: 1.25rem;
+  --text-section: clamp(2.5rem, 5.5vw, 5rem);
+  --text-display: clamp(3.5rem, 8vw, 7rem);
+
+  /* Four-pixel spatial scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-28: 7rem;
+  --space-32: 8rem;
+  --space-40: 10rem;
+  --space-48: 12rem;
+
+  /* Layout */
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --content: 77.5rem;
+  --breakpoint-sm: 46rem;
+  --breakpoint-md: 62rem;
+  --breakpoint-lg: 74rem;
+
+  /* Shape */
+  --radius-frame: 0;
+  --radius-xs: 0.25rem;
+  --radius-control: 0.5rem;
+  --radius-cta: 0.25rem;
+  --radius-module: 1.125rem;
+  --radius-artifact: 1.75rem;
+  --radius-pill: 999px;
+  --radius: var(--radius-control);
+
+  /* Control heights */
+  --control-xs: 1.75rem;
+  --control-sm: 2.25rem;
+  --control-default: 2.5rem;
+  --control-lg: 2.75rem;
+  --control-cta: 3rem;
+
+  /* Motion and elevation */
+  --duration-fast: 120ms;
+  --duration-state: 220ms;
+  --duration-layout: 480ms;
+  --duration-enter: 700ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-shift: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-lifted: 0 1.5rem 3.5rem -2rem rgb(18 24 22 / 34%);
+}
+
+@supports (color: oklch(50% 0.1 255)) {
+  :root {
+    --ink: oklch(18% 0.017 255);
+    --ink-soft: oklch(29% 0.02 255);
+    --text-muted: oklch(50% 0.025 255);
+    --text-faint: oklch(65% 0.02 255);
+    --canvas: oklch(96.5% 0.008 255);
+    --surface: oklch(99.3% 0.004 255);
+    --surface-muted: oklch(94% 0.014 255);
+    --line: oklch(88.5% 0.016 255);
+    --line-strong: oklch(71% 0.03 255);
+    --signal: oklch(62% 0.2 262);
+    --signal-strong: oklch(49% 0.18 259);
+    --signal-soft: oklch(94% 0.04 255);
+    --human: oklch(76% 0.13 68);
+    --error: oklch(54% 0.14 27);
+    --success: oklch(50% 0.1 154);
+    --on-ink: oklch(97% 0.008 255);
+    --on-ink-muted: oklch(76% 0.025 255);
+    --ink-surface: oklch(24% 0.018 255);
+    --ink-line: oklch(34% 0.025 255);
+    --chart-1: oklch(90% 0.055 255);
+    --chart-2: oklch(75% 0.125 258);
+    --chart-3: var(--signal);
+    --chart-4: var(--signal-strong);
+    --chart-5: oklch(35% 0.13 260);
+  }
+}
