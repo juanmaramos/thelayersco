@@ -28,3 +28,10 @@ npm run dev
 
 See [`website/README.md`](./website/README.md) for configuration, verification,
 and release instructions.
+
+## Deployment
+
+Vercel is connected to this GitHub repository with `website/` as the project
+root and monorepo source inclusion enabled for `design-system/`. Pull requests
+receive preview deployments; merges to `main` deploy to production
+automatically. Dashboard redeploys are not part of the release path.
