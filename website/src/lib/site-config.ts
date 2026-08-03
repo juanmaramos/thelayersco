@@ -70,7 +70,7 @@ const emailDeliveryReady = Boolean(
 export const siteConfig = {
   companyName: configuredCompanyName ?? "Layers",
   companyNameIsFallback: configuredCompanyName === null,
-  publicLocation: "Sheridan, Wyoming, United States",
+  publicLocation: "Working from Miami, Madrid and Dubai.",
   contactEmail: readValue(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
   formEndpoint:
     configuredFormEndpoint ?? (emailDeliveryReady ? "/api/contact" : null),
