@@ -35,7 +35,7 @@ export function SiteHeader({
   brandHref = "/",
   companyName,
   navItems = defaultNavItems,
-  ctaLabel = "Discuss your workflow",
+  ctaLabel = "Discuss one workflow",
   ctaHref = "#discuss",
 }: SiteHeaderProps) {
   const pathname = usePathname()

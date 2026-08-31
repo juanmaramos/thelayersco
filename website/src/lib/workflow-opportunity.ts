@@ -1,9 +1,9 @@
 export const WORKING_WEEKS_PER_YEAR = 46
 export const HOURS_PER_WORKWEEK = 40
 export const CAPACITY_RETURN_SCENARIOS = [
-  { label: "Conservative", percent: 35 },
-  { label: "Expected", percent: 50 },
-  { label: "Optimistic", percent: 65 },
+  { label: "Cautious", percent: 35 },
+  { label: "Planning", percent: 50 },
+  { label: "Stretch", percent: 65 },
 ] as const
 
 export type CapacityReturnPercent =

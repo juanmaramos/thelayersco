@@ -317,9 +317,9 @@ export function WorkflowOpportunityCalculator({
           </Field>
 
           <FieldSet>
-            <FieldLegend variant="label">Capacity return assumption</FieldLegend>
+            <FieldLegend variant="label">Illustrative capacity scenarios</FieldLegend>
             <ToggleGroup
-              aria-label="Capacity return assumption"
+              aria-label="Illustrative capacity scenario"
               className="w-full"
               onValueChange={handleCapacityReturnChange}
               spacing={1}
@@ -340,7 +340,8 @@ export function WorkflowOpportunityCalculator({
               ))}
             </ToggleGroup>
             <FieldDescription>
-              How much repeat effort the redesigned workflow could return.
+              Choose a scenario to explore the opportunity. These are not
+              Layers benchmarks, forecasts, or guaranteed results.
             </FieldDescription>
           </FieldSet>
         </FieldGroup>
@@ -387,7 +388,7 @@ export function WorkflowOpportunityCalculator({
             This estimates capacity, not guaranteed cash or headcount savings. It excludes implementation and model costs.
           </p>
           <p className="mt-3 max-w-[54ch] text-xs leading-5 text-on-ink">
-            This uses the {selectedScenario.label.toLowerCase()} assumption: {capacityReturnPercent}% of repeat effort returned for a suitable workflow redesigned end to end. The real number is validated against your work.
+            This uses the {selectedScenario.label.toLowerCase()} scenario: {capacityReturnPercent}% of repeat effort returned for a suitable workflow redesigned end to end. We validate the real result against your workflow.
           </p>
           <p className="mt-3 font-mono text-[0.6875rem] leading-5 tracking-[0.04em] text-on-ink uppercase">
             Method: {people} people × {hoursPerPersonPerWeek}/{HOURS_PER_WORKWEEK} of a workweek × {currencyFormatter.format(annualEmploymentCost)} annual cost × {capacityReturnPercent}% · Hours use {WORKING_WEEKS_PER_YEAR} working weeks

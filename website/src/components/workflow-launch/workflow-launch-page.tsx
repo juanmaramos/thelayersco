@@ -85,6 +85,8 @@ const deliverables = [
   "Only the system connections the workflow needs",
   "Representative test cases and acceptance criteria",
   "Human review and escalation rules",
+  "Decision log, source ownership, and freshness expectations",
+  "Release history and a named internal maintainer",
   "Versioned documentation and operating instructions",
 ] as const
 
@@ -122,9 +124,9 @@ const faqItems = [
       "No—not by default. We build inside the tools your team has approved and connect only the files, systems, and actions the workflow needs. We recommend a new application only when the existing environment cannot run the work reliably.",
   },
   {
-    question: "Can this really launch in 2–4 weeks?",
+    question: "How quickly can a first version be tested?",
     answer:
-      "A bounded first workflow can reach a tested working version in 2–4 weeks when the owner, representative inputs, and approved environment are ready. Security reviews, new integrations, or missing data extend the schedule. We confirm those dependencies before agreeing the launch plan.",
+      "A first version can be tested in as little as two weeks. Timing depends on the workflow, data, integrations, and approvals.",
   },
   {
     question: "Is a skill reliable enough for real work?",
@@ -139,12 +141,17 @@ const faqItems = [
   {
     question: "Are we tied to one model?",
     answer:
-      "No. The workflow definition, tests, and deterministic logic stay separate from the model wherever the approved environment supports it. Switching platforms can require an updated platform-specific package, but not a redesign of the operating method.",
+      "No. Run it in Amplio or your approved AI environment. Important instructions, tests, decision rules, and data boundaries stay documented so they can move where the target environment supports them.",
   },
   {
     question: "Who owns the skills, plugins, and code?",
     answer:
-      "You own the client-specific skills, plugins, configurations, source code, tests, and documentation we create and hand over. Third-party platforms and open-source components remain governed by their existing terms and licenses.",
+      "You own the client-specific package: skills, plugins, configurations, source code, tests, decision log, release history, and documentation. A named internal maintainer owns the operating handover. Third-party platforms and open-source components remain governed by their existing terms and licenses.",
+  },
+  {
+    question: "How do you work with IT, security, and compliance?",
+    answer:
+      "The business owner remains accountable for the workflow. With your technical teams, we agree the data boundary, access, controls, and risk review before production. The scrutiny matches the risk.",
   },
 ] as const
 
@@ -168,7 +175,7 @@ export function WorkflowLaunchPage({
         <div className="section-shell grid gap-12 py-16 sm:py-20 md:grid-cols-12 md:gap-6 lg:py-28">
           <div className="md:col-span-8">
             <p className="operational-label text-signal-strong">
-              Skills and plugins for high-value work
+              Workflow Launch by Layers
             </p>
             <h1 className="mt-7 max-w-[11ch] font-editorial text-[clamp(3.75rem,7.7vw,7rem)] leading-[0.88] font-normal tracking-[-0.055em]">
               Turn one repeatable workstream into a working AI skill or plugin.
@@ -182,7 +189,7 @@ export function WorkflowLaunchPage({
               with your experts.
             </p>
             <p className="mt-5 max-w-[38ch] text-base leading-7 text-muted-foreground">
-              Then we build the smallest reliable solution inside the AI
+              Then we build the smallest reliable solution in Amplio or the AI
               environment your team already uses. A dedicated application is
               the next step only when the work requires one.
             </p>
@@ -190,9 +197,8 @@ export function WorkflowLaunchPage({
 
           <div className="border-t border-line-strong pt-6 md:col-span-8">
             <p className="max-w-[54ch] text-sm leading-6 text-muted-foreground">
-              A bounded workstream can reach a tested first version in 2–4
-              weeks when its owner, representative inputs, and approved
-              environment are ready.
+              A first version can be tested in as little as two weeks. Timing
+              depends on the workflow, data, integrations, and approvals.
             </p>
           </div>
 
@@ -203,15 +209,15 @@ export function WorkflowLaunchPage({
               eventProperties={{ location: "workflow_launch_hero" }}
               href="#discuss"
             >
-              Bring us one workstream
+              Discuss one workflow
               <IconArrowNarrowRight data-icon="inline-end" />
             </TrackedAnchor>
           </div>
 
           <div className="border-t border-line pt-5 md:col-span-12">
             <p className="font-mono text-[0.6875rem] leading-5 tracking-[0.05em] text-muted-foreground uppercase">
-              Designed for Claude, ChatGPT, Codex and Gemini, or an approved
-              internal assistant.
+              Run it in Amplio or your approved AI environment. Examples
+              include Claude, ChatGPT Work, Codex, Gemini, and internal assistants.
             </p>
             <PlatformLogoStrip />
           </div>
@@ -237,8 +243,8 @@ export function WorkflowLaunchPage({
               <p className="max-w-[46ch] text-base leading-7 text-on-ink-muted">
                 Process maps rarely show the email threads, spreadsheet fixes,
                 judgment calls, and local workarounds that keep delivery moving.
-                We work alongside the people who run it and follow real cases
-                from request to approved output.
+                We work alongside an internal process champion and the people
+                who run it, following real cases from request to approved output.
               </p>
               <p className="mt-5 max-w-[46ch] text-base leading-7 text-on-ink">
                 The mapping is brief and practical. It shows what should change,
@@ -378,6 +384,11 @@ export function WorkflowLaunchPage({
               <h2 className="mt-6 max-w-[13ch] font-editorial text-[clamp(3rem,5.6vw,5.5rem)] leading-[0.92] font-normal tracking-[-0.045em]">
                 Start where experts rebuild the same output every time.
               </h2>
+              <p className="mt-6 max-w-[58ch] text-base leading-7 text-muted-foreground">
+                A strong first workstream is frequent and painful, has a known
+                output and clear owner, includes representative examples, and
+                can receive a quick human review.
+              </p>
             </div>
           </div>
 
@@ -451,9 +462,9 @@ export function WorkflowLaunchPage({
               </h2>
             </div>
             <p className="max-w-[42ch] self-end text-base leading-7 text-muted-foreground md:col-span-4">
-              We limit the first launch to one named workstream, one owner, and
-              one measurable result, then test it on real cases before
-              expanding.
+              We limit the first launch to one named workstream, one internal
+              process champion, and one measurable result, then test it on real
+              cases before expanding.
             </p>
           </div>
 
@@ -518,7 +529,7 @@ export function WorkflowLaunchPage({
           <div className="flex flex-col justify-between gap-12 border border-ink-line p-6 sm:p-9 md:col-span-5 md:border-r-0 lg:p-12">
             <div>
               <p className="operational-label text-signal">
-                Bring us one workstream
+                Discuss one workflow
               </p>
               <h2 className="mt-6 max-w-[11ch] font-editorial text-[clamp(3rem,5.2vw,5rem)] leading-[0.92] font-normal tracking-[-0.045em]">
                 Show us what your team rebuilds every time.

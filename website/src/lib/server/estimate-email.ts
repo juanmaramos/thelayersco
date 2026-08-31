@@ -46,11 +46,11 @@ export function buildEstimateEmail({
     `Current workflow value: ${currentWorkflowValue}`,
     "",
     `Inputs: ${people} people × ${hoursPerPersonPerWeek} hours per person each week × ${annualEmploymentCost} annual employment cost.`,
-    `Capacity assumption: ${capacityAssumption}.`,
+    `Illustrative capacity scenario: ${capacityAssumption}.`,
     `Method: ${workingWeeksPerYear} working weeks for a suitable recurring workflow redesigned end to end.`,
     "",
     "This estimate shows where to look. The next step is to map the workflow, test the assumptions, and decide whether a skill, plugin, or application is the smallest reliable solution.",
-    ...(talkUrl ? ["", `Talk through your estimate: ${talkUrl}`] : []),
+    ...(talkUrl ? ["", `Discuss one workflow: ${talkUrl}`] : []),
     ...(rerunUrl ? [`Run another estimate: ${rerunUrl}`] : []),
     "",
     "This is a capacity estimate, not guaranteed cash or headcount savings. It excludes implementation and model costs.",
@@ -109,7 +109,7 @@ export function buildEstimateEmail({
                     <td style="padding:20px;">
                       <p style="margin:0 0 8px;font-family:'Courier New',Courier,monospace;font-size:11px;line-height:18px;letter-spacing:1px;text-transform:uppercase;color:#1754d1;">How this was calculated</p>
                       <p style="margin:0 0 8px;font-size:14px;line-height:22px;"><strong>Inputs:</strong> ${people} people × ${hoursPerPersonPerWeek} hours each week × ${escapeHtml(annualEmploymentCost)} annual employment cost.</p>
-                      <p style="margin:0;font-size:14px;line-height:22px;"><strong>Assumption:</strong> ${escapeHtml(capacityAssumption)}. The model uses ${workingWeeksPerYear} working weeks.</p>
+                      <p style="margin:0;font-size:14px;line-height:22px;"><strong>Illustrative scenario:</strong> ${escapeHtml(capacityAssumption)}. The model uses ${workingWeeksPerYear} working weeks.</p>
                     </td>
                   </tr>
                 </table>
@@ -119,7 +119,7 @@ export function buildEstimateEmail({
               <td style="padding:32px;background-color:#e5ecff;border-top:1px solid #c8d2dc;">
                 <p style="margin:0 0 10px;font-family:Georgia,'Times New Roman',serif;font-size:28px;line-height:34px;letter-spacing:-0.6px;">Turn the number into a workflow decision.</p>
                 <p style="margin:0 0 24px;color:#293039;font-size:15px;line-height:24px;">We can map the work, test the assumptions, and identify whether a skill, plugin, or application is the smallest reliable solution.</p>
-                ${talkUrl ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr><td bgcolor="#11161c" style="background-color:#11161c;"><a href="${escapeHtml(talkUrl)}" style="display:inline-block;padding:14px 20px;color:#f4f7fa;font-size:15px;line-height:20px;font-weight:700;text-decoration:none;">Talk through your estimate&nbsp;&nbsp;→</a></td></tr></table>` : ""}
+                ${talkUrl ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr><td bgcolor="#11161c" style="background-color:#11161c;"><a href="${escapeHtml(talkUrl)}" style="display:inline-block;padding:14px 20px;color:#f4f7fa;font-size:15px;line-height:20px;font-weight:700;text-decoration:none;">Discuss one workflow&nbsp;&nbsp;→</a></td></tr></table>` : ""}
                 ${rerunUrl ? `<p style="margin:20px 0 0;font-size:13px;line-height:20px;"><a href="${escapeHtml(rerunUrl)}" style="color:#11161c;text-decoration:underline;">Run another estimate</a></p>` : ""}
               </td>
             </tr>

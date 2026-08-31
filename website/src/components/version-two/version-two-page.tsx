@@ -35,9 +35,9 @@ const outcomes = [
 
 const deliverables = [
   {
-    name: "Your method, built in",
+    name: "Your method, with the context it needs",
     description:
-      "The system follows the rules, exceptions, and standards your experts already use.",
+      "Only the information this workflow needs, with a clear owner and an agreed expectation for keeping it current.",
   },
   {
     name: "AI and software, each with a role",
@@ -47,12 +47,12 @@ const deliverables = [
   {
     name: "A clear before-and-after",
     description:
-      "One scorecard shows how the workflow performs before and after launch.",
+      "Agree the measures that matter: cycle time, quality, errors, rework, expert intervention, satisfaction, and business impact.",
   },
   {
     name: "Your team, ready to run it",
     description:
-      "Your team gets the checks, controls, and documentation needed to run it.",
+      "A named maintainer receives source ownership and freshness expectations, tests, controls, decision log, release history, and operating documentation.",
   },
 ] as const
 
@@ -138,17 +138,17 @@ const faqItems = [
   {
     question: "What do you mean by an AI workflow?",
     answer:
-      "AI is one part of the workflow. It reads documents and prepares work that depends on language or context. Deterministic software handles calculations, permissions, and hard rules. People still make consequential decisions. Depending on where the team works, we may deliver it as an application or through custom Claude and Codex skills and plugins.",
+      "AI is one part of the workflow. It prepares work that depends on language or context, while software handles calculations, permissions, and hard rules. People still make consequential decisions.",
   },
   {
     question: "What is a good first workflow?",
     answer:
-      "Look for work that comes up often, has one clear owner, and produces an output people can judge. You should also be able to see the cost of the current process, whether in time, delay, rework, or capacity.",
+      "Look for work that is frequent and painful, has a known output and clear owner, includes representative examples, and can receive a quick human review.",
   },
   {
     question: "Do we need to replace our existing platforms?",
     answer:
-      "Usually not. We try to work inside your approved environment and connect only what the workflow needs. We confirm that path before production.",
+      "Usually not. Run the workflow in Amplio or your approved AI environment, and connect only what it needs. Important instructions, tests, decision rules, and data boundaries stay documented so they can move where the target environment supports them.",
   },
   {
     question: "What remains under human control?",
@@ -158,12 +158,17 @@ const faqItems = [
   {
     question: "How do you prove the result?",
     answer:
-      "Before we build, we agree on one unit of work and how to judge it. We use the same scorecard before and after launch.",
+      "Before we build, we agree on the baseline and measures that matter: cycle time, quality, errors, rework, expert intervention, satisfaction, or business impact. We use the same scorecard before and after launch.",
   },
   {
     question: "What happens before production?",
     answer:
       "We measure the current process and test the new one on real examples. Production starts only when the result, quality bar, deployment path, and owner are clear.",
+  },
+  {
+    question: "How do you work with IT, security, and compliance?",
+    answer:
+      "The business owner remains accountable for the workflow. With your technical teams, we agree the data boundary, access, controls, and risk review before production. The scrutiny matches the risk.",
   },
 ] as const
 
@@ -235,20 +240,20 @@ export function VersionTwoPage({
           <div className="grid gap-10 md:grid-cols-12 md:items-end md:gap-6">
             <div className="md:col-span-9">
               <p className="operational-label text-on-ink">
-                AI-native workflow transformation
+                Workflow transformation and implementation
               </p>
               <h1 className="mt-7 max-w-[11ch] font-editorial text-[clamp(3.75rem,8vw,7.25rem)] leading-[0.88] font-normal tracking-[-0.055em]">
                 Turn manual workflows into production systems.
               </h1>
             </div>
             <p className="max-w-[26ch] pb-1 text-lg leading-8 text-on-ink md:col-span-3 md:ml-auto md:bg-ink/90 md:p-5 lg:text-xl lg:leading-9">
-              Move work faster. Give experts more time for judgment.
+              Adding AI to a fragmented workflow does not repair the process underneath it.
             </p>
           </div>
 
           <div className="mt-16 grid gap-8 border-t border-white/55 pt-7 md:grid-cols-12 md:gap-6 lg:mt-24">
             <p className="max-w-[52ch] text-lg leading-8 text-on-ink md:col-span-7 lg:text-xl">
-              We redesign the workflow, build the production system, and show the difference in day-to-day work.
+              We work with an internal process champion and the people who run the work to redesign one workflow, build the production system, and measure the result.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row md:col-span-5 md:justify-end">
               <TrackedAnchor
@@ -257,7 +262,7 @@ export function VersionTwoPage({
                 eventProperties={{ location: "hero" }}
                 href="#discuss"
               >
-                Talk through a workflow
+                Discuss one workflow
                 <IconArrowNarrowRight data-icon="inline-end" />
               </TrackedAnchor>
               <TrackedAnchor
@@ -282,6 +287,56 @@ export function VersionTwoPage({
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      <section className="section-anchor border-b border-line bg-background" id="layers-fit">
+        <div className="section-shell py-20 sm:py-24 lg:py-28">
+          <div className="grid gap-8 md:grid-cols-12 md:gap-6">
+            <p className="operational-label text-signal-strong md:col-span-4">
+              Start with the work
+            </p>
+            <h2 className="max-w-[16ch] text-[clamp(2.75rem,5vw,4.75rem)] leading-[0.96] font-semibold tracking-[-0.05em] md:col-span-8">
+              We redesign your workflow with your team. You run it where it works best.
+            </h2>
+          </div>
+
+          <ol className="mt-12 grid border-t border-l border-line-strong md:grid-cols-3 lg:mt-16">
+            <li className="flex min-h-56 flex-col justify-between border-r border-b border-line-strong p-6 lg:p-8">
+              <span className="font-mono text-xs text-signal-strong">01</span>
+              <div>
+                <h3 className="text-2xl font-semibold tracking-[-0.03em]">
+                  We redesign your workflow with your team.
+                </h3>
+                <p className="mt-4 max-w-[34ch] text-sm leading-6 text-muted-foreground">
+                  Layers works with your process champion and the people who run the work.
+                </p>
+              </div>
+            </li>
+            <li className="flex min-h-56 flex-col justify-between border-r border-b border-line-strong bg-canvas p-6 lg:p-8">
+              <span className="font-mono text-xs text-signal-strong">02</span>
+              <div>
+                <h3 className="text-2xl font-semibold tracking-[-0.03em]">
+                  You run it in your approved AI platform.
+                </h3>
+                <p className="mt-4 max-w-[34ch] text-sm leading-6 text-muted-foreground">
+                  Workflow Launch turns the first workstream into a tested working version for Claude, ChatGPT Work, Codex, Gemini, or your internal assistant.
+                </p>
+              </div>
+            </li>
+            <li className="flex min-h-56 flex-col justify-between border-r border-b border-line-strong p-6 lg:p-8">
+              <span className="font-mono text-xs text-signal-strong">03</span>
+              <div>
+                <h3 className="text-2xl font-semibold tracking-[-0.03em]">
+                  Use Amplio if you need one.
+                </h3>
+                <p className="mt-4 max-w-[34ch] text-sm leading-6 text-muted-foreground">
+                  <a className="font-semibold text-foreground underline decoration-signal-strong underline-offset-4" href="https://ampliohq.com">Amplio</a>{" "}
+                  gives your team a place to run and share AI work.
+                </p>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
 
@@ -392,11 +447,11 @@ export function VersionTwoPage({
 
               <div className="mt-8 border-t border-white/45 pt-5">
                 <p className="font-mono text-[0.6875rem] leading-5 tracking-[0.05em] text-on-ink uppercase">
-                  Designed for your approved AI environment
+                  Run it in Amplio or your approved AI environment
                 </p>
                 <PlatformLogoStrip tone="inverse" />
                 <p className="mt-4 text-sm leading-6 text-on-ink">
-                  Or an approved internal assistant.
+                  Examples include Claude, ChatGPT Work, Codex, Gemini, and internal assistants.
                 </p>
               </div>
             </div>
@@ -425,8 +480,8 @@ export function VersionTwoPage({
 
           <div className="mt-10 flex flex-col items-start justify-between gap-6 border-t border-white/45 pt-7 sm:flex-row sm:items-center">
             <p className="max-w-[62ch] text-base leading-7 text-on-ink">
-              A bounded workflow can reach a tested first version in 2–4 weeks
-              when the owner, inputs, and environment are ready.
+              A first version can be tested in as little as two weeks. Timing
+              depends on the workflow, data, integrations, and approvals.
             </p>
             <TrackedAnchor
               className={cn(
@@ -485,7 +540,8 @@ export function VersionTwoPage({
 
           <div className="mt-10 flex flex-col items-start justify-between gap-6 border-t border-line-strong pt-7 sm:flex-row sm:items-center">
             <p className="max-w-[68ch] text-base leading-7 text-muted-foreground">
-              We fit the workflow to the way your business already operates.
+              A good first workflow is frequent, painful, has a known output,
+              a clear owner, representative examples, and a quick human review.
             </p>
             <TrackedAnchor
               className={cn(buttonVariants({ size: "text", variant: "link" }), "shrink-0")}
@@ -493,7 +549,7 @@ export function VersionTwoPage({
               eventProperties={{ location: "workflow_patterns" }}
               href="#discuss"
             >
-              Talk through your workflow
+              Discuss one workflow
               <IconArrowNarrowRight className="text-action-arrow" data-icon="inline-end" />
             </TrackedAnchor>
           </div>
