@@ -58,8 +58,8 @@ describe("POST /api/estimate", () => {
       "owner@example.com",
     ])
     expect(recipientBodies[0].text).toContain("$75,000")
-    expect(recipientBodies[0].text).toContain("Expected (50%")
-    expect(recipientBodies[0].text).toContain("Talk through your estimate")
+    expect(recipientBodies[0].text).toContain("Planning (50%")
+    expect(recipientBodies[0].text).toContain("Discuss one workflow")
     expect(recipientBodies[0].html).toContain(
       "Turn the number into a workflow decision."
     )

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import type { ReactNode } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -49,11 +50,16 @@ export function GeminiMark() {
 }
 
 const platforms = [
+  { name: "Amplio", isAmplio: true },
   { name: "Claude", mark: <ClaudeMark /> },
-  { name: "ChatGPT", mark: <OpenAIMark /> },
+  { name: "ChatGPT Work", mark: <OpenAIMark /> },
   { name: "Codex", mark: <OpenAIMark /> },
   { name: "Gemini", mark: <GeminiMark /> },
-] as const
+] satisfies ReadonlyArray<{
+  isAmplio?: boolean
+  mark?: ReactNode
+  name: string
+}>
 
 type PlatformLogoStripProps = {
   className?: string
@@ -66,7 +72,7 @@ export function PlatformLogoStrip({
 }: PlatformLogoStripProps) {
   return (
     <ul
-      aria-label="AI platforms for Workflow Launch"
+      aria-label="AI environments for Workflow Launch"
       className={cn(
         "mt-4 grid grid-cols-2 items-center gap-y-3 text-[0.8125rem] leading-none font-medium tracking-[-0.01em] sm:flex sm:flex-wrap",
         tone === "inverse" ? "text-on-ink" : "text-foreground",
@@ -87,7 +93,23 @@ export function PlatformLogoStrip({
           )}
           key={platform.name}
         >
-          {platform.mark}
+          {platform.isAmplio ? (
+            <Image
+              alt=""
+              aria-hidden="true"
+              className="size-4 shrink-0 object-contain"
+              height={16}
+              src={
+                tone === "inverse"
+                  ? "/images/amplio-logo-negative.svg"
+                  : "/images/amplio-logo.svg"
+              }
+              unoptimized
+              width={16}
+            />
+          ) : (
+            platform.mark
+          )}
           <span>{platform.name}</span>
         </li>
       ))}
